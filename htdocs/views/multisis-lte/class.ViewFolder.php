@@ -379,6 +379,7 @@ $(document).ready(function(){
 		$this->contentStart();		
 		echo $this->getFolderPathHTML($folder);
 		echo "<div class=\"row\">";
+		echo "<h3>Bienvenid@ al sistema de gestión de inventario de ENAFOP!</h3>";
 
 		//// Add Folder ////
 		echo "<div class=\"col-md-12 div-hidden\" id=\"div-add-folder\">";
