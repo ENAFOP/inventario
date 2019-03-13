@@ -115,7 +115,7 @@ $(document).ready( function() {
 		$base = $this->params['baseServer'];
 		$enablepasswordforgotten = $this->params['enablepasswordforgotten'];
 		//echo "base: ".$settings->_httpRoot;
-		$refer = $base."/out/out.ViewFolder.php?folderid=1&showtree=1";
+		$refer = $base."out/out.ViewFolder.php?folderid=1&showtree=1";
 		$themes = $this->params['themes'];
 		$languages = $this->params['languages'];
 		$enableLanguageSelector = $this->params['enablelanguageselector'];

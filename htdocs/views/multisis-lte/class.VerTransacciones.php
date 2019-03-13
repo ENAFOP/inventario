@@ -98,8 +98,8 @@ class SeedDMS_View_VerTransacciones extends SeedDMS_Bootstrap_Style
           
 		?>
 		  <ol class="breadcrumb">
-        <li><a href="/out/out.ViewFolder.php"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li><a href="/out/out.GestionarItems.php"> Gestionar items</a></li>
+        <li><a href="out.ViewFolder.php"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="out.GestionarItems.php"> Gestionar items</a></li>
         <li class="active">Ver items</li>
       </ol>
     <div class="gap-10"></div>
