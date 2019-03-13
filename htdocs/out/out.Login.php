@@ -48,6 +48,7 @@ if($view) {
 	$view->setParam('themes', $themes);
 	$view->setParam('languages', getLanguages());
 	$view->setParam('enablelanguageselector', $settings->_enableLanguageSelector);
+	$view->setParam('baseServer', $refer = $settings->_httpRoot);
 	$view->setParam('enablethemeselector', $settings->_enableThemeSelector);
 	$view($_GET);
 	exit;
