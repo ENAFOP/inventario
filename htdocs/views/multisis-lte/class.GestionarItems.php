@@ -92,7 +92,7 @@ class SeedDMS_View_GestionarItems extends SeedDMS_Bootstrap_Style
           
 		?>
 		   <ol class="breadcrumb">
-        <li><a href="/out/out.ViewFolder.php"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="out.ViewFolder.php"><i class="fa fa-dashboard"></i> Inicio</a></li>
         <li class="active">ITEMS</li>
       </ol>
     <div class="gap-10"></div>
@@ -119,18 +119,18 @@ $this->contentContainerStart();
             </div>
             <div class="box-body">
               <p>Haga clic en un botón para acceder:</p>
-              <a class="btn btn-app" href="/out/out.AnadeItem.php">
+              <a class="btn btn-app" href="out.AnadeItem.php">
                 <i class="fa  fa-plus"></i> Añadir ítem
               </a>
-              <a class="btn btn-app" href="/out/out.VerItems.php">
+              <a class="btn btn-app" href="out.VerItems.php">
               	<span class="badge bg-teal"><?php print contarItems($dms);?></span>
                 <i class="fa fa-list-ol"></i> Ver y buscar todos los ítems
               </a> 
-              <a class="btn btn-app" href="/out/out.AnadeUbicacion.php">
+              <a class="btn btn-app" href="out.AnadeUbicacion.php">
                 
                 <i class="fa fa-archive"></i> Añadir ubicación
               </a>
-                <a class="btn btn-app" href="/out/out.VerUbicaciones.php">
+                <a class="btn btn-app" href="out.VerUbicaciones.php">
                   <span class="badge bg-teal"><?php print contarUbicaciones($dms);?></span>
                 <i class="fa fa-list-alt"></i> Ver y buscar todas las ubicaciones
               </a> 
