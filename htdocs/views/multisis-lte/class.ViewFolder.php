@@ -452,7 +452,7 @@ $(document).ready(function(){
             <div class="icon">
               <i class="fa fa-book"></i>
             </div>
-            <a href="/out/out.GestionarItems.php" class="small-box-footer">Acceder<i class="fa fa-arrow-circle-right"></i></a>
+            <a href="out.GestionarItems.php" class="small-box-footer">Acceder<i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
 
@@ -482,7 +482,7 @@ $(document).ready(function(){
             <div class="icon">
               <i class="fa fa-hand-rock-o"></i>
             </div>
-            <a href="/out/out.RealizarTransaccion.php" class="small-box-footer">Acceder<i class="fa fa-arrow-circle-right"></i></a>
+            <a href="out.RealizarTransaccion.php" class="small-box-footer">Acceder<i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
 
@@ -493,7 +493,7 @@ $(document).ready(function(){
               <h3 class="box-title">Ver últimas transacciones</h3>
             </div>
             <div class="box-body">
-              <a  href="/out/out.VerTransacciones.php"  class="btn btn-app">
+              <a  href="out.VerTransacciones.php"  class="btn btn-app">
                 <i class="fa fa-exchange"></i> Acceder
               </a>
 
@@ -568,7 +568,7 @@ $(document).ready(function(){
               <h3 class="box-title">Ver estadísticas completas</h3>
             </div>
             <div class="box-body">
-              <a  href="/out/out.ElegirFechasEstadisticas.php"  class="btn btn-app">
+              <a  href="out.ElegirFechasEstadisticas.php"  class="btn btn-app">
                 <i class="fa fa-bar-chart"></i> Acceder
               </a>
 
