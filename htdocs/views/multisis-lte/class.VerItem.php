@@ -118,9 +118,9 @@ class SeedDMS_View_VerItem extends SeedDMS_Bootstrap_Style
           
 		?>
     <ol class="breadcrumb">
-        <li><a href="/out/out.ViewFolder.php"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li><a href="/out/out.GestionarItems.php"> Gestionar items</a></li>
-        <li><a href="/out/out.VerItems.php"> Ver la lista de items</a></li>
+        <li><a href="out.ViewFolder.php"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="out.GestionarItems.php"> Gestionar items</a></li>
+        <li><a href="out.VerItems.php"> Ver la lista de items</a></li>
         <li class="active">Ver datos de item</li>
       </ol>
     <div class="gap-10"></div>

@@ -111,14 +111,12 @@ $this->contentContainerStart();
             </div>
             <!-- /.box-body -->
 
-            <a href="/out/out.VerItems.php"><b>Retornar a la lista de items</b></a>
+            <a href="out.VerItems.php"><b>Retornar a la lista de items</b></a>
           </div>
           <!-- /.box -->
 <?php
  //////FIN MI CODIGO                 
 $this->contentContainerEnd();
-
-
 $this->endsBoxPrimary();
      ?>
 	     </div>

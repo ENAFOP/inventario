@@ -171,7 +171,7 @@ $this->contentContainerEnd();
 
                <div class="tab-pane" id="tab_2">
 
-                <img <?php echo "src=\"/images/ubicaciones/ubicacion".$idItem.".jpg\""?> alt="Foto de la ubicación" height="400" width="280">
+                <img <?php echo "src=\"../images/ubicaciones/ubicacion".$idItem.".jpg\""?> alt="Foto de la ubicación" height="400" width="280">
                </div>
 
               <!-- /.tab-pane -->
@@ -184,7 +184,7 @@ $this->contentContainerEnd();
 
         <div class="col-md-3">
 
-          <a class="btn btn-app" href="/out/out.VerUbicaciones.php">
+          <a class="btn btn-app" href="out.VerUbicaciones.php">
                 <i class="fa fa-backward"></i> Volver a la lista de ubicaciones
               </a> 
 

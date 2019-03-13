@@ -98,8 +98,8 @@ class SeedDMS_View_VerItems extends SeedDMS_Bootstrap_Style
           
 		?>
 		  <ol class="breadcrumb">
-        <li><a href="/out/out.ViewFolder.php"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li><a href="/out/out.GestionarItems.php"> Gestionar items</a></li>
+        <li><a href="out.ViewFolder.php"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="out.GestionarItems.php"> Gestionar items</a></li>
         <li class="active">Ver items</li>
       </ol>
     <div class="gap-10"></div>
@@ -141,7 +141,7 @@ $this->contentContainerStart();
                 		echo ' <tr>';
                 		//1. nombre
                     $idItem=$res1[$cont]['id'];
-                		 echo "<td><a href=\"/out/out.verItem.php?id=".$idItem."\">".$res1[$cont]['nombre']."</a></td>";
+                		 echo "<td><a href=\"out.VerItem.php?id=".$idItem."\">".$res1[$cont]['nombre']."</a></td>";
                 		 //2. fecha de inicio a fin
                 		 echo "<td>".$res1[$cont]['descripcion']."</td>";
                 		  // 3. lugar

@@ -106,7 +106,7 @@ $this->contentContainerStart();
             </div>
             <!-- /.box-body -->
 
-            <a href="/out/out.ViewFolder.php"><b>Retornar al inicio</b></a>
+            <a href="out.ViewFolder.php"><b>Retornar al inicio</b></a>
           </div>
           <!-- /.box -->
 <?php
