@@ -24,14 +24,15 @@ include("../inc/inc.Extension.php");
 include("../inc/inc.DBInit.php");
 include("../inc/inc.ClassUI.php");
 include("../inc/inc.Authentication.php");
- function hacerTransaccion($idItem,$razon,$cantidadVariada,$idUsuario,$operacion,$dms,$grupoReceptor,$tipoTransaccion)
+ function hacerTransaccion($idItem,$razon,$cantidadVariada,$idUsuario,$operacion,$dms,$grupoReceptor,$tipoTransaccion,$fecha)
 	 {
 	 	//$tipoTransaccion=1, es quitar
 	 	// 2 es devolver de ese artículo
+
 	 	$res=true;
 		$db = $dms->getDB();
-		$insertar = "INSERT INTO app_transaccion VALUES(NULL,NOW(),$idItem,$idUsuario,'$razon',$cantidadVariada,$grupoReceptor,$tipoTransaccion)";
-		
+		$insertar = "INSERT INTO app_transaccion VALUES(NULL,'$fecha',$idItem,$idUsuario,'$razon',$cantidadVariada,$grupoReceptor,$tipoTransaccion)";
+		echo "insertar: ".$insertar;
 		$res1 = $db->getResult($insertar);
 		if (!$res1)
 		{
@@ -88,6 +89,7 @@ $cantidad="";
 $operacion="";
 $grupoReceptor="";
 $tipoTransaccion=0; //1 si es quitar y 2 si es añadir
+$fecha_entrega="";
 
 /////////////////
     if (isset($_POST["radio"])) //puede tomar valor "sumar" o restar"
@@ -97,6 +99,10 @@ $tipoTransaccion=0; //1 si es quitar y 2 si es añadir
 		if (isset($_POST["motivo"])) 
 		{
 		    $motivo=$_POST["motivo"]; 
+		}
+		if (isset($_POST["fecha_entrega"])) 
+		{
+		    $fecha_entrega=$_POST["fecha_entrega"]; 
 		}
 		if (isset($_POST["cantidad"])) 
 		{
@@ -121,7 +127,7 @@ if (isset($_POST["nombreItem"]))
 		
 		foreach ($idItem as $key) 
 	    {
-	    	$nuevaCantidad=hacerTransaccion($key,$motivo,$cantidad,$idUsuario,$radio,$dms,$grupoReceptor,$tipoTransaccion);
+	    	$nuevaCantidad=hacerTransaccion($key,$motivo,$cantidad,$idUsuario,$radio,$dms,$grupoReceptor,$tipoTransaccion,$fecha_entrega);
 	    	array_push($arrayNuevaCantidad, $nuevaCantidad);
 	    }
 }
@@ -137,6 +143,7 @@ if($view)
 	$view->setParam('timeout', $settings->_cmdTimeout);
 	$view->setParam('idItem', $idItem);
 	$view->setParam('motivo', $motivo);
+	$view->setParam('fecha_entrega', $fecha_entrega);
 	$view->setParam('cantidad', $cantidad);
 	$view->setParam('operacion', $operacion);
 	$view->setParam('arrayNuevaCantidad', $arrayNuevaCantidad);

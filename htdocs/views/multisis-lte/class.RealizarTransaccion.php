@@ -219,6 +219,15 @@ $this->contentContainerStart();
                 </div> 
 
                 <div class="form-group">
+                  <label for="cantidad" class="col-sm-2 control-label">Fecha en que se entregaro esos materiales</label>
+
+                  <div class="col-sm-10">
+                    <input type="date"  class="form-control" id="fecha_entrega" min="1" name="fecha_entrega" placeholder="Indique fecha" required>
+                  </div>
+
+                </div> 
+
+                <div class="form-group">
                   <label for="cantidad" class="col-sm-2 control-label">Grupo que va a recibir los materiales entregados:</label>
 
                   <div class="col-sm-10">
