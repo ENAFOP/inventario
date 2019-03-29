@@ -32,7 +32,7 @@ include("../inc/inc.Authentication.php");
 	 	$res=true;
 		$db = $dms->getDB();
 		$insertar = "INSERT INTO app_transaccion VALUES(NULL,'$fecha',$idItem,$idUsuario,'$razon',$cantidadVariada,$grupoReceptor,$tipoTransaccion)";
-		echo "insertar: ".$insertar;
+		//echo "insertar: ".$insertar;
 		$res1 = $db->getResult($insertar);
 		if (!$res1)
 		{
