@@ -320,7 +320,7 @@ $this->endsBoxPrimary();
 		$this->mainFooter();		
 		$this->containerEnd();
 		//$this->contentContainerEnd();
-    echo '<script src="/checkCantidad.js"></script>';
+    echo '<script src="../checkCantidad.js"></script>';
 		$this->htmlEndPage();
 	} /* }}} */
 }

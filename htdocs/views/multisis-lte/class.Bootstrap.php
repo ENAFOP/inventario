@@ -217,7 +217,7 @@ class SeedDMS_Bootstrap_Style extends SeedDMS_View_Common {
 		echo '</div>';
 
 		 echo '<div class="col-md-2">';
-		 echo "<img src=\"".$this->params['settings']->_httpRoot."images/usaid_hoz.png\" class=\"center-block\" alt=\"Logo STPP\" height=\"95\" width=\"200\">";
+		 echo "<img src=\"".$this->params['settings']->_httpRoot."images/multisis-lte/logo.png\" class=\"center-block\" alt=\"Logo ENAFOP\" height=\"95\" width=\"200\">";
 		 echo '</div>'; 
 		  echo '</div>'; 
 		echo "</footer>";
