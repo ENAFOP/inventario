@@ -5,7 +5,7 @@ $(document).ready(function ()
 		var idItem=$("#nombreItem").val();
 		var ultimoID=idItem[idItem.length-1];
 		$.ajax({
-			url:"/comprobarExistencias.php?id="+ultimoID,
+			url:"../comprobarExistencias.php?id="+ultimoID,
 			success:function(result)
 			{
 
