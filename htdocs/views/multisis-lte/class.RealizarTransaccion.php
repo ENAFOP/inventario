@@ -137,7 +137,7 @@ class SeedDMS_View_RealizarTransaccion extends SeedDMS_Bootstrap_Style
           
 		?>
      <ol class="breadcrumb">
-        <li><a href="/out/out.ViewFolder.php"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="out.ViewFolder.php"><i class="fa fa-dashboard"></i> Inicio</a></li>
         <li class="active">Hacer transacción nueva</li>
       </ol>
     <div class="gap-10"></div>
