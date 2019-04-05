@@ -79,14 +79,24 @@ class SeedDMS_View_VerConfirmaciones extends SeedDMS_Bootstrap_Style
 
 		$db = $dms->getDB();
 		$previewer = new SeedDMS_Preview_Previewer($cachedir, $previewwidth, $timeout);
+			$driver="mysql";
+	//echo "intentando acceder con usuario: ".$usuarito;
+        $manejador=new SeedDMS_Core_DatabaseAccess($driver,(string) $host,(string)$usuarito,(string)$password,(string)$base);
+        $estado=$manejador->connect();
 
-		$this->htmlStartPage("Ver confirmados para el evento", "skin-blue sidebar-mini sidebar-collapse");
+        $miQuery0="SELECT title FROM wp_formmaker WHERE id=$idevento;";
+	 $resultado0=$manejador->getResultArray($miQuery0);
+	 $nombreEvento=$resultado0[0]['title'];
+          
+
+		$this->htmlStartPage("Ver confirmados para el evento $nombreEvento", "skin-blue sidebar-mini sidebar-collapse");
 		$this->containerStart();
 		$this->mainHeader();
 		$this->mainSideBar();
 		//$this->contentContainerStart("hoa");
 		$this->contentStart();
-          
+
+	 
 		?>
     <div class="gap-10"></div>
     <div class="row">
@@ -101,20 +111,18 @@ class SeedDMS_View_VerConfirmaciones extends SeedDMS_Bootstrap_Style
     <?php
     //en este bloque php va "mi" código
   
- $this->startBoxPrimary("Listado de fichas de confirmación a eventos ENAFOP");
+ $this->startBoxPrimary("Listado de fichas de confirmación a evento <b>$nombreEvento</b>");
 $this->contentContainerStart();
 //////INICIO MI CODIGO
-	$driver="mysql";
-	//echo "intentando acceder con usuario: ".$usuarito;
-    $manejador=new SeedDMS_Core_DatabaseAccess($driver,(string) $host,(string)$usuarito,(string)$password,(string)$base);
-	$estado=$manejador->connect();
+
+	
 	//echo "Conectado: ".$estado;
 	if($estado!=1)
 	{
 		UI::exitError(getMLText("my_documents"),"Error en la operación base de datos conectar al host $host.<br> Ver lista de confirmaciones");
 	}
 	//conseguir los labels o campos del form
-	$miQuery1="SELECT label_order_current FROM wp_formmaker WHERE id=20;";
+	$miQuery1="SELECT label_order_current FROM wp_formmaker WHERE id=$idevento;";
 	 $resultado1=$manejador->getResultArray($miQuery1);
 	 $labels=$resultado1[0]['label_order_current'];
 	 $porciones = explode("#**", $labels);
@@ -141,34 +149,61 @@ $this->contentContainerStart();
 
 
 
-	$miQuery2="SELECT * FROM wp_formmaker_submits WHERE form_id=$idevento ORDER BY DATE desc;";
+	
 	echo '<table id="tablaEventos" class="table table-hover table-striped table-condensed">
               	<thead>
-                <tr>
-                <th width="15%">Número de evento o actividad</th>
-
-                  <th>Título del evento o actividad</th>
+                <tr>';
+                foreach ($arrayCampos as $camp ) 
+                {
+                	
+                  //echo "<th>$camp</th>";
+                }
+                 
                            
-                </tr>
+                echo'</tr>
                </thead>
                <tbody>';
-         
-            $resultado=$manejador->getResultArray($miQuery2);
-			foreach ($resultado as $evento) 
+                 $miQueryNum="SELECT COUNT(distinct group_id) FROM wp_formmaker_submits WHERE form_id=$idevento;";
+	            $resum=$manejador->getResultArray($miQueryNum);
+	            $confirmados=$resum[0]['COUNT(distinct group_id)'];
+	            //echo "confirmados: ".$confirmados;
+         		$tam=sizeof($arrayIds);
+         		//echo "tam: ".$tam;
+
+         	for($y = 0; $y < $confirmados; $y++)
 		    {
-		    	echo ' <tr>';
-		    	// $id=$evento['id'];
-		    	// echo "<td>".$id."</td>";
-		    	// //echo "<br>";
-		    	// $titulo=$evento['title'];
-		    	// echo "<td><a href=\"out.VerConfirmaciones.php?evento=".$id."\">".$titulo."</a></td>";
-		    	echo "evento: ".$evento;
+		    	  echo ' <tr>';
+		    	  //echo "bucle grande pasada: $y<br>"; 
+		    	
+				for($conti=0;$conti<$tam;$conti++)
+			    {
+			    	//echo "Conti: ".$conti."<br>";
+			    	$idecito=$arrayIds[$conti];
+			    	 //echo "idecito: ".$idecito;
+				    $miQuery2="SELECT element_value FROM wp_formmaker_submits WHERE element_label=$idecito AND form_id=$idevento  ORDER BY DATE desc;";
+				    //echo "miQuery2: ".$miQuery2;
+		            $resultado=$manejador->getResultArray($miQuery2);
+		            echo '<th>Header 1</th>';
+		              foreach ($resultado as $key => $value) 
+		              {
+					  	 //$resu=$resultado[0]['element_value'];
 
+		              	echo ' <tr>';
+		              	
+			            $valor=$value['element_value'];
+				    	echo "<td>$valor</td>";
 
+				    	echo ' </tr>';
+					  }
 
-		    	echo ' </tr>';
-		    }                              
-   
+					 
+
+		           	    	
+			    } 
+			      
+		    }                               
+  
+
             echo  '</tbody>
               <tfoot>
               </tfoot>
