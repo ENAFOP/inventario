@@ -116,7 +116,45 @@ class SeedDMS_View_VerConfirmaciones extends SeedDMS_Bootstrap_Style
                 <h4><i class="icon fa fa-check"></i> Indicación</h4>
                 En esta pantalla se muestran los eventos de la ENAFOP que requieren confirmación. Encontrará la lista de estos eventos, debe hacer clic en el nombre de cada uno para ver la lista de personas confirmadas al mismo.
               </div>
-      
+ <div class="row">
+<div class="col-md-6">
+              <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>44</h3>
+
+              <p>Personas confirmadas al evento</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div> 
+
+          </div> 
+
+
+          <div class="col-md-6">
+
+          		<div class="small-box bg-green">
+            <div class="inner">
+              <h3>53<sup style="font-size: 20px">%</sup></h3>
+
+              <p>Bounce Rate</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+
+
+
+
+          </div> 
+
+
+
+        </div>  
 
     <?php
     //en este bloque php va "mi" código
@@ -171,7 +209,7 @@ $this->contentContainerStart();
 	                		echo "<th>$campo</th>";               		
                   
                 }
-                 
+                // echo "<th>Fecha en que confirmó</th>";
                            
                 echo'</tr>
                </thead>
@@ -191,21 +229,26 @@ $this->contentContainerStart();
 		            //echo "Longi: $longi";
 		              for ($i=0; $i<$longi; $i++) 
 		              {
+		              	;
 		              	//echo "valor de i: ".$i;
-		              	if(multiplon($i,$labelsEfectivas))
-		              	{
-		              		echo "<tr>";
-		              	}
-					  	 $filita=$resultado[$i];
-					  	 //echo "Filita:<br>";
-					  	 //print_r( $filita);
-
-		              	//echo ' <salida>';print_r($salida)              	
+		              	$filita=$resultado[$i];
+		              	$fechaconfirma=$filita['date'];
 		              	
-			            $valor=$filita['element_value'];
-				    	echo "<td>$valor</td>";
+			              	if(multiplon($i,$labelsEfectivas))
+			              	{
+			              		//echo "<td>$fechaconfirma</td>";
+			              		echo ' </tr>';
+			              		//echo "<br>$fechaconfirma<br>";
+			              		echo "<tr>";
+			              	}						  	 
+				            $valor=$filita['element_value'];
+				            $valor=str_replace("@@@"," ",$valor);
+				            
+				            echo "<td>$valor</td>";
+	
 				    	
-					  }					 
+					  }	
+					  				 
 
 		           	    	
 			   // } 
