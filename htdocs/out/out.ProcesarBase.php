@@ -61,7 +61,7 @@ $view = UI::factory($theme, $tmp[1], array('dms'=>$dms, 'user'=>$user));
 
 //---------PESTAÑA 1: DATOS GENERALES:
 $host="";
-$user="";
+$userito="";
 $password="";
 $base="";
 
@@ -72,7 +72,7 @@ if (isset($_POST["host"]))
 }
 if (isset($_POST["user"])) 
 {
-    $user=$_POST["user"]; 
+    $userito=$_POST["user"]; 
 }
 if (isset($_POST["password"])) 
 {
@@ -83,7 +83,7 @@ if (isset($_POST["base"]))
     $base=$_POST["base"]; 
 }
 ////////hago metida en BD
-$resu=crearHost($host,$user,$password,$base,$dms);
+$resu=crearHost($host,$userito,$password,$base,$dms);
 if($view) 
 {
 	$view->setParam('orderby', $orderby);
@@ -93,7 +93,7 @@ if($view)
 	$view->setParam('previewWidthList', $settings->_previewWidthList);
 	$view->setParam('timeout', $settings->_cmdTimeout);
 	$view->setParam('host', $host);
-	$view->setParam('user', $user);
+	$view->setParam('userito', $userito);
 	$view($_GET);
 	exit;
 }

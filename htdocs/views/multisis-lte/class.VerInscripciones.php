@@ -71,7 +71,7 @@ class SeedDMS_View_VerInscripciones extends SeedDMS_Bootstrap_Style
 		$db = $dms->getDB();
 		$previewer = new SeedDMS_Preview_Previewer($cachedir, $previewwidth, $timeout);
 
-		$this->htmlStartPage(getMLText("mi_sitio"), "skin-blue sidebar-mini");
+		$this->htmlStartPage("Ver listados de inscripción para eventos ENAFOP", "skin-blue sidebar-mini sidebar-collapse");
 		$this->containerStart();
 		$this->mainHeader();
 		$this->mainSideBar();
@@ -82,22 +82,62 @@ class SeedDMS_View_VerInscripciones extends SeedDMS_Bootstrap_Style
     <div class="gap-10"></div>
     <div class="row">
     <div class="col-md-12">
+    	<div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-check"></i> Indicación</h4>
+                En esta pantalla se muestran los eventos de la ENAFOP que requieren confirmación. Encontrará la lista de estos eventos, debe hacer clic en el nombre de cada uno para ver la lista de personas confirmadas al mismo.
+              </div>
       
 
     <?php
     //en este bloque php va "mi" código
   
- $this->startBoxPrimary(getMLText("mi_pagina"));
+ $this->startBoxPrimary("Listado de fichas de confirmación a eventos ENAFOP");
 $this->contentContainerStart();
 //////INICIO MI CODIGO
 	$driver="mysql";
-    $manejador=new SeedDMS_Core_DatabaseAccess($driver,$host,$user,$password,$base);
+	//echo "intentando acceder con usuario: ".$usuarito;
+    $manejador=new SeedDMS_Core_DatabaseAccess($driver,(string) $host,(string)$usuarito,(string)$password,(string)$base);
 	$estado=$manejador->connect();
 	//echo "Conectado: ".$estado;
 	if($estado!=1)
 	{
-		UI::exitError(getMLText("my_documents"),"Error en la operación base de datos conectar al host $host.");
+		UI::exitError(getMLText("my_documents"),"Error en la operación base de datos conectar al host $host.<br> Ver lista de confirmaciones");
 	}
+
+	$miQuery="SELECT * FROM wp_formmaker ORDER BY id DESC";
+	echo '<table id="tablaEventos" class="table table-hover table-striped table-condensed">
+              	<thead>
+                <tr>
+                <th width="15%">Número de evento o actividad</th>
+
+                  <th>Título del evento o actividad</th>
+                           
+                </tr>
+               </thead>
+               <tbody>';
+         
+            $resultado=$manejador->getResultArray($miQuery);
+			foreach ($resultado as $evento) 
+		    {
+		    	echo ' <tr>';
+		    	$id=$evento['id'];
+		    	echo "<td>".$id."</td>";
+		    	//echo "<br>";
+		    	$titulo=$evento['title'];
+		    	echo "<td><a href=\"out.VerConfirmaciones.php?evento=".$id."\">".$titulo."</a></td>";
+
+
+
+		    	echo ' </tr>';
+		    }                              
+   
+            echo  '</tbody>
+              <tfoot>
+              </tfoot>
+               
+              </table>';
+	
  //////FIN MI CODIGO                 
 $this->contentContainerEnd();
 
@@ -113,6 +153,12 @@ $this->endsBoxPrimary();
 		$this->mainFooter();		
 		$this->containerEnd();
 		//$this->contentContainerEnd();
+			echo '<script src="../styles/multisis-lte/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>';
+        echo '<script src="../styles/multisis-lte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>';
+        echo '<script src="../styles/multisis-lte/plugins/sorting/moment.min.js"></script>';
+        echo '<script src="../styles/multisis-lte/plugins/sorting/datetime-moment.js"></script>';
+        echo '<script src="../styles/multisis-lte/bower_components/jquery-knob/js/jquery.knob.js"></script>';
+		echo '<script src="../tablasDinamicas.js"></script>';
 		$this->htmlEndPage();
 	} /* }}} */
 }

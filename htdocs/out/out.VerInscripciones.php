@@ -63,7 +63,7 @@ $tmp = explode('.', basename($_SERVER['SCRIPT_FILENAME']));
 $view = UI::factory($theme, $tmp[1], array('dms'=>$dms, 'user'=>$user));
 
 $host=getHost("host",$dms);
-$user=getHost("user",$dms);
+$usuarito=getHost("user",$dms);
 $password=getHost("password",$dms);
 $base=getHost("base",$dms);
 

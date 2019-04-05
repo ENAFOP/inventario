@@ -3,7 +3,7 @@
 		$.fn.dataTable.moment( 'YYYY-MM-DD' );
 	    $.fn.dataTable.moment( 'DD/MM/YYYY' );
 		$('#tablaEventos').DataTable( {
-        "order": [[ 1, "desc" ]],
+        "order": [[ 0, "desc" ]],
         "language": {
 			"sProcessing":     "Procesando...",
 			"sLengthMenu":     "Mostrar _MENU_ elementos",

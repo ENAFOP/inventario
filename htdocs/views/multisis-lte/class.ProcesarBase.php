@@ -64,7 +64,7 @@ class SeedDMS_View_ProcesarBase extends SeedDMS_Bootstrap_Style
 		$timeout = $this->params['timeout'];
 		////////del form
 		$host = $this->params['host'];
-		$user = $this->params['user'];
+		$userito = $this->params['userito'];
 
 
 		$db = $dms->getDB();
@@ -104,7 +104,7 @@ $this->contentContainerStart();
 
 				 <ul>
 				 	 <li><?php echo "Nombre del host: ".$host?></li>
-				   <li><?php echo "user de la BD: ".$user?></li>
+				   <li><?php echo "User de la BD: ".$userito?></li>
 				 
 				</ul>
 		     </div>
