@@ -444,6 +444,20 @@ $(document).ready(function(){
 
         <div class="col-lg-6 col-xs-6">
           <!-- small box -->
+
+          <div class="small-box bg-teal">
+            <div class="inner">
+              <h3>ENTRAR AL SUBSISTEMA </h3>
+
+              <p>de confirmaciones a eventos y convocatorias ENAFOP</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-book"></i>
+            </div>
+            <a href="out.VerInscripciones.php" class="small-box-footer">Acceder<i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+
+
           <div class="small-box bg-green">
             <div class="inner">
               <h3>Ver y gestionar </h3>
