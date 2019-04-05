@@ -25,6 +25,22 @@ include("../inc/inc.DBInit.php");
 include("../inc/inc.ClassUI.php");
 include("../inc/inc.Authentication.php");
 
+function getHost($elem,$dms)
+	 {
+	 	$res="";
+		$db = $dms->getDB();
+		$consultar = "SELECT $elem FROM forms_hosts WHERE id=1;";
+		//echo "consultar: ".$consultar;
+		$res1 = $db->getResultArray($consultar);
+		if (!$res1)
+		{
+			UI::exitError(getMLText("my_documents"),"Error en la operación base de datos consultar datos del host.");
+		}
+		$coso=$res1[0][$elem];
+		return $coso;
+	 }
+
+
 //tabla seeddms.tblattributedefinitions;
  //generan
 if ($user->isGuest()) {
@@ -46,13 +62,24 @@ if (isset($_GET["orderby"]) && strlen($_GET["orderby"])==1 ) {
 $tmp = explode('.', basename($_SERVER['SCRIPT_FILENAME']));
 $view = UI::factory($theme, $tmp[1], array('dms'=>$dms, 'user'=>$user));
 
-if($view) {
+$host=getHost("host",$dms);
+$user=getHost("user",$dms);
+$password=getHost("password",$dms);
+$base=getHost("base",$dms);
+
+if($view) 
+{
 	$view->setParam('orderby', $orderby);
 	$view->setParam('showinprocess', $showInProcess);
 	$view->setParam('workflowmode', $settings->_workflowMode);
 	$view->setParam('cachedir', $settings->_cacheDir);
 	$view->setParam('previewWidthList', $settings->_previewWidthList);
 	$view->setParam('timeout', $settings->_cmdTimeout);
+
+	$view->setParam('host', $host);
+	$view->setParam('usuarito', $usuarito);
+	$view->setParam('password', $password);
+	$view->setParam('base', $base);
 
 	$view($_GET);
 	exit;

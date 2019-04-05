@@ -45,7 +45,7 @@ require_once("SeedDMS/Preview.php");
  -dias: documentos que van a caducar dentro de cúantos días
  */
 
-class SeedDMS_View_ProximasCaducidades extends SeedDMS_Bootstrap_Style 
+class SeedDMS_View_ProcesarBase extends SeedDMS_Bootstrap_Style 
 {
  /**
  Método que muestra los documentos próximos a caducar sólo de 
@@ -62,11 +62,15 @@ class SeedDMS_View_ProximasCaducidades extends SeedDMS_Bootstrap_Style
 		$workflowmode = $this->params['workflowmode'];
 		$previewwidth = $this->params['previewWidthList'];
 		$timeout = $this->params['timeout'];
+		////////del form
+		$host = $this->params['host'];
+		$user = $this->params['user'];
+
 
 		$db = $dms->getDB();
 		$previewer = new SeedDMS_Preview_Previewer($cachedir, $previewwidth, $timeout);
 
-		$this->htmlStartPage(getMLText("mi_sitio"), "skin-blue sidebar-mini");
+		$this->htmlStartPage(getMLText("Host creado"), "skin-blue sidebar-mini  sidebar-collapse");
 		$this->containerStart();
 		$this->mainHeader();
 		$this->mainSideBar();
@@ -82,10 +86,35 @@ class SeedDMS_View_ProximasCaducidades extends SeedDMS_Bootstrap_Style
     <?php
     //en este bloque php va "mi" código
   
- $this->startBoxPrimary(getMLText("mi_pagina"));
+ $this->startBoxPrimary("Host guardado con éxito");
 $this->contentContainerStart();
 //////INICIO MI CODIGO
+?>
+          <div class="box box-default">
+            <div class="box-header with-border">
+              <i class="fa fa-bullhorn"></i>
 
+              <h3 class="box-title">Host añadido con éxito</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+            
+              <div class="callout callout-success">
+                <h4>Resumen de la conexión para las respuestas a formularios ENAFOP:</h4>
+
+				 <ul>
+				 	 <li><?php echo "Nombre del host: ".$host?></li>
+				   <li><?php echo "user de la BD: ".$user?></li>
+				 
+				</ul>
+		     </div>
+            </div>
+            <!-- /.box-body -->
+
+            <a href="out.ViewFolder.php"><b>Retornar a la página Principal</b></a>
+          </div>
+          <!-- /.box -->
+<?php
  //////FIN MI CODIGO                 
 $this->contentContainerEnd();
 

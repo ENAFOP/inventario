@@ -44,20 +44,8 @@ require_once("SeedDMS/Preview.php");
  mostrarTodosDocumentos(lista_usuarios,dias)
  -dias: documentos que van a caducar dentro de cúantos días
  */
-function existeHost($dms)
-	 {
-	 	$res=true;
-		$db = $dms->getDB();
-		$insertar = "INSERT INTO app_grupo VALUES(NULL,'$nombre','$descripcion')";
-		//echo "INSERTAR: ".$insertar;
-		$res1 = $db->getResult($insertar);
-		if (!$res1)
-		{
-			$res=false;
-		}
-		return $res;
-	 }
-class SeedDMS_View_DefinirBase extends SeedDMS_Bootstrap_Style 
+
+class SeedDMS_View_VerInscripciones extends SeedDMS_Bootstrap_Style 
 {
  /**
  Método que muestra los documentos próximos a caducar sólo de 
@@ -74,6 +62,11 @@ class SeedDMS_View_DefinirBase extends SeedDMS_Bootstrap_Style
 		$workflowmode = $this->params['workflowmode'];
 		$previewwidth = $this->params['previewWidthList'];
 		$timeout = $this->params['timeout'];
+
+		$host = $this->params['host'];
+		$usuarito = $this->params['usuarito'];
+		$password = $this->params['password'];
+		$base = $this->params['base'];
 
 		$db = $dms->getDB();
 		$previewer = new SeedDMS_Preview_Previewer($cachedir, $previewwidth, $timeout);
@@ -94,42 +87,17 @@ class SeedDMS_View_DefinirBase extends SeedDMS_Bootstrap_Style
     <?php
     //en este bloque php va "mi" código
   
- $this->startBoxPrimary("Defina los datos de conexión a la base de datos donde se guardan las respuestas a  formularios de la ENAFOP");
+ $this->startBoxPrimary(getMLText("mi_pagina"));
 $this->contentContainerStart();
 //////INICIO MI CODIGO
-?>
-<div class="box box-success">
-	<form class="form-horizontal" name="formularioBase" id="formularioBase" action="out.ProcesarBase.php" method="POST" enctype="multipart/form-data">
-            <div class="box-header with-border">
-              <h3 class="box-title">Ingrese IP y noombre de la base de datos</h3>
-            </div>
-            <div class="box-body">
-            	 <label for="host" class="col-sm-2 control-label">Host</label>
-              <input class="form-control input-lg" type="text" placeholder="ingrese texto"  name="host" id="host" required>
-              <br>
-               <label for="user" class="col-sm-2 control-label">Usuario en BD</label>
-              <input class="form-control input-lg" type="text" placeholder="ingrese texto"  name="user" id="user" required>
-              <br>
-               <label for="pwd" class="col-sm-2 control-label">Password</label>
-              <input class="form-control input-lg" type="text" placeholder="ingrese texto"  name="password" id="password" required>
-              <br>
-               <label for="base" class="col-sm-2 control-label">Nombre de la base de datos</label>
-              <input class="form-control input-lg" type="text" placeholder="ingrese texto"  name="base" id="base" required>
-              <br>
-
-
-
-              
-              
-            </div>
-            <div class="box-footer">
-                <button type="submit" class="btn btn-primary">guardar</button>
-              </div>
-            <!-- /.box-body -->
-          </div>
-      </form>
-
-<?php
+	$driver="mysql";
+    $manejador=new SeedDMS_Core_DatabaseAccess($driver,$host,$user,$password,$base);
+	$estado=$manejador->connect();
+	//echo "Conectado: ".$estado;
+	if($estado!=1)
+	{
+		UI::exitError(getMLText("my_documents"),"Error en la operación base de datos conectar al host $host.");
+	}
  //////FIN MI CODIGO                 
 $this->contentContainerEnd();
 
