@@ -53,6 +53,16 @@ function multiplo3($indice)
 	else
 		return false;
 }
+
+function multiplon($indice,$numero)
+{
+	if($indice%$numero==0)
+	{
+		return true;
+	}
+	else
+		return false;
+}
 class SeedDMS_View_VerConfirmaciones extends SeedDMS_Bootstrap_Style 
 {
  /**
@@ -145,18 +155,26 @@ $this->contentContainerStart();
 	 	}
 	 	
 	 }
-
-
-
-
 	
 	echo '<table id="tablaEventos" class="table table-hover table-striped table-condensed">
               	<thead>
                 <tr>';
-                foreach ($arrayCampos as $camp ) 
+                $logCampos=sizeof($arrayCampos); echo "log campos:".$logCampos;
+                for ($a=0; $a<=$logCampos; $a++) 
                 {
-                	
-                  //echo "<th>$camp</th>";
+                	//echo "Nen nucle";
+                	if($a==0 || $a==$logCampos)
+	                	{
+	                		//echo "salgo";
+	                		continue;
+	                	}
+	                	else
+	                	{
+	                		$campo=$arrayCampos[$a];
+	                		echo "<th>$campo</th>";
+	                	}
+                		
+                  
                 }
                  
                            
@@ -166,42 +184,42 @@ $this->contentContainerStart();
                  $miQueryNum="SELECT COUNT(distinct group_id) FROM wp_formmaker_submits WHERE form_id=$idevento;";
 	            $resum=$manejador->getResultArray($miQueryNum);
 	            $confirmados=$resum[0]['COUNT(distinct group_id)'];
-	            //echo "confirmados: ".$confirmados;
-         		$tam=sizeof($arrayIds);
-         		//echo "tam: ".$tam;
-
-         	for($y = 0; $y < $confirmados; $y++)
-		    {
-		    	  echo ' <tr>';
-		    	  //echo "bucle grande pasada: $y<br>"; 
-		    	
-				for($conti=0;$conti<$tam;$conti++)
-			    {
-			    	//echo "Conti: ".$conti."<br>";
-			    	$idecito=$arrayIds[$conti];
-			    	 //echo "idecito: ".$idecito;
-				    $miQuery2="SELECT element_value FROM wp_formmaker_submits WHERE element_label=$idecito AND form_id=$idevento  ORDER BY DATE desc;";
-				    //echo "miQuery2: ".$miQuery2;
+	            //labels efectivas
+	            $queryLabels="SELECT COUNT(distinct element_label) FROM wp_formmaker_submits WHERE form_id=$idevento";
+	            $labelscont=$manejador->getResultArray($queryLabels);
+	            $labelsEfectivas=$labelscont[0]['COUNT(distinct element_label)'];
+	            //echo "labelsEfectivas: ".$labelsEfectivas;
+         		$tam=sizeof($arrayCampos);
+         	
+				    //
+				    $miQuery2="SELECT * FROM wp_formmaker_submits WHERE form_id=$idevento  order by date desc";
 		            $resultado=$manejador->getResultArray($miQuery2);
-		            echo '<th>Header 1</th>';
-		              foreach ($resultado as $key => $value) 
+		            //echo "miQuery2: ".$miQuery2;
+		            $longi=sizeof($resultado);
+		            //echo "Longi: $longi";
+		              for ($i=0; $i<$longi; $i++) 
 		              {
-					  	 //$resu=$resultado[0]['element_value'];
+		              	//echo "valor de i: ".$i;
+		              	if(multiplon($i,$labelsEfectivas))
+		              	{
+		              		echo "<tr>";
+		              	}
+					  	 $filita=$resultado[$i];
+					  	 //echo "Filita:<br>";
+					  	 //print_r( $filita);
 
-		              	echo ' <tr>';
+		              	//echo ' <salida>';print_r($salida)              	
 		              	
-			            $valor=$value['element_value'];
+			            $valor=$filita['element_value'];
 				    	echo "<td>$valor</td>";
-
-				    	echo ' </tr>';
-					  }
-
-					 
+				    	
+					  }					 
 
 		           	    	
-			    } 
+			   // } 
+			    echo ' </tr>';
 			      
-		    }                               
+	                         
   
 
             echo  '</tbody>
