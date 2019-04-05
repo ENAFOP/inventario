@@ -63,6 +63,9 @@ function multiplon($indice,$numero)
 	else
 		return false;
 }
+
+
+
 class SeedDMS_View_VerConfirmaciones extends SeedDMS_Bootstrap_Style 
 {
  /**
@@ -86,6 +89,8 @@ class SeedDMS_View_VerConfirmaciones extends SeedDMS_Bootstrap_Style
 		$password = $this->params['password'];
 		$base = $this->params['base'];
 		$idevento = $this->params['idevento'];
+		$totalHombres=0;
+		$totalMujeres=0;
 
 		$db = $dms->getDB();
 		$previewer = new SeedDMS_Preview_Previewer($cachedir, $previewwidth, $timeout);
@@ -120,9 +125,17 @@ class SeedDMS_View_VerConfirmaciones extends SeedDMS_Bootstrap_Style
     	<div class="alert alert-success alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h4><i class="icon fa fa-check"></i> Indicación</h4>
-                En esta pantalla se muestran los eventos de la ENAFOP que requieren confirmación. Encontrará la lista de estos eventos, debe hacer clic en el nombre de cada uno para ver la lista de personas confirmadas al mismo.
+                En esta pantalla se muestra la lista de personas que han confirmado el evento, empezando por la confirmación más reciente.
               </div>
  <div class="row">
+
+ 	<div class="col-md-3">
+
+
+
+
+
+          </div>
 <div class="col-md-6">
               <div class="small-box bg-yellow">
             <div class="inner">
@@ -133,31 +146,13 @@ class SeedDMS_View_VerConfirmaciones extends SeedDMS_Bootstrap_Style
             <div class="icon">
               <i class="ion ion-person"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            
           </div> 
 
           </div> 
 
 
-          <div class="col-md-6">
-
-          		<div class="small-box bg-green">
-            <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-              <p>Bounce Rate</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-stats-bars"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-
-
-
-
-          </div> 
-
+           
 
 
         </div>  
@@ -249,6 +244,14 @@ $this->contentContainerStart();
 			              	}						  	 
 				            $valor=$filita['element_value'];
 				            $valor=str_replace("@@@"," ",$valor);
+				            if(strcmp($valor, "Hombre")==0)
+				            {
+				            	$totalHombres++;
+				            }
+				            else
+				            {
+				            	$totalMujeres++;
+				            }
 				            
 				            echo "<td>$valor</td>";
 	
@@ -285,6 +288,8 @@ $this->endsBoxPrimary();
 		$this->containerEnd();
 		//$this->contentContainerEnd();
 			echo '<script src="../styles/multisis-lte/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>';
+			echo '<script src="../styles/multisis-lte/bower_components/datatables.net/js/buttons.print.min.js"></script>';
+			echo '<script src="../styles/multisis-lte/bower_components/datatables.net/js/dataTables.buttons.min.js"></script>';
         echo '<script src="../styles/multisis-lte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>';
         echo '<script src="../styles/multisis-lte/plugins/sorting/moment.min.js"></script>';
         echo '<script src="../styles/multisis-lte/plugins/sorting/datetime-moment.js"></script>';

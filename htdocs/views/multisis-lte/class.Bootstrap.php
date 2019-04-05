@@ -85,6 +85,9 @@ class SeedDMS_Bootstrap_Style extends SeedDMS_View_Common {
 		echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/select2/css/select2-bootstrap.css" rel="stylesheet">'."\n";
 		echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/plugins/jqtree/jqtree.css" rel="stylesheet">'."\n";
 	    echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/jquery-editable/css/jquery-editable.css" rel="stylesheet">'."\n";
+
+
+	    echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/jquery-editable/css/jquery-editable.css" rel="stylesheet">'."\n";
 		//echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/bower_components/select2/dist/css/select2.min.css" rel="stylesheet">'."\n";
 		// echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/bower_components/jvectormap/jquery-jvectormap.css" rel="stylesheet">'."\n";
 		//echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/application.css" rel="stylesheet">'."\n";
@@ -105,6 +108,10 @@ class SeedDMS_Bootstrap_Style extends SeedDMS_View_Common {
 		echo '<script type="text/javascript" src="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/moment.min.js"></script>'."\n";
 		
 		echo '<script type="text/javascript" src="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/custom/js/validate-logo.js"></script>'."\n";
+
+		//echo '<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>'."\n";
+		//echo '<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>'."\n";
+		//echo '<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>';
 
 		//añadido por Mario:
 		//echo '<script type="text/javascript" src="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/animacionTabs.js"></script>'."\n";	
