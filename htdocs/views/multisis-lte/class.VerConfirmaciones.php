@@ -97,6 +97,12 @@ class SeedDMS_View_VerConfirmaciones extends SeedDMS_Bootstrap_Style
         $miQuery0="SELECT title FROM wp_formmaker WHERE id=$idevento;";
 	 $resultado0=$manejador->getResultArray($miQuery0);
 	 $nombreEvento=$resultado0[0]['title'];
+
+
+	     $qtotal="SELECT COUNT(distinct group_id) FROM wp_formmaker_submits WHERE form_id=$idevento";
+	            $tconf=$manejador->getResultArray($qtotal);
+	            $totalito=$tconf[0]['COUNT(distinct group_id)'];
+	           // echo "totalito: ".$totalito;
           
 
 		$this->htmlStartPage("Ver confirmados para el evento $nombreEvento", "skin-blue sidebar-mini sidebar-collapse");
@@ -120,7 +126,7 @@ class SeedDMS_View_VerConfirmaciones extends SeedDMS_Bootstrap_Style
 <div class="col-md-6">
               <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>44</h3>
+              <h3><?php  echo $totalito; ?></h3>
 
               <p>Personas confirmadas al evento</p>
             </div>
