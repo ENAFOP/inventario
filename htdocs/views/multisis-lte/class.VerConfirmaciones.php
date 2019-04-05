@@ -159,21 +159,16 @@ $this->contentContainerStart();
 	echo '<table id="tablaEventos" class="table table-hover table-striped table-condensed">
               	<thead>
                 <tr>';
-                $logCampos=sizeof($arrayCampos); echo "log campos:".$logCampos;
-                for ($a=0; $a<=$logCampos; $a++) 
+                //labels efectivas
+	            $queryLabels="SELECT COUNT(distinct element_label) FROM wp_formmaker_submits WHERE form_id=$idevento";
+	            $labelscont=$manejador->getResultArray($queryLabels);
+	            $labelsEfectivas=$labelscont[0]['COUNT(distinct element_label)'];
+                $logCampos=sizeof($arrayCampos); 
+                for ($a=1; $a<=$labelsEfectivas; $a++) //counter empieza en 1 porque me mete un campo Custom HTML 9 que NO quiero
                 {
-                	//echo "Nen nucle";
-                	if($a==0 || $a==$logCampos)
-	                	{
-	                		//echo "salgo";
-	                		continue;
-	                	}
-	                	else
-	                	{
+                	//echo "a: ".$a;
 	                		$campo=$arrayCampos[$a];
-	                		echo "<th>$campo</th>";
-	                	}
-                		
+	                		echo "<th>$campo</th>";               		
                   
                 }
                  
@@ -184,10 +179,7 @@ $this->contentContainerStart();
                  $miQueryNum="SELECT COUNT(distinct group_id) FROM wp_formmaker_submits WHERE form_id=$idevento;";
 	            $resum=$manejador->getResultArray($miQueryNum);
 	            $confirmados=$resum[0]['COUNT(distinct group_id)'];
-	            //labels efectivas
-	            $queryLabels="SELECT COUNT(distinct element_label) FROM wp_formmaker_submits WHERE form_id=$idevento";
-	            $labelscont=$manejador->getResultArray($queryLabels);
-	            $labelsEfectivas=$labelscont[0]['COUNT(distinct element_label)'];
+	            
 	            //echo "labelsEfectivas: ".$labelsEfectivas;
          		$tam=sizeof($arrayCampos);
          	
