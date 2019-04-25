@@ -194,8 +194,8 @@ $this->contentContainerStart();
 	 	}
 	 	
 	 }
-	
-	echo '<table id="tablaEventos" class="table table-hover table-striped table-condensed">
+	echo '<div class="table-responsive">';
+	echo '<table id="tablaConfirmaciones" class="table table-hover table-striped table-condensed">
               	<thead>
                 <tr>';
                 //labels efectivas
@@ -203,10 +203,18 @@ $this->contentContainerStart();
 	            $labelscont=$manejador->getResultArray($queryLabels);
 	            $labelsEfectivas=$labelscont[0]['COUNT(distinct element_label)'];
                 $logCampos=sizeof($arrayCampos); 
+
+
+
+                
                 for ($a=1; $a<=$labelsEfectivas; $a++) //counter empieza en 1 porque me mete un campo Custom HTML 9 que NO quiero
                 {
                 	//echo "a: ".$a;
 	                		$campo=$arrayCampos[$a];
+	                		//añadido 25 abril 19: si contiene "Custom " no sirve 
+	      //           		if (strpos($campo, 'Custom') !== false) {
+							//    continue;
+							// }
 	                		echo "<th>$campo</th>";               		
                   
                 }
@@ -215,9 +223,17 @@ $this->contentContainerStart();
                 echo'</tr>
                </thead>
                <tbody>';
-                 $miQueryNum="SELECT COUNT(distinct group_id) FROM wp_formmaker_submits WHERE form_id=$idevento;";
+                 $miQueryNum="SELECT distinct element_label FROM wp_formmaker_submits WHERE form_id=$idevento";
 	            $resum=$manejador->getResultArray($miQueryNum);
+	            $arrayLabels=array();
+	            foreach ($resum as $label) 
+	            {
+	            	$elem=$label['element_label'];
+	            	array_push($arrayLabels, $elem);
+	  
+	            }
 	            $confirmados=$resum[0]['COUNT(distinct group_id)'];
+	            // la
 	            
 	            //echo "labelsEfectivas: ".$labelsEfectivas;
          		$tam=sizeof($arrayCampos);
@@ -230,7 +246,7 @@ $this->contentContainerStart();
 		            //echo "Longi: $longi";
 		              for ($i=0; $i<$longi; $i++) 
 		              {
-		              	;
+		              	
 		              	//echo "valor de i: ".$i;
 		              	$filita=$resultado[$i];
 		              	$fechaconfirma=$filita['date'];
@@ -271,6 +287,8 @@ $this->contentContainerStart();
               </tfoot>
                
               </table>';
+
+              echo '</div>';
 	
  //////FIN MI CODIGO                 
 $this->contentContainerEnd();

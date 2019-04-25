@@ -98,7 +98,7 @@ $this->contentContainerStart();
 //////INICIO MI CODIGO
 		if(existeHost($dms)==true)
 		{
-			echo "HOST YA SETEADO";
+			
 			//lo obtengo
 			$db = $dms->getDB();
 			$insertar = "SELECT * FROM forms_hosts";
