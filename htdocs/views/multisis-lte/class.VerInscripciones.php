@@ -153,12 +153,12 @@ $this->endsBoxPrimary();
 		$this->mainFooter();		
 		$this->containerEnd();
 		//$this->contentContainerEnd();
-			echo '<script src="../styles/multisis-lte/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>';
-        echo '<script src="../styles/multisis-lte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>';
-        echo '<script src="../styles/multisis-lte/plugins/sorting/moment.min.js"></script>';
-        echo '<script src="../styles/multisis-lte/plugins/sorting/datetime-moment.js"></script>';
-        echo '<script src="../styles/multisis-lte/bower_components/jquery-knob/js/jquery.knob.js"></script>';
-		echo '<script src="../tablasDinamicas.js"></script>';
+			echo '<script src="../../styles/multisis-lte/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>';
+        echo '<script src="../../styles/multisis-lte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>';
+        echo '<script src="../../styles/multisis-lte/plugins/sorting/moment.min.js"></script>';
+        echo '<script src="../../styles/multisis-lte/plugins/sorting/datetime-moment.js"></script>';
+        echo '<script src="../../styles/multisis-lte/bower_components/jquery-knob/js/jquery.knob.js"></script>';
+		echo '<script src="../../tablasDinamicas.js"></script>';
 		$this->htmlEndPage();
 	} /* }}} */
 }

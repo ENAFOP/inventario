@@ -454,7 +454,7 @@ $(document).ready(function(){
             <div class="icon">
               <i class="fa fa-book"></i>
             </div>
-            <a href="out.VerInscripciones.php" class="small-box-footer">Acceder<i class="fa fa-arrow-circle-right"></i></a>
+            <a href="confirmaciones/out.VerInscripciones.php" class="small-box-footer">Acceder<i class="fa fa-arrow-circle-right"></i></a>
           </div>
 
 

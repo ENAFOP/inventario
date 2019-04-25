@@ -46,16 +46,15 @@ require_once("SeedDMS/Preview.php");
  */
 function existeHost($dms)
 	 {
-	 	$res=true;
+	 	$existe=false;
 		$db = $dms->getDB();
-		$insertar = "INSERT INTO app_grupo VALUES(NULL,'$nombre','$descripcion')";
-		//echo "INSERTAR: ".$insertar;
-		$res1 = $db->getResult($insertar);
-		if (!$res1)
-		{
-			$res=false;
-		}
-		return $res;
+		$insertar = "SELECT * FROM forms_hosts";
+		$res1 = $db->getResultArray($insertar);
+		//print_r("res1".$res1);
+		if(!empty($res1)){
+			$existe=true;	
+		}	
+		return $existe;
 	 }
 class SeedDMS_View_DefinirBase extends SeedDMS_Bootstrap_Style 
 {
@@ -83,9 +82,9 @@ class SeedDMS_View_DefinirBase extends SeedDMS_Bootstrap_Style
 		$this->mainHeader();
 		$this->mainSideBar();
 		//$this->contentContainerStart("hoa");
-		$this->contentStart();
-          
+		$this->contentStart();          
 		?>
+		}
     <div class="gap-10"></div>
     <div class="row">
     <div class="col-md-12">
@@ -97,11 +96,52 @@ class SeedDMS_View_DefinirBase extends SeedDMS_Bootstrap_Style
  $this->startBoxPrimary("Defina los datos de conexión a la base de datos donde se guardan las respuestas a  formularios de la ENAFOP");
 $this->contentContainerStart();
 //////INICIO MI CODIGO
-?>
-<div class="box box-success">
+		if(existeHost($dms)==true)
+		{
+			echo "HOST YA SETEADO";
+			//lo obtengo
+			$db = $dms->getDB();
+			$insertar = "SELECT * FROM forms_hosts";
+			$res1 = $db->getResultArray($insertar);
+			$filita=$res1[0];
+			//
+			$host=$filita['host'];
+			$user=$filita['user'];
+			$pwd=$filita['password'];
+			$base=$filita['base'];
+			//listo editable host
+
+			echo '<ul>';
+
+			echo '<li>';
+				echo "<p>Host del servidor</p>";
+				echo "<a href=\"#\" id=\"host\"  data-type=\"text\" data-pk=\"1\" data-url=\"../modificarHostEditable.php\" data-title=\"host\">".$host."</a>";
+			echo '</li>';
+
+			echo '<li>';
+			echo "<p>Usuario de la base de datos</p>";
+				echo "<a href=\"#\" id=\"user\"  data-type=\"text\" data-pk=\"1\" data-url=\"../modificarHostEditable.php\" data-title=\"user\">".$user."</a>";
+			echo '</li>';
+
+			echo '<li>';
+			echo "<p>Password de la base de datos</p>";
+				echo "<a href=\"#\" id=\"password\"  data-type=\"text\" data-pk=\"1\" data-url=\"../modificarHostEditable.php\" data-title=\"password\">".$pwd."</a>";
+			echo '</li>';
+
+			echo '<li>';
+			echo "<p>Nombre de la base de datos (schema)</p>";
+				echo "<a href=\"#\" id=\"base\"  data-type=\"text\" data-pk=\"1\" data-url=\"../modificarHostEditable.php\" data-title=\"base\">".$base."</a>";
+			echo '</li>';
+
+			echo '</ul>';
+		}
+
+		else //si no está el host seteado, 
+		{
+			echo '<div class="box box-success">
 	<form class="form-horizontal" name="formularioBase" id="formularioBase" action="out.ProcesarBase.php" method="POST" enctype="multipart/form-data">
             <div class="box-header with-border">
-              <h3 class="box-title">Ingrese IP y noombre de la base de datos</h3>
+              <h3 class="box-title">Ingrese IP y nombre de la base de datos</h3>
             </div>
             <div class="box-body">
             	 <label for="host" class="col-sm-2 control-label">Host</label>
@@ -115,11 +155,7 @@ $this->contentContainerStart();
               <br>
                <label for="base" class="col-sm-2 control-label">Nombre de la base de datos</label>
               <input class="form-control input-lg" type="text" placeholder="ingrese texto"  name="base" id="base" required>
-              <br>
-
-
-
-              
+              <br>             
               
             </div>
             <div class="box-footer">
@@ -127,7 +163,10 @@ $this->contentContainerStart();
               </div>
             <!-- /.box-body -->
           </div>
-      </form>
+      </form>';
+		}
+
+?>
 
 <?php
  //////FIN MI CODIGO                 
@@ -145,6 +184,10 @@ $this->endsBoxPrimary();
 		$this->mainFooter();		
 		$this->containerEnd();
 		//$this->contentContainerEnd();
+		//$this->contentContainerEnd();
+    echo "<script type='text/javascript' src='../modificarPerfil.js'></script>";
+        echo '<script type="text/javascript" src="../styles/'.$this->theme.'/jquery-editable/js/jquery-editable-poshytip.min.js"></script>'."\n";
+    echo '<script type="text/javascript" src="../styles/'.$this->theme.'/poshytip-1.2/src/jquery.poshytip.min.js"></script>'."\n";
 		$this->htmlEndPage();
 	} /* }}} */
 }

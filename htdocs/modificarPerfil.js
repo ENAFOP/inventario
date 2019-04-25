@@ -7,7 +7,7 @@ $.fn.editable.defaults.mode = 'inline';
 var currentTime = new Date();
 var anoActual = currentTime.getFullYear();
 
-	$('[id^="nombre"]').editable({
+	$('[id^="host"]').editable({
 			params: function(params) {  //params already contain `name`, `value` and `pk`
 			var data = {};
 			data['pk'] = params.pk;
@@ -16,7 +16,7 @@ var anoActual = currentTime.getFullYear();
 			return data;
 		  }
         });
-	$('[id^="descripcion"]').editable({
+	$('[id^="user"]').editable({
 			params: function(params) {  //params already contain `name`, `value` and `pk`
 			var data = {};
 			data['pk'] = params.pk;
@@ -25,7 +25,7 @@ var anoActual = currentTime.getFullYear();
 			return data;
 		  }
         });
-	$('[id^="empresa"]').editable({
+	$('[id^="base"]').editable({
 			params: function(params) {  //params already contain `name`, `value` and `pk`
 			var data = {};
 			data['pk'] = params.pk;
@@ -35,7 +35,7 @@ var anoActual = currentTime.getFullYear();
 		  }
         });
 
-	$('[id^="costo"]').editable({
+	$('[id^="password"]').editable({
 			params: function(params) {  //params already contain `name`, `value` and `pk`
 			var data = {};
 			data['pk'] = params.pk;
