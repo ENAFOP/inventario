@@ -54,11 +54,9 @@ if (isset($_GET["inProcess"]) && strlen($_GET["inProcess"])>0 && $_GET["inProces
 	$showInProcess = true;
 }
 
-
-
-$tipoevento='';
-if (isset($_GET["tipo"])) {
-	$tipoevento=$_GET["tipo"];
+$orderby='n';
+if (isset($_GET["orderby"]) && strlen($_GET["orderby"])==1 ) {
+	$orderby=$_GET["orderby"];
 }
 
 $tmp = explode('.', basename($_SERVER['SCRIPT_FILENAME']));
@@ -82,7 +80,6 @@ if($view)
 	$view->setParam('usuarito', $usuarito);
 	$view->setParam('password', $password);
 	$view->setParam('base', $base);
-	$view->setParam('tipoevento', $tipoevento);
 
 	$view($_GET);
 	exit;

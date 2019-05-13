@@ -66,6 +66,8 @@ if (isset($_GET["evento"]) )
 }
 
 
+
+
 $tmp = explode('.', basename($_SERVER['SCRIPT_FILENAME']));
 $view = UI::factory($theme, $tmp[1], array('dms'=>$dms, 'user'=>$user));
 

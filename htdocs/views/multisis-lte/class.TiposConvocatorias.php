@@ -45,7 +45,7 @@ require_once("SeedDMS/Preview.php");
  -dias: documentos que van a caducar dentro de cúantos días
  */
 
-class SeedDMS_View_VerInscripciones extends SeedDMS_Bootstrap_Style 
+class SeedDMS_View_TiposConvocatorias extends SeedDMS_Bootstrap_Style 
 {
  /**
  Método que muestra los documentos próximos a caducar sólo de 
@@ -67,7 +67,6 @@ class SeedDMS_View_VerInscripciones extends SeedDMS_Bootstrap_Style
 		$usuarito = $this->params['usuarito'];
 		$password = $this->params['password'];
 		$base = $this->params['base'];
-		$tipoevento = $this->params['tipoevento'];
 
 		$db = $dms->getDB();
 		$previewer = new SeedDMS_Preview_Previewer($cachedir, $previewwidth, $timeout);
@@ -86,7 +85,7 @@ class SeedDMS_View_VerInscripciones extends SeedDMS_Bootstrap_Style
     	<div class="alert alert-success alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h4><i class="icon fa fa-check"></i> Indicación</h4>
-                En esta pantalla se muestran los eventos de la ENAFOP que requieren confirmación. Encontrará la lista de estos eventos, debe hacer clic en el nombre de cada uno para ver la lista de personas confirmadas al mismo.
+                En esta pantalla se muestran distintos tipo de convocatorias de la ENAFOP, haciendo clic en 
               </div>
       
 
@@ -106,38 +105,39 @@ $this->contentContainerStart();
 		UI::exitError(getMLText("my_documents"),"Error en la operación base de datos conectar al host $host.<br> Ver lista de confirmaciones");
 	}
 
-	$miQuery="SELECT * FROM wp_formmaker ORDER BY id DESC";
-	echo '<table id="tablaEventos" class="table table-hover table-striped table-condensed">
-              	<thead>
-                <tr>
-                <th width="15%">Número de evento o actividad</th>
+	$miQuery="SELECT * FROM convocatorias_tipos_eventos ORDER BY id DESC";
+echo '<div class="row">';
+echo ' <div class="col-md-6">'; //inicio col
+	echo '<div class="info-box">
+            <span class="info-box-icon bg-green"><i class="glyphicon glyphicon-camera"></i></span>
 
-                  <th>Título del evento o actividad</th>
-                           
-                </tr>
-               </thead>
-               <tbody>';
-         
-            $resultado=$manejador->getResultArray($miQuery);
-			foreach ($resultado as $evento) 
-		    {
-		    	echo ' <tr>';
-		    	$id=$evento['id'];
-		    	echo "<td>".$id."</td>";
-		    	//echo "<br>";
-		    	$titulo=$evento['title'];
-		    	echo "<td><a href=\"out.VerConfirmaciones.php?evento=".$id."\">".$titulo."</a></td>";
+            <div class="info-box-content">
+              <span class="info-box-text"><a href="out.VerInscripciones.php?tipo=eventos">Convocatorias a eventos públicos ENAFOP</a></span>
+              <span class="info-box-number">760</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->';
+
+     echo '</div>';//cierre primera col
+
+    echo ' <div class="col-md-6">'; //inicio col 2
+    		echo '<div class="info-box">
+            <span class="info-box-icon bg-teal"><i class="glyphicon glyphicon-paste"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text"><a href="out.VerInscripciones.php?tipo=formaciones">Fichas de inscripción a procesos formativos</a></span>
+              <span class="info-box-number">760</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->';
+
+     echo '</div>';//cierre 2 col
+
+   echo '</div>';//cierre row
 
 
-
-		    	echo ' </tr>';
-		    }                              
-   
-            echo  '</tbody>
-              <tfoot>
-              </tfoot>
-               
-              </table>';
 	
  //////FIN MI CODIGO                 
 $this->contentContainerEnd();

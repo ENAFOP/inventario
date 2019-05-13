@@ -174,8 +174,9 @@ $this->contentContainerStart();
 	$miQuery1="SELECT label_order_current FROM wp_formmaker WHERE id=$idevento;";
 	 $resultado1=$manejador->getResultArray($miQuery1);
 	 $labels=$resultado1[0]['label_order_current'];
+	  echo "Labels explotadas; <br>".$labels;
 	 $porciones = explode("#**", $labels);
-	 //echo "Labels explotadas; <br>";
+	
 	 $arrayIds=array();
 	 $arrayCampos=array();
 	 for ($cont=0;$cont<sizeof($porciones);$cont++) 
@@ -187,9 +188,10 @@ $this->contentContainerStart();
 	 		array_push($arrayIds, $numerito);
 	 		//echo "numerito: ".$numerito."<br>";
 	 		$nombrecampo=str_replace("**#", "", $porciones[$cont+1]);
+	 		//echo "nombre cambo cmpleto: ".$nombrecampo
 	 		$nombrecampo = substr($nombrecampo, 2); //borro los dos primeros caracteres "id"
 	 		array_push($arrayCampos, $nombrecampo);
-	 		//echo "nombre cambpo: ".$nombrecampo."<br>";
+	 		echo "nombre cambpo: ".$nombrecampo."<br>";
 
 	 	}
 	 	
@@ -207,7 +209,7 @@ $this->contentContainerStart();
 
 
                 
-                for ($a=1; $a<=$labelsEfectivas; $a++) //counter empieza en 1 porque me mete un campo Custom HTML 9 que NO quiero
+                for ($a=0; $a<=$labelsEfectivas; $a++) //counter empieza en 1 porque me mete un campo Custom HTML 9 que NO quiero
                 {
                 	//echo "a: ".$a;
 	                		$campo=$arrayCampos[$a];
