@@ -436,42 +436,77 @@ $(document).ready(function(){
 	////////////// AQUI VA MI CONTENIDO DE ENAFOP		
 		?>
 		  <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>Gestión interna</h3>
+
+              <p>Herramientas para monitorizar  los recursos y coordinar las actividades de la Escuela.</p>
+              <p>&nbsp;</p>
+            </div>
+            <div class="icon">
+              <i class="fa  fa-space-shuttle"></i>
+            </div>
+            <a href="out.GestionInterna.php" class="small-box-footer">Acceder<i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>Gestión de la <br>Formación</h3>
+
+              <p>Facilita el seguimiento a los procesos formativos y personas participantes. </p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+                <h3>Gestión de la <br>Investigación y GC</h3>
+
+              <p>Concentrar la información relacionada a procesos de investigación y GC </p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+               <h3>Gestión del <br>Desarrollo de Carrera</h3>
+
+              <p>Información relativa a las acciones formativas realizadas en el OE.</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+      <!-- /.row -->
+
+		  <div class="row">
 
         <!-- ./col -->
          <div class="col-lg-3 col-xs-6">
 
         </div>
 
-        <div class="col-lg-6 col-xs-6">
-          <!-- small box -->
-
-          <div class="small-box bg-teal">
-            <div class="inner">
-              <h3>ENTRAR AL SUBSISTEMA </h3>
-
-              <p>de confirmaciones a eventos y convocatorias ENAFOP</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-book"></i>
-            </div>
-            <a href="confirmaciones/out.TiposConvocatorias.php" class="small-box-footer">Acceder<i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-
-           <div class="small-box bg-teal">
-            <div class="inner">
-              <h3>ENTRAR AL SUBSISTEMA </h3>
-
-              <p>de gestión de materiales e inventario</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-book"></i>
-            </div>
-            <a href="materiales/out.Materiales.php" class="small-box-footer">Acceder<i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-
-
-
-        </div>
 
         <div class="col-lg-3 col-xs-6">
 
@@ -481,6 +516,100 @@ $(document).ready(function(){
      
       </div>
       <!-- /.row -->
+       <!-- /.********************************** INICIO DE LA  SEGUNDA FILA ************************************* -->
+      <div class="row">
+      		<!-- /.******************* inicio primera columna ******************* -->
+      		<div class="col-lg-3 col-xs-6">
+      			          <div class="info-box bg-yellow">
+            <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Inventory</span>
+              <span class="info-box-number">5,200</span>
+
+              <div class="progress">
+                <div class="progress-bar" style="width: 50%"></div>
+              </div>
+              <span class="progress-description">
+                    50% Increase in 30 Days
+                  </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+          <div class="info-box bg-green">
+            <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Mentions</span>
+              <span class="info-box-number">92,050</span>
+
+              <div class="progress">
+                <div class="progress-bar" style="width: 20%"></div>
+              </div>
+              <span class="progress-description">
+                    20% Increase in 30 Days
+                  </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+          <div class="info-box bg-red">
+            <span class="info-box-icon"><i class="ion ion-ios-cloud-download-outline"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Downloads</span>
+              <span class="info-box-number">114,381</span>
+
+              <div class="progress">
+                <div class="progress-bar" style="width: 70%"></div>
+              </div>
+              <span class="progress-description">
+                    70% Increase in 30 Days
+                  </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+          <div class="info-box bg-aqua">
+            <span class="info-box-icon"><i class="ion-ios-chatbubble-outline"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Direct Messages</span>
+              <span class="info-box-number">163,921</span>
+
+              <div class="progress">
+                <div class="progress-bar" style="width: 40%"></div>
+              </div>
+              <span class="progress-description">
+                    40% Increase in 30 Days
+                  </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+
+      		</div>
+      		 <!-- /.******************* fin primera columna ******************* -->
+
+      		 <!-- /.******************* inicio segunda columna ******************* -->
+      		<div class="col-lg-4 col-xs-6">
+      			
+
+        	</div>
+        	<!-- /.******************* fin segunda columna ******************* -->
+        	<!-- /.******************* inicio tercera columna ******************* -->
+      		<div class="col-lg-3 col-xs-6">
+      			<iframe src="https://calendar.google.com/calendar/embed?src=2r8dv0traduskfdnt5ah887ih0%40group.calendar.google.com&ctz=America%2FEl_Salvador" style="border: 0" width="700" height="400" frameborder="0" scrolling="no"></iframe>
+      		</div>
+      		 <!-- /.******************* fin tercera columna ******************* -->
+
+      </div>
+      <!-- /.********************************** Fin DE LA  SEGUNDA FILA ************************************* -->
+
+
+
+      
 
 
 

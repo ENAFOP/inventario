@@ -377,7 +377,12 @@ $(document).ready(function(){
               $itemsDiciembre=contarItems("$añoActual-12-01","$añoActual-12-31");
 		//echo $this->callHook('preContent');
 		$this->contentStart();		
-		echo $this->getFolderPathHTML($folder);
+		//echo $this->getFolderPathHTML($folder);
+		echo ' <ol class="breadcrumb">
+         <li><a href="out.ViewFolder.php"><i class="fa fa-dashboard"></i> Portal</a></li>
+      
+         <li class="active"><i class="fa fa-wrench"></i> Subsistema de Gestión Interna ENAFOP</li>
+      </ol>';
 		echo "<div class=\"row\">";
 		echo "<h3>Bienvenid@ al subsistema de gestión de materiales e inventario ENAFOP!</h3>";
 
@@ -394,18 +399,6 @@ $(document).ready(function(){
   //   echo "<!-- /.box-header -->";
   //   echo "<div class=\"box-body\">";
     ?>
-     <style>
-        .error {
-            color: red;
-        }
-    </style>
-<input type="hidden" id="itemsJunio" value="<?php echo $itemsJunio ?>" />
-<input type="hidden" id="itemsJulio" value="<?php echo $itemsJulio ?>" />
-<input type="hidden" id="itemsAgosto" value="<?php echo $itemsAgosto ?>" />
-<input type="hidden" id="itemsSeptiembre" value="<?php echo $itemsSeptiembre ?>" />
-<input type="hidden" id="itemsOctubre" value="<?php echo $itemsOctubre ?>" />
-<input type="hidden" id="itemsNoviembre" value="<?php echo $itemsNoviembre ?>" />
-<input type="hidden" id="itemsDiciembre" value="<?php echo $itemsDiciembre ?>" />
 
     <?php
   //   echo "</div>";
@@ -438,11 +431,12 @@ $(document).ready(function(){
 		  <div class="row">
 
         <!-- ./col -->
-         <div class="col-lg-3 col-xs-6">
+         <div class="col-lg-3 col-xs-3">
+         		 <img src="../images/rocket.png" alt="Cohete ENAFOP"  class="img-fluid" alt="Responsive image">
 
         </div>
 
-        <div class="col-lg-6 col-xs-6">
+        <div class="col-lg-6 col-xs-3">
           <!-- small box -->
 
           <div class="small-box bg-maroon">
@@ -471,7 +465,7 @@ $(document).ready(function(){
 
         </div>
 
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-lg-3 col-xs-3">
 
         </div>
 
