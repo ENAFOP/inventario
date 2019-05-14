@@ -1,10 +1,10 @@
 <?php
 ////// SE LLAMA DESDE el JS checkRegistro.js; mediante llamada Ajax. COmprueba si un nombre de usuario existe en la BD, devuelve true si existe o false si no (o sea, el nombre está disponible y se puede tomar)
 header("Content-type:application/json");
-include("./inc/inc.Settings.php");
-include("./inc/inc.Utils.php");
-include("./inc/inc.Init.php");
-include("./inc/inc.DBInit.php");
+include("../../inc/inc.Settings.php");
+include("../../inc/inc.Utils.php");
+include("../../inc/inc.Init.php");
+include("../../inc/inc.DBInit.php");
 /////////////////////////////////////////////////////////////////////////////////////////////////////////// MAIN ////////////////////////////////////////////////////////////////////////////////////////////////
 $respuesta=array(); //devuelvo un array con dos elementos: cantidad y nombre del productom o item a consutlar
 $idItem = $_GET['id']; //obtengo el id del ítem

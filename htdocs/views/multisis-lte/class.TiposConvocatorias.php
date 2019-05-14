@@ -80,6 +80,11 @@ class SeedDMS_View_TiposConvocatorias extends SeedDMS_Bootstrap_Style
           
 		?>
     <div class="gap-10"></div>
+     <ol class="breadcrumb">
+        <li><a href="../out.ViewFolder.php"><i class="fa fa-dashboard"></i>Portal</a></li>
+        <li>Gestión de convocatorias</li>
+        <li class="active">Tipos de convocatorias</li>
+      </ol>
     <div class="row">
     <div class="col-md-12">
     	<div class="alert alert-success alert-dismissible">

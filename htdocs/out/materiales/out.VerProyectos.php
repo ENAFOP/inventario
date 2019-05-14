@@ -17,31 +17,18 @@
 //    along with this program; if not, write to the Free Software
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-include("../inc/inc.Settings.php");
-include("../inc/inc.Language.php");
-include("../inc/inc.Init.php");
-include("../inc/inc.Extension.php");
-include("../inc/inc.DBInit.php");
-include("../inc/inc.ClassUI.php");
-include("../inc/inc.Authentication.php");
- function crearUbicacion($nombre,$descripcion,$dms)
-	 {
-	 	$res=true;
-		$db = $dms->getDB();
-		$insertar = "INSERT INTO app_ubicacion VALUES(NULL,'$nombre','$descripcion')";
-		//echo "INSERTAR: ".$insertar;
-		$res1 = $db->getResult($insertar);
-		if (!$res1)
-		{
-			$res=false;
-		}
-		return $res;
-	 }
+include("../../inc/inc.Settings.php");
+include("../../inc/inc.Language.php");
+include("../../inc/inc.Init.php");
+include("../../inc/inc.Extension.php");
+include("../../inc/inc.DBInit.php");
+include("../../inc/inc.ClassUI.php");
+include("../../inc/inc.Authentication.php");
 
 //tabla seeddms.tblattributedefinitions;
  //generan
 if ($user->isGuest()) {
-	UI::exitError(getMLText("no_permitido"),getMLText("access_denied"));
+	UI::exitError(getMLText("my_documents"),getMLText("access_denied"));
 }
 
 // Check to see if the user wants to see only those documents that are still
@@ -59,31 +46,17 @@ if (isset($_GET["orderby"]) && strlen($_GET["orderby"])==1 ) {
 $tmp = explode('.', basename($_SERVER['SCRIPT_FILENAME']));
 $view = UI::factory($theme, $tmp[1], array('dms'=>$dms, 'user'=>$user));
 
-//---------PESTAÑA 1: DATOS GENERALES:
-$nombreUbicacion="";
-$descripcion="";
-/////////////////
-if (isset($_POST["nombreUbicacion"])) 
-{
-    $nombreUbicacion=$_POST["nombreUbicacion"]; 
-}
-if (isset($_POST["descripcion"])) 
-{
-    $descripcion=$_POST["descripcion"]; 
-}
-////////hago metida en BD
-crearUbicacion($nombreUbicacion,$descripcion,$dms);
-if($view) 
-{
+if($view) {
 	$view->setParam('orderby', $orderby);
 	$view->setParam('showinprocess', $showInProcess);
 	$view->setParam('workflowmode', $settings->_workflowMode);
 	$view->setParam('cachedir', $settings->_cacheDir);
 	$view->setParam('previewWidthList', $settings->_previewWidthList);
 	$view->setParam('timeout', $settings->_cmdTimeout);
-	$view->setParam('nombreUbicacion', $nombreUbicacion);
-	$view->setParam('descripcion', $descripcion);
+
 	$view($_GET);
 	exit;
 }
+
+
 ?>

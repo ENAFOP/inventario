@@ -17,13 +17,13 @@
 //    along with this program; if not, write to the Free Software
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-include("../inc/inc.Settings.php");
-include("../inc/inc.Language.php");
-include("../inc/inc.Init.php");
-include("../inc/inc.Extension.php");
-include("../inc/inc.DBInit.php");
-include("../inc/inc.ClassUI.php");
-include("../inc/inc.Authentication.php");
+include("../../inc/inc.Settings.php");
+include("../../inc/inc.Language.php");
+include("../../inc/inc.Init.php");
+include("../../inc/inc.Extension.php");
+include("../../inc/inc.DBInit.php");
+include("../../inc/inc.ClassUI.php");
+include("../../inc/inc.Authentication.php");
  function hacerTransaccion($idItem,$razon,$cantidadVariada,$idUsuario,$operacion,$dms,$grupoReceptor,$tipoTransaccion,$fecha)
 	 {
 	 	//$tipoTransaccion=1, es quitar

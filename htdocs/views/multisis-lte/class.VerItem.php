@@ -118,10 +118,12 @@ class SeedDMS_View_VerItem extends SeedDMS_Bootstrap_Style
           
 		?>
     <ol class="breadcrumb">
-        <li><a href="out.ViewFolder.php"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li><a href="out.GestionarItems.php"> Gestionar items</a></li>
-        <li><a href="out.VerItems.php"> Ver la lista de items</a></li>
-        <li class="active">Ver datos de item</li>
+        <li><a href="../out.ViewFolder.php"><i class="fa fa-dashboard"></i> Portal</a></li>
+        <li><a href="../out.GestionInterna.php"><i class="fa fa-wrench"></i> Subsistema de Gestión Interna ENAFOP</a></li>
+        <li><a href="out.Materiales.php">Aplicación de gestión de material e inventario</a></li>
+        <li><a href="out.GestionarItems.php">Operaciones de gestión de material</a></li>
+         <li><a href="out.VerItems.php">Ver lista de ítems y materiales</a></li>
+          <li class="active">Ver detalles de item</li>
       </ol>
     <div class="gap-10"></div>
     <div class="row">

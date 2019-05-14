@@ -85,11 +85,13 @@ class SeedDMS_View_VerUbicacion extends SeedDMS_Bootstrap_Style
         $res1 = $db->getResultArray($consultar);
           
 		?>
-    <ol class="breadcrumb">
-        <li><a href="/out/out.ViewFolder.php"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li><a href="/out/out.GestionarItems.php"> Gestionar items</a></li>
-        <li><a href="/out/out.VerUbicaciones.php"> Ver todas las ubicaciones</a></li>
-        <li class="active">Ver datos de ubicación</li>
+     <ol class="breadcrumb">
+        <li><a href="../out.ViewFolder.php"><i class="fa fa-dashboard"></i> Portal</a></li>
+        <li><a href="../out.GestionInterna.php"><i class="fa fa-wrench"></i> Subsistema de Gestión Interna ENAFOP</a></li>
+        <li><a href="out.Materiales.php">Aplicación de gestión de material e inventario</a></li>
+        <li><a href="out.GestionarItems.php">Operaciones de gestión de material</a></li>
+        <li><a href="out.VerUbicaciones.php">Listado de bodegas y lugares de almacenamiento de los artículos</a></li>
+        <li class="active">Ver ubicaciones de material</li>
       </ol>
     <div class="gap-10"></div>
     <div class="row">

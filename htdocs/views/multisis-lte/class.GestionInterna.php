@@ -84,7 +84,7 @@ function contarItems($fechaInicio,$fechaFin) //le puedo pasar "postulado " o "ap
 	//echo "Contados: ".$contador;
     return intval($contador);
 }	 
-class SeedDMS_View_ViewFolder extends SeedDMS_Bootstrap_Style {
+class SeedDMS_View_GestionInterna extends SeedDMS_Bootstrap_Style {
 	function getAccessModeText($defMode) { /* {{{ */
 		switch($defMode) {
 			case M_NONE:
@@ -379,20 +379,20 @@ $(document).ready(function(){
 		$this->contentStart();		
 		echo $this->getFolderPathHTML($folder);
 		echo "<div class=\"row\">";
-		echo "<h3>Bienvenid@ al sistema de gestión de inventario de ENAFOP!</h3>";
+		echo "<h3>Bienvenid@ al subsistema de gestión de materiales e inventario ENAFOP!</h3>";
 
 		//// Add Folder ////
-		echo "<div class=\"col-md-12 div-hidden\" id=\"div-add-folder\">";
-		echo "<div class=\"box box-success div-green-border\" id=\"box-form1\">";
-    echo "<div class=\"box-header with-border\">";
-    echo "<h3 class=\"box-title\">".getMLText("add_subfolder")."</h3>";
-    echo "<div class=\"box-tools pull-right\">";
-    echo "<button type=\"button\" class=\"btn btn-box-tool\" data-widget=\"remove\"><i class=\"fa fa-times\"></i></button>";
-    echo "</div>";
-    echo "<!-- /.box-tools -->";
-    echo "</div>";
-    echo "<!-- /.box-header -->";
-    echo "<div class=\"box-body\">";
+		// echo "<div class=\"col-md-12 div-hidden\" id=\"div-add-folder\">";
+		// echo "<div class=\"box box-success div-green-border\" id=\"box-form1\">";
+  //   echo "<div class=\"box-header with-border\">";
+  //   echo "<h3 class=\"box-title\">".getMLText("add_subfolder")."</h3>";
+  //   echo "<div class=\"box-tools pull-right\">";
+  //   echo "<button type=\"button\" class=\"btn btn-box-tool\" data-widget=\"remove\"><i class=\"fa fa-times\"></i></button>";
+  //   echo "</div>";
+  //   echo "<!-- /.box-tools -->";
+  //   echo "</div>";
+  //   echo "<!-- /.box-header -->";
+  //   echo "<div class=\"box-body\">";
     ?>
      <style>
         .error {
@@ -408,30 +408,30 @@ $(document).ready(function(){
 <input type="hidden" id="itemsDiciembre" value="<?php echo $itemsDiciembre ?>" />
 
     <?php
-    echo "</div>";
-    echo "<!-- /.box-body -->";
-    echo "</div>";
-		echo "</div>";
+  //   echo "</div>";
+  //   echo "<!-- /.box-body -->";
+  //   echo "</div>";
+		// echo "</div>";
 		//// Add Document (Añadir resolución del TEG. Modificado por Mario López Leiva marioleiva2011@gmail.com)////
-		echo "<div class=\"col-md-12 div-hidden\" id=\"div-add-document\">";
-		echo "<div class=\"box box-warning div-bkg-color\" id=\"box-form2\">";
-    echo "<div class=\"box-header with-border\">";
-    echo "<h3 class=\"box-title\">".getMLText("anadir_resolucion")."</h3>";
-    echo "<div class=\"box-tools pull-right\">";
-    echo "<button id=\"btn-add-document-hide\" type=\"button\" class=\"btn btn-box-tool\"><i class=\"fa fa-times\"></i></button>";
-    echo "</div>";
-    echo "<!-- /.box-tools -->";
-    echo "</div>";
-    echo "<!-- /.box-header -->";
-    echo "<div class=\"box-body\">";
-    ?>
+		// echo "<div class=\"col-md-12 div-hidden\" id=\"div-add-document\">";
+		// echo "<div class=\"box box-warning div-bkg-color\" id=\"box-form2\">";
+  //   echo "<div class=\"box-header with-border\">";
+  //   echo "<h3 class=\"box-title\">".getMLText("anadir_resolucion")."</h3>";
+  //   echo "<div class=\"box-tools pull-right\">";
+  //   echo "<button id=\"btn-add-document-hide\" type=\"button\" class=\"btn btn-box-tool\"><i class=\"fa fa-times\"></i></button>";
+  //   echo "</div>";
+  //   echo "<!-- /.box-tools -->";
+  //   echo "</div>";
+  //   echo "<!-- /.box-header -->";
+  //   echo "<div class=\"box-body\">";
+  //   ?>
 
    	
     <?php
-    echo "</div>";
-    echo "<!-- /.box-body -->";
-    echo "</div>";
-		echo "</div>";
+  //   echo "</div>";
+  //   echo "<!-- /.box-body -->";
+  //   echo "</div>";
+		// echo "</div>";
 		//// Folder content ////
 	////////////// AQUI VA MI CONTENIDO DE ENAFOP		
 		?>
@@ -445,22 +445,20 @@ $(document).ready(function(){
         <div class="col-lg-6 col-xs-6">
           <!-- small box -->
 
-          <div class="small-box bg-teal">
+          <div class="small-box bg-maroon">
             <div class="inner">
-              <h3>ENTRAR AL SUBSISTEMA </h3>
-
+              <h3>HERRAMIENTA</h3>
               <p>de confirmaciones a eventos y convocatorias ENAFOP</p>
             </div>
             <div class="icon">
-              <i class="fa fa-book"></i>
+              <i class="fa  fa-envelope-o"></i>
             </div>
             <a href="confirmaciones/out.TiposConvocatorias.php" class="small-box-footer">Acceder<i class="fa fa-arrow-circle-right"></i></a>
           </div>
 
-           <div class="small-box bg-teal">
+           <div class="small-box bg-blue">
             <div class="inner">
-              <h3>ENTRAR AL SUBSISTEMA </h3>
-
+              <h3>APLICACIÓN</h3>
               <p>de gestión de materiales e inventario</p>
             </div>
             <div class="icon">

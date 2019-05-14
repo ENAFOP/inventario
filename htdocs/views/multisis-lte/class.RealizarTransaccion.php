@@ -137,9 +137,15 @@ class SeedDMS_View_RealizarTransaccion extends SeedDMS_Bootstrap_Style
           
 		?>
      <ol class="breadcrumb">
-        <li><a href="out.ViewFolder.php"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li class="active">Hacer transacción nueva</li>
+         <li><a href="../out.ViewFolder.php"><i class="fa fa-dashboard"></i> Portal</a></li>
+        <li><a href="../out.GestionInterna.php"><i class="fa fa-wrench"></i> Subsistema de Gestión Interna ENAFOP</a></li>
+        <li><a href="out.Materiales.php">Aplicación de gestión de material e inventario</a></li>
+        <li class="active">Registrar movimiento de inventario</li>
       </ol>
+
+
+
+
     <div class="gap-10"></div>
     <div class="row">
     <div class="col-md-12">
@@ -165,7 +171,7 @@ $this->contentContainerStart();
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-      <form class="form-horizontal" name="formularioGrupo" id="formularioGrupo" action="../out/out.ProcesarTransaccion.php" method="POST" enctype="multipart/form-data">
+      <form class="form-horizontal" name="formularioGrupo" id="formularioGrupo" action="out.ProcesarTransaccion.php" method="POST" enctype="multipart/form-data">
               <div class="box-body">
 
               
@@ -320,7 +326,7 @@ $this->endsBoxPrimary();
 		$this->mainFooter();		
 		$this->containerEnd();
 		//$this->contentContainerEnd();
-    echo '<script src="../checkCantidad.js"></script>';
+    echo '<script src="checkCantidad.js"></script>';
 		$this->htmlEndPage();
 	} /* }}} */
 }

@@ -17,13 +17,13 @@
 //    along with this program; if not, write to the Free Software
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-include("../inc/inc.Settings.php");
-include("../inc/inc.Language.php");
-include("../inc/inc.Init.php");
-include("../inc/inc.Extension.php");
-include("../inc/inc.DBInit.php");
-include("../inc/inc.ClassUI.php");
-include("../inc/inc.Authentication.php");
+include("../../inc/inc.Settings.php");
+include("../../inc/inc.Language.php");
+include("../../inc/inc.Init.php");
+include("../../inc/inc.Extension.php");
+include("../../inc/inc.DBInit.php");
+include("../../inc/inc.ClassUI.php");
+include("../../inc/inc.Authentication.php");
 /////////////////////////////        FUNCIONES AUXILIARES ///////////////////////////////////////////////////////
 //devuelve el id del item recien creado
  function crearItem($nombreItem,$descripcion,$empresa,$costo,$costoCompra,$origen,$cantidadInicial,$dms)

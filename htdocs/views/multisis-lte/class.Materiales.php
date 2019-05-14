@@ -84,7 +84,7 @@ function contarItems($fechaInicio,$fechaFin) //le puedo pasar "postulado " o "ap
 	//echo "Contados: ".$contador;
     return intval($contador);
 }	 
-class SeedDMS_View_ViewFolder extends SeedDMS_Bootstrap_Style {
+class SeedDMS_View_Materiales extends SeedDMS_Bootstrap_Style {
 	function getAccessModeText($defMode) { /* {{{ */
 		switch($defMode) {
 			case M_NONE:
@@ -377,12 +377,19 @@ $(document).ready(function(){
               $itemsDiciembre=contarItems("$añoActual-12-01","$añoActual-12-31");
 		//echo $this->callHook('preContent');
 		$this->contentStart();		
-		echo $this->getFolderPathHTML($folder);
+		//echo $this->getFolderPathHTML($folder);
+		echo ' <ol class="breadcrumb">
+         <li><a href="../out.ViewFolder.php"><i class="fa fa-dashboard"></i> Portal</a></li>
+        <li><a href="../out.GestionInterna.php"><i class="fa fa-wrench"></i> Subsistema de Gestión Interna ENAFOP</a></li>
+        <li class="active">Aplicación de gestión de material e inventario</li>
+      </ol>';
 		echo "<div class=\"row\">";
-		echo "<h3>Bienvenid@ al sistema de gestión de inventario de ENAFOP!</h3>";
+		echo "<h3>¡Bienvenid@ a la Aplicación de gestión de material e inventario de ENAFOP!</h3>";
 
 		//// Add Folder ////
+		
 		echo "<div class=\"col-md-12 div-hidden\" id=\"div-add-folder\">";
+
 		echo "<div class=\"box box-success div-green-border\" id=\"box-form1\">";
     echo "<div class=\"box-header with-border\">";
     echo "<h3 class=\"box-title\">".getMLText("add_subfolder")."</h3>";
@@ -445,32 +452,19 @@ $(document).ready(function(){
         <div class="col-lg-6 col-xs-6">
           <!-- small box -->
 
-          <div class="small-box bg-teal">
-            <div class="inner">
-              <h3>ENTRAR AL SUBSISTEMA </h3>
 
-              <p>de confirmaciones a eventos y convocatorias ENAFOP</p>
+
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>Ver y gestionar </h3>
+
+              <p>itemes del inventario</p>
             </div>
             <div class="icon">
               <i class="fa fa-book"></i>
             </div>
-            <a href="confirmaciones/out.TiposConvocatorias.php" class="small-box-footer">Acceder<i class="fa fa-arrow-circle-right"></i></a>
+            <a href="out.GestionarItems.php" class="small-box-footer">Acceder<i class="fa fa-arrow-circle-right"></i></a>
           </div>
-
-           <div class="small-box bg-teal">
-            <div class="inner">
-              <h3>ENTRAR AL SUBSISTEMA </h3>
-
-              <p>de gestión de materiales e inventario</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-book"></i>
-            </div>
-            <a href="materiales/out.Materiales.php" class="small-box-footer">Acceder<i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-
-
-
         </div>
 
         <div class="col-lg-3 col-xs-6">
@@ -482,6 +476,119 @@ $(document).ready(function(){
       </div>
       <!-- /.row -->
 
+      <div class="row">
+      	 <div class="col-lg-3 col-xs-6">
+
+        </div>
+
+      	        <!-- ./col -->
+        <div class="col-lg-6 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>Registrar movimiento</h3>
+
+              <p> de inventario</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-hand-rock-o"></i>
+            </div>
+            <a href="out.RealizarTransaccion.php" class="small-box-footer">Acceder<i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
+         <div class="col-lg-3 col-xs-6">
+
+         		  <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Ver últimas transacciones</h3>
+            </div>
+            <div class="box-body">
+              <a  href="out.VerTransacciones.php"  class="btn btn-app">
+                <i class="fa fa-exchange"></i> Acceder
+              </a>
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+        </div>
+
+
+      </div>
+       <div class="row">
+      	 <div class="col-lg-3 col-xs-6">
+
+        </div>
+
+      	        <!-- ./col -->
+        <div class="col-lg-6 col-xs-6">
+          <!-- small box -->
+
+          <!-- /.info-box -->
+		<div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Cantidad de materiales entregados por ENAFOP año <?php  print $añoActual;
+              ?></h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+              <div class="chart">
+                <canvas id="lineChart" style="height:250px"></canvas>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+
+
+        </div>
+
+         <div class="col-lg-3 col-xs-6">
+
+         	<div class="info-box">
+            <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Dato de gastos</span>
+              <span class="info-box-text">Se ha gastado en artículos y materiales un total de </span>
+              <span class="info-box-number"><?php 
+          
+              //////
+              	$consultar = "SELECT SUM(costo_compra) FROM app_item";
+					//echo "Consultar: ".$consultar;
+              	$db = $dms->getDB();
+				  	$res1 = $db->getResultArray($consultar);
+				  	print '$USD ';
+				  	print $res1[0]['SUM(costo_compra)'];
+
+              ?></span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+
+            <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Ver estadísticas completas</h3>
+            </div>
+            <div class="box-body">
+              <a  href="out.ElegirFechasEstadisticas.php"  class="btn btn-app">
+                <i class="fa fa-bar-chart"></i> Acceder
+              </a>
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
 
 
 <?php
@@ -494,19 +601,19 @@ $(document).ready(function(){
 		$this->mainFooter();		
 		$this->containerEnd();
 
-		//echo "<script type='text/javascript' src='/formularioSubida.js'></script>";
+		echo "<script type='text/javascript' src='/formularioSubida.js'></script>";
 		echo '<script src="../styles/multisis-lte/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>';
 		echo '<script src="../styles/multisis-lte/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>';
         echo '<script src="../styles/multisis-lte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>';
 
-        //echo '<script src="../styles/multisis-lte/bower_components/Chart.js/Chart.js"></script>';
+        echo '<script src="../styles/multisis-lte/bower_components/Chart.js/Chart.js"></script>';
 
 
-        //echo '<script src="../styles/multisis-lte/plugins/sorting/moment.min.js"></script>';
-        //echo '<script src="../styles/multisis-lte/plugins/sorting/datetime-moment.js"></script>';
-        //echo '<script src="../styles/multisis-lte/bower_components/jquery-knob/js/jquery.knob.js"></script>';
-		//echo '<script src="../tablasDinamicas.js"></script>';
-		//echo '<script src="../graficaInicial.js"></script>';
+        echo '<script src="../styles/multisis-lte/plugins/sorting/moment.min.js"></script>';
+        echo '<script src="../styles/multisis-lte/plugins/sorting/datetime-moment.js"></script>';
+        echo '<script src="../styles/multisis-lte/bower_components/jquery-knob/js/jquery.knob.js"></script>';
+		echo '<script src="../tablasDinamicas.js"></script>';
+		echo '<script src="../graficaInicial.js"></script>';
 
 		$this->htmlEndPage();
 	} /* }}} */

@@ -97,6 +97,12 @@ class SeedDMS_View_ProcesarTransaccion extends SeedDMS_Bootstrap_Style
 		$this->contentStart();
           
 		?>
+		<ol class="breadcrumb">
+        <li><a href="../out.ViewFolder.php"><i class="fa fa-dashboard"></i> Portal</a></li>
+        <li><a href="out.Materiales.php">Subsistema de gestión de material e inventario</a></li>
+        <li><a href="out.RealizarTransaccion.php">Registrar transacción</a></li>
+        <li class="active">Transacción realizada correctamente</li>
+      </ol>
     <div class="gap-10"></div>
     <div class="row">
     <div class="col-md-12">
@@ -143,7 +149,7 @@ $this->contentContainerStart();
             </div>
             <!-- /.box-body -->
 
-            <a href="out.ViewFolder.php"><b>Retornar al inicio</b></a>
+            <a href="out.Materiales.php"><b>Retornar al inicio</b></a>
           </div>
           <!-- /.box -->
 <?php

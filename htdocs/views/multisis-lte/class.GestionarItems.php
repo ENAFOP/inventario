@@ -92,8 +92,10 @@ class SeedDMS_View_GestionarItems extends SeedDMS_Bootstrap_Style
           
 		?>
 		   <ol class="breadcrumb">
-        <li><a href="out.ViewFolder.php"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li class="active">ITEMS</li>
+        <li><a href="../out.ViewFolder.php"><i class="fa fa-dashboard"></i> Portal</a></li>
+        <li><a href="../out.GestionInterna.php"><i class="fa fa-wrench"></i> Subsistema de Gestión Interna ENAFOP</a></li>
+        <li><a href="out.Materiales.php">Gestión de material</a></li>
+        <li class="active">Gestionar items</li>
       </ol>
     <div class="gap-10"></div>
     <div class="row">

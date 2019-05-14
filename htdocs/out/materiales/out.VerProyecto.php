@@ -17,13 +17,13 @@
 //    along with this program; if not, write to the Free Software
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-include("../inc/inc.Settings.php");
-include("../inc/inc.Language.php");
-include("../inc/inc.Init.php");
-include("../inc/inc.Extension.php");
-include("../inc/inc.DBInit.php");
-include("../inc/inc.ClassUI.php");
-include("../inc/inc.Authentication.php");
+include("../../inc/inc.Settings.php");
+include("../../inc/inc.Language.php");
+include("../../inc/inc.Init.php");
+include("../../inc/inc.Extension.php");
+include("../../inc/inc.DBInit.php");
+include("../../inc/inc.ClassUI.php");
+include("../../inc/inc.Authentication.php");
 
 //tabla seeddms.tblattributedefinitions;
  //generan
@@ -43,6 +43,11 @@ if (isset($_GET["orderby"]) && strlen($_GET["orderby"])==1 ) {
 	$orderby=$_GET["orderby"];
 }
 
+$idItem='0';
+if (isset($_GET["id"])) {
+	$idItem=$_GET["id"];
+}
+
 $tmp = explode('.', basename($_SERVER['SCRIPT_FILENAME']));
 $view = UI::factory($theme, $tmp[1], array('dms'=>$dms, 'user'=>$user));
 
@@ -53,6 +58,7 @@ if($view) {
 	$view->setParam('cachedir', $settings->_cacheDir);
 	$view->setParam('previewWidthList', $settings->_previewWidthList);
 	$view->setParam('timeout', $settings->_cmdTimeout);
+	$view->setParam('idItem', $idItem);
 
 	$view($_GET);
 	exit;

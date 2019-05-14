@@ -97,10 +97,12 @@ class SeedDMS_View_VerItems extends SeedDMS_Bootstrap_Style
 		$this->contentStart();
           
 		?>
-		  <ol class="breadcrumb">
-        <li><a href="out.ViewFolder.php"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li><a href="out.GestionarItems.php"> Gestionar items</a></li>
-        <li class="active">Ver items</li>
+		    <ol class="breadcrumb">
+        <li><a href="../out.ViewFolder.php"><i class="fa fa-dashboard"></i> Portal</a></li>
+        <li><a href="../out.GestionInterna.php"><i class="fa fa-wrench"></i> Subsistema de Gestión Interna ENAFOP</a></li>
+        <li><a href="out.Materiales.php">Subsistema de gestión de material e inventario</a></li>
+        <li><a href="out.GestionarItems.php">Operaciones de gestión de material</a></li>
+        <li class="active">Ver lista de ítems y materiales</li>
       </ol>
     <div class="gap-10"></div>
     <div class="row">
@@ -182,12 +184,12 @@ $this->endsBoxPrimary();
 		$this->containerEnd();
 		//$this->contentContainerEnd();
 		//echo "<script type='text/javascript' src='/formularioSubida.js'></script>";
-		echo '<script src="../styles/multisis-lte/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>';
-        echo '<script src="../styles/multisis-lte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>';
-        echo '<script src="../styles/multisis-lte/plugins/sorting/moment.min.js"></script>';
-        echo '<script src="../styles/multisis-lte/plugins/sorting/datetime-moment.js"></script>';
-        echo '<script src="../styles/multisis-lte/bower_components/jquery-knob/js/jquery.knob.js"></script>';
-		echo '<script src="../tablasDinamicas.js"></script>';
+		echo '<script src="../../styles/multisis-lte/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>';
+        echo '<script src="../../styles/multisis-lte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>';
+        echo '<script src="../../styles/multisis-lte/plugins/sorting/moment.min.js"></script>';
+        echo '<script src="../../styles/multisis-lte/plugins/sorting/datetime-moment.js"></script>';
+        echo '<script src="../../styles/multisis-lte/bower_components/jquery-knob/js/jquery.knob.js"></script>';
+		echo '<script src="../../tablasDinamicas.js"></script>';
 		$this->htmlEndPage();
 	} /* }}} */
 }
