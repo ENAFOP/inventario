@@ -1,9 +1,9 @@
 <?php
 
-include("./inc/inc.Settings.php");
-include("./inc/inc.Utils.php");
-include("./inc/inc.Init.php");
-include("./inc/inc.DBInit.php");
+include("../../inc/inc.Settings.php");
+include("../../inc/inc.Utils.php");
+include("../..//inc/inc.Init.php");
+include("../../inc/inc.DBInit.php");
 $name="";
 $pk=""; //me dirá el numero de linea del fichero
 $value="";  //nuevo contenido de la línea pk

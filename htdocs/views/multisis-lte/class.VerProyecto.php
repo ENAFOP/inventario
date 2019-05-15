@@ -117,11 +117,13 @@ class SeedDMS_View_VerProyecto extends SeedDMS_Bootstrap_Style
         $res1 = $db->getResultArray($consultar);
           
 		?>
-    <ol class="breadcrumb">
-        <li><a href="/out/out.ViewFolder.php"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li><a href="/out/out.GestionarItems.php"> Gestionar proyectos</a></li>
-        <li><a href="/out/out.VerItems.php"> Ver la lista de proyectos</a></li>
-        <li class="active">Ver y editar proyecto</li>
+     <ol class="breadcrumb">
+        <li><a href="../out.ViewFolder.php"><i class="fa fa-dashboard"></i> Portal</a></li>
+        <li><a href="../out.GestionInterna.php"><i class="fa fa-wrench"></i> Subsistema de Gestión Interna ENAFOP</a></li>
+        <li><a href="out.Materiales.php">Subsistema de gestión de material e inventario</a></li>
+        <li><a href="out.GestionarItems.php">Operaciones de gestión de material</a></li>
+        <li><a href="out.VerFuentes.php">Listado de fuentes de financiamiento</a></li>
+        <li class="active">Ver detalles</li>
       </ol>
     <div class="gap-10"></div>
     <div class="row">
@@ -146,18 +148,20 @@ $this->contentContainerStart();
 
 ?>
 <div class="row">
-	<div class="col-md-3">
-
-        </div>
+	<div class="col-md-1">
 
 
-        <div class="col-md-6">
+
+  </div>
+
+
+        <div class="col-md-7">
           <!-- Custom Tabs -->
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#tab_1" data-toggle="tab">Información</a></li>
               <li><a href="#tab_2" data-toggle="tab">Que artículos se compraron en este proyecto</a></li>
-              <li><a href="#tab_3" data-toggle="tab">Datos de gasto</a></li>
+           
 
               <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
             </ul>
@@ -172,8 +176,8 @@ $this->contentContainerStart();
                   <th>Código SETEFE</th>
                   <th>Fecha de finalización</th>
                   <th>Monto total del proyecto</th>
-                  <th>Monto de activos y materiales</th>
-                  <th>Monto asignado a material divulgativo</th>                 
+                  <th>Total gastado en materiales</th>
+              
                 </tr>
                </thead>
                <tbody>
@@ -187,30 +191,29 @@ $this->contentContainerStart();
                 		echo ' <tr>';
                 		//1. nombre
                     $idItem=$res1[0]['id'];
-                		 echo "<td><a href=\"#\" id=\"nombre\" data-type=\"text\" data-pk=\"$idItem\" data-url=\"/modificarProyectoEditable.php\" data-title=\"Enter username\">".$res1[0]['nombre']."</a></td>";
+                		 echo "<td><a href=\"#\" id=\"nombre\" data-type=\"text\" data-pk=\"$idItem\" data-url=\"modificarProyectoEditable.php\" data-title=\"Enter username\">".$res1[0]['nombre']."</a></td>";
                 		 //2. fecha de inicio a fin
-                		 echo "<td><a href=\"#\" id=\"origen_fondos\" data-type=\"text\" data-pk=\"$idItem\" data-url=\"/modificarProyectoEditable.php\" data-title=\"Enter username\">".$res1[0]['origen_fondos']."</a></td>";
+                		 echo "<td><a href=\"#\" id=\"origen_fondos\" data-type=\"text\" data-pk=\"$idItem\" data-url=\"modificarProyectoEditable.php\" data-title=\"Enter username\">".$res1[0]['origen_fondos']."</a></td>";
                 		  // 3. lugar
-                		  echo "<td><a href=\"#\" id=\"codigo_setefe\" data-type=\"text\" data-pk=\"$idItem\" data-url=\"/modificarProyectoEditable.php\" data-title=\"Enter username\">".$res1[0]['codigo_setefe']."</a></td>";
+                		  echo "<td><a href=\"#\" id=\"codigo_setefe\" data-type=\"text\" data-pk=\"$idItem\" data-url=\"modificarProyectoEditable.php\" data-title=\"Enter username\">".$res1[0]['codigo_setefe']."</a></td>";
                       /////////////////////
                       $fechitaFormateada= date("d-m-Y", strtotime($res1[0]['fecha_finalizacion']));
-                		  echo "<td><a href=\"#\" id=\"fecha_finalizacion\" data-type=\"combodate\"  data-pk=\"$idItem\" data-url=\"/modificarProyectoEditable.php\" data-title=\"Enter username\">".$fechitaFormateada."</a></td>";
+                		  echo "<td><a href=\"#\" id=\"fecha_finalizacion\" data-type=\"combodate\"  data-pk=\"$idItem\" data-url=\"modificarProyectoEditable.php\" data-title=\"Enter username\">".$fechitaFormateada."</a></td>";
                       //////////////////////////////////
-                		  echo "<td><a href=\"#\" id=\"monto_total\" data-type=\"number\" step=\"any\" data-pk=\"$idItem\" data-url=\"/modificarProyectoEditable.php\" data-title=\"Enter username\">".$res1[0]['monto_total']."</a></td>";
-                      ///////////////////////
-                		  echo "<td><a href=\"#\" id=\"monto_bienes\" data-type=\"number\" data-pk=\"$idItem\" data-url=\"/modificarProyectoEditable.php\" data-title=\"Enter username\">".$res1[0]['monto_bienes']."</a></td>";
-                		  // 4. enlace para editar
-                		 echo "<td><a href=\"#\" id=\"monto_materiales\" data-type=\"text\" data-pk=\"$idItem\" data-url=\"/modificarProyectoEditable.php\" data-title=\"Enter username\">".$res1[0]['monto_materiales']."</a></td>";
-
+                      $montoTotalProyecto=$res1[0]['monto_total'];
+                		  echo "<td><a href=\"#\" id=\"monto_total\" data-type=\"number\" step=\"any\" data-pk=\"$idItem\" data-url=\"modificarProyectoEditable.php\" data-title=\"Enter username\">$ ".$montoTotalProyecto."</a></td>";
+                      /////////////////////// total gastado en materiales
+                    $consultarGasto = "SELECT cantidad_gastado FROM gasto_proyecto WHERE id_proyecto=$idItem";
+                    $res2 = $db->getResultArray($consultarGasto);
+                    $totalGastado=$res2[0]['cantidad_gastado'];
+                		 echo "<td>$ ".$totalGastado."</td>";
                      echo ' </tr>';		           
                 	                               
                 ?>
             </tbody>
               <tfoot>
               </tfoot>
-                
-
-               
+                              
               </table>
             </div>
             <!-- /.box-body -->
@@ -221,37 +224,26 @@ $this->contentContainerStart();
                 <table id="tablaEventos" class="table table-hover table-striped table-condensed">
                 <thead>
                 <tr>
-                  <th>Fecha de la operación</th>
-                  <th>Persona que lo hizo</th>
-                  <th>Razón</th>
-                  <th>Cantidad de artículos tomados/puestos</th>
-                
+                  <th>Nombre del artículo</th>
+                  <th>Costo de compra</th>
+                  <th>Existencia actual</th>               
                 </tr>
                </thead>
                <tbody>
                                   <?php            
                   //////////////// DIBUJO TABLA
-                  $consultar = "SELECT * FROM app_transaccion WHERE id_item=$idItem ORDER BY fecha DESC;";
+                  $consultar = "SELECT * FROM app_item WHERE origen_fondos= $idItem;";
           //echo "Consultar: ".$consultar;
-            $res1 = $db->getResultArray($consultar);
+                  $res1 = $db->getResultArray($consultar);
                   
                     foreach ($res1 as $transa) 
                     {
                       echo ' <tr>';
-                    //1. fecha
-                    $idItem=$res1[0]['id_item'];
-                     echo "<td>".$transa['fecha']."</td>";
-                     
-                     //// 2 persona
-                     $idUsuario=$transa['id_usuario'];
-                     $usuario=$dms->getUser($idUsuario);
-                     $nombreUser=$usuario->getFullName();
-                     echo "<td>".$nombreUser."</td>";
-                     /// 3 razon
-                     echo "<td>".$transa['razon']."</td>";
 
-                     /// 4 cantidad
-                      echo "<td>".$transa['cantidad_variada']."</td>";
+                     echo "<td>".$transa['nombre']."</td>";                    
+                     //// 2 
+                     echo "<td>$ ".$transa['costo_compra']."</td>";
+                      echo "<td>".$transa['cantidad_actual']."</td>";
 
                      //
                        echo ' </tr>';                                                                 
@@ -263,11 +255,7 @@ $this->contentContainerStart();
               </table>
                 
               </div>
-              <!-- /.tab-pane -->
-              <div class="tab-pane" id="tab_3">
 
-                   <img <?php echo "src=\"/images/items/item".$idItem.".jpg\""?> alt="Foto del artículo" height="400" width="280">
-              </div>
               <!-- /.tab-pane -->
             </div>
             <!-- /.tab-content -->
@@ -278,7 +266,23 @@ $this->contentContainerStart();
 
         <div class="col-md-3">
 
-      
+        <div class="small-box bg-green">
+
+            <div class="inner">
+              <h3><?php            
+                  //////////////// calculo porcentaje de proyecto que son materiales
+                $porcentaje=round(($totalGastado/$montoTotalProyecto)*100,2);
+                echo $porcentaje;        
+                ?><sup style="font-size: 20px">%</sup></h3>
+
+              <p>Porcentaje del monto total de este proyecto gastado en material e inventario</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+         
+          </div>
+        </div>
 
         </div>
         <!-- /.col -->
@@ -299,9 +303,9 @@ $this->endsBoxPrimary();
 		$this->mainFooter();		
 		$this->containerEnd();
 		//$this->contentContainerEnd();
-        echo '<script type="text/javascript" src="/styles/'.$this->theme.'/jquery-editable/js/jquery-editable-poshytip.min.js"></script>'."\n";
-    echo '<script type="text/javascript" src="/styles/'.$this->theme.'/poshytip-1.2/src/jquery.poshytip.min.js"></script>'."\n";
-    echo "<script type='text/javascript' src='/modificarPerfil.js'></script>";
+        echo '<script type="text/javascript" src="../../styles/'.$this->theme.'/jquery-editable/js/jquery-editable-poshytip.min.js"></script>'."\n";
+    echo '<script type="text/javascript" src="../../styles/'.$this->theme.'/poshytip-1.2/src/jquery.poshytip.min.js"></script>'."\n";
+    echo "<script type='text/javascript' src='../../modificarPerfil.js'></script>";
 		$this->htmlEndPage();
 	} /* }}} */
 }

@@ -76,6 +76,15 @@ var anoActual = currentTime.getFullYear();
         });
 	///////////////EDITAR PROYECTO
 
+$('[id^="nombre"]').editable({
+			params: function(params) {  //params already contain `name`, `value` and `pk`
+			var data = {};
+			data['pk'] = params.pk;
+			data['name'] = params.name;
+			data['value'] = params.value;
+			return data;
+		  }
+        });
 $('[id^="origen_fondos"]').editable({
 			params: function(params) {  //params already contain `name`, `value` and `pk`
 			var data = {};
@@ -94,25 +103,8 @@ $('[id^="codigo_setefe"]').editable({
 			return data;
 		  }
         });
+
 $('[id^="monto_total"]').editable({
-			params: function(params) {  //params already contain `name`, `value` and `pk`
-			var data = {};
-			data['pk'] = params.pk;
-			data['name'] = params.name;
-			data['value'] = params.value;
-			return data;
-		  }
-        });
-$('[id^="monto_bienes"]').editable({
-			params: function(params) {  //params already contain `name`, `value` and `pk`
-			var data = {};
-			data['pk'] = params.pk;
-			data['name'] = params.name;
-			data['value'] = params.value;
-			return data;
-		  }
-        });
-$('[id^="monto_materiales"]').editable({
 			params: function(params) {  //params already contain `name`, `value` and `pk`
 			var data = {};
 			data['pk'] = params.pk;

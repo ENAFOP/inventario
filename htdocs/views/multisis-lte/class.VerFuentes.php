@@ -137,6 +137,7 @@ $this->contentContainerStart();
                 	$numEventos=contarFuentes($dms);
                 	//////////////// DIBUJO TABLA
                 	$consultar = "SELECT * FROM app_proyecto;";
+
 					//echo "Consultar: ".$consultar;
 				  	$res1 = $db->getResultArray($consultar);
                 	for($cont=0;$cont<$numEventos;$cont++)
@@ -144,13 +145,17 @@ $this->contentContainerStart();
                 		echo '<tr>';
                 		//1. nombre
                     $idItem=$res1[$cont]['id'];
+                    $consultarGasto = "SELECT cantidad_gastado FROM gasto_proyecto WHERE id_proyecto=$idItem";
+                    $res2 = $db->getResultArray($consultarGasto);
+                    $totalGastado=$res2[0]['cantidad_gastado'];
                 		 echo "<td><a href=\"out.VerProyecto.php?id=".$idItem."\">".$res1[$cont]['nombre']."</a></td>";
                 		 //2. fecha de inicio a fin
                 		 echo "<td>".$res1[$cont]['origen_fondos']."</td>";
                 		  // 3. lugar
-                		  echo "<td>".$res1[$cont]['monto_total']."</td>";
+                		  echo "<td>$ ".$res1[$cont]['monto_total']."</td>";
                 		  // 4. enlace para editar
                 		 echo "<td>".$res1[$cont]['fecha_finalizacion']."</td>";
+                     echo "<td>$ ". $totalGastado."</td>";
 
 		           
                 	}                                
