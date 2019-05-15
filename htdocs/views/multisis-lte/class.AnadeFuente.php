@@ -154,7 +154,7 @@ function imprimeProyectos()
 
   echo "</select>";
 }// fin de imprimir departamentos
-class SeedDMS_View_AnadeItem extends SeedDMS_Bootstrap_Style 
+class SeedDMS_View_AnadeFuente extends SeedDMS_Bootstrap_Style 
 {
  /**
  Método que muestra los documentos próximos a caducar sólo de 
@@ -186,7 +186,7 @@ class SeedDMS_View_AnadeItem extends SeedDMS_Bootstrap_Style
         <li><a href="../out.GestionInterna.php"><i class="fa fa-wrench"></i> Subsistema de Gestión Interna ENAFOP</a></li>
         <li><a href="out.Materiales.php">Subsistema de gestión de material e inventario</a></li>
         <li><a href="out.GestionarItems.php">Operaciones de gestión de material</a></li>
-        <li class="active">Añadir un nuevo ítem al inventario</li>
+        <li class="active">Añadir un nueva nueva fuente de financiamiento de compra de material</li>
       </ol>
     <div class="gap-10"></div>
     <div class="row">
@@ -209,99 +209,66 @@ $this->contentContainerStart();
         <div class="col-md-6">
         		<div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Datos del ítem</h3>
+              <h3 class="box-title">Datos de la fuente de financiamiento</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-      <form class="form-horizontal" name="formularioGrupo" id="formularioGrupo" action="out.ProcesarItem.php" method="POST" enctype="multipart/form-data">
+      <form class="form-horizontal" name="formularioGrupo" id="formularioGrupo" action="out.ProcesarProyecto.php" method="POST" enctype="multipart/form-data">
               <div class="box-body">
 
                 <div class="form-group">
-                  <label for="nombreItem" class="col-sm-2 control-label">Artículo</label>
+                  <label for="nombre" class="col-sm-2 control-label">Nombre</label>
 
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="nombreItem" name="nombreItem" placeholder="por ejemplo lapicero  ..." required>
+                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre del proyecto  o fuente de financiamiento ..." required>
                   </div>
                 </div>
+
+                 <div class="form-group">
+                  <label for="origen" class="col-sm-2 control-label">Origen de los fondos</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="origen" name="origen" placeholder="por ejemplo AECID" required>
+                  </div>
+
+                </div> 
                           
                  <div class="form-group">
-                  <label for="descripcion" class="col-sm-2 control-label">Descripción</label>
+                  <label for="codigo" class="col-sm-2 control-label">Código</label>
 
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="por ejemplo color azul ..." required>
+                    <input type="text" class="form-control" id="codigo" name="codigo" placeholder="Ingrese un código por ejemplo el de SETEFE ..." required>
                   </div>
                 </div> 
 
 
                 <div class="form-group">
-                  <label for="tipo" class="col-sm-2 control-label">Tipo de artículo</label>
+                  <label for="fecha_fin" class="col-sm-2 control-label">Fecha de finalización</label>
 
                   <div class="col-sm-10">
-                   <?php imprimeTipos(); ?>
+                    <input type="date"  class="form-control" id="fecha_fin" min="1" name="fecha_fin" placeholder="Indique fecha en el cual finaliza el proyecto, si aplica" required>
                   </div>
 
                 </div> 
 
                 <div class="form-group">
-                  <label for="empresa" class="col-sm-2 control-label">Empresa que lo suministra</label>
+                  <label for="montototal" class="col-sm-2 control-label">Monto total del proyecto</label>
 
                   <div class="col-sm-10">
-                    <input type="" class="form-control" id="empresa" name="empresa" placeholder="por ejemplo impresos multiples  ..." required>
+                    <input type="" class="form-control" id="monto" name="monto" placeholder="para fines estadísticos indicar el monto asignado al proyecto total..." required>
                   </div>
 
                 </div> 
 
-                 <div class="form-group">
-                  <label for="cantidadInicial" class="col-sm-2 control-label">Cantidad inicial de los items</label>
+           
 
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="cantidadInicial" name="cantidadInicial" placeholder="por ejemplo 5,000" required>
-                  </div>
 
                 </div> 
-
-                <div class="form-group">
-                  <label for="costoCompra" class="col-sm-2 control-label">Costo de la compra según órden de UACI ($)</label>
-
-                  <div class="col-sm-10">
-                    <input type="number" step=".01" class="form-control" id="costoCompra" name="costoCompra" placeholder="por ejemplo $1000  ..." required>
-                  </div>
-
-                </div> 
-
-
-                <div class="form-group">
-                  <label for="origenFondos" class="col-sm-2 control-label">Origen de los fondos</label>
-
-                  <div class="col-sm-10">
-                   <?php imprimirOrigen(); ?>
-                  </div>
-
-                </div> 
-
-
-               
-
-                 <div class="form-group">
-                  <label for="cantidadInicial" class="col-sm-2 control-label">Donde va a estar ubicado</label>
-
-                  <div class="col-sm-10">
-                   <?php imprimirUbicaciones(); ?>
-                  </div>
-
-                </div> 
-
-                </div> 
-
-
-
-
-
 
               <!-- /.box-body -->
               <div class="box-footer">
                 <button type="reset" class="btn btn-default">Borrar campos</button>
-                <button type="submit" class="btn btn-info pull-right">Agregar item</button>
+                <button type="submit" class="btn btn-info pull-right">Enviar formulario</button>
               </div>
               <!-- /.box-footer -->
             </form>

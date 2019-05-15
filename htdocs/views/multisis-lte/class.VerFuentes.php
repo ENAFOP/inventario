@@ -49,11 +49,11 @@ require_once("SeedDMS/Preview.php");
 $newDate = date("d-m-Y", strtotime($fecha));
 return  $newDate;
 }
- function contarTransacciones($dms)
+ function contarFuentes($dms)
 	 {
 	 	$res=true;
 		$db = $dms->getDB();
-		$consultar = "SELECT COUNT(*) FROM app_transaccion;";
+		$consultar = "SELECT COUNT(*) FROM app_proyecto;";
 		//echo "Consultar: ".$consultar;
 		$res1 = $db->getResultArray($consultar);
 		return $res1[0]['COUNT(*)'];
@@ -68,7 +68,7 @@ return  $newDate;
 		$res1 = $db->getResultArray($consultar);
 		return $res1[0]['COUNT(*)'];
 	 }
-class SeedDMS_View_VerTransacciones extends SeedDMS_Bootstrap_Style 
+class SeedDMS_View_VerFuentes extends SeedDMS_Bootstrap_Style 
 {
  /**
  Método que muestra los documentos próximos a caducar sólo de 
@@ -89,7 +89,7 @@ class SeedDMS_View_VerTransacciones extends SeedDMS_Bootstrap_Style
 		$db = $dms->getDB();
 		$previewer = new SeedDMS_Preview_Previewer($cachedir, $previewwidth, $timeout);
 
-		$this->htmlStartPage("Lista de transacciones de inventario de ENAFOP", "skin-blue sidebar-mini  sidebar-collapse");
+		$this->htmlStartPage("Lista de fuentes de financiamiento de artículos ENAFOP", "skin-blue sidebar-mini  sidebar-collapse");
 		$this->containerStart();
 		$this->mainHeader();
 		$this->mainSideBar();
@@ -97,11 +97,12 @@ class SeedDMS_View_VerTransacciones extends SeedDMS_Bootstrap_Style
 		$this->contentStart();
           
 		?>
-		   <ol class="breadcrumb">
+		    <ol class="breadcrumb">
         <li><a href="../out.ViewFolder.php"><i class="fa fa-dashboard"></i> Portal</a></li>
         <li><a href="../out.GestionInterna.php"><i class="fa fa-wrench"></i> Subsistema de Gestión Interna ENAFOP</a></li>
         <li><a href="out.Materiales.php">Subsistema de gestión de material e inventario</a></li>
-        <li class="active">Ver registro de operaciones de material</li>
+        <li><a href="out.GestionarItems.php">Operaciones de gestión de material</a></li>
+        <li class="active">Ver lista de fuentes de financiamiento</li>
       </ol>
     <div class="gap-10"></div>
     <div class="row">
@@ -111,62 +112,55 @@ class SeedDMS_View_VerTransacciones extends SeedDMS_Bootstrap_Style
     <?php
     //en este bloque php va "mi" código
   
- $this->startBoxPrimary("Transacciones de inventario");
+ $this->startBoxPrimary("Listado de fuentes de financiamiento para compra de material");
 $this->contentContainerStart();
 //////INICIO MI CODIGO
 ?>
  <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Transacciones de inventario ENAFOP</h3>
+              <h3 class="box-title">Haga clic en el nombre para editarlo</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
               <table id="tablaEventos" class="table table-hover table-striped table-condensed">
               	<thead>
                 <tr>
-                  <th>Item alterado</th>
-                  <th>Quien la hizo</th>
-                  <th>Motivo</th>
-                  <th>Fecha</th> 
-                  <th>Cantidad variada</th>             
+                  <th>Nombre</th>
+                  <th>Origen de los fondos</th>
+                  <th>Monto total</th>
+                  <th>Fecha de finalización del proyecto</th>
+                  <th>Total gastado en materiales y divulgaciones</th>             
                 </tr>
                </thead>
                <tbody>
                 	<?php
-                	$numEventos=contarTransacciones($dms);
+                	$numEventos=contarFuentes($dms);
                 	//////////////// DIBUJO TABLA
-                	$consultar = "SELECT * FROM app_transaccion ORDER by fecha DESC ;";
+                	$consultar = "SELECT * FROM app_proyecto;";
 					//echo "Consultar: ".$consultar;
 				  	$res1 = $db->getResultArray($consultar);
                 	for($cont=0;$cont<$numEventos;$cont++)
                 	{
-                		echo ' <tr>';
+                		echo '<tr>';
                 		//1. nombre
-                    $idItem=$res1[$cont]['id_item'];
-                    $consultaNombre= "SELECT nombre FROM app_item WHERE id= $idItem;";
-                    $resName = $db->getResultArray($consultaNombre);
-                    $name=$resName[0]['nombre'];
-
-                		 echo "<td>".$name."</td>";
-                		 //2. quien hizo la transa
-                     $idUser=$res1[$cont]['id_usuario'];
-                     $usuario=$dms->getUser($idUser)->getFullName();
-                		 echo "<td>". $usuario."</td>";
-                		  // 3. motivo
-                      $motivo=$res1[$cont]['razon'];
-
-                		  echo "<td>". $motivo."</td>";
-                		  // 4. fecha
-                		 echo "<td>".$res1[$cont]['fecha']."</td>";
-                     // 5 cantidad variada
-                      echo "<td>".$res1[$cont]['cantidad_variada']."</td>";
+                    $idItem=$res1[$cont]['id'];
+                		 echo "<td><a href=\"out.VerProyecto.php?id=".$idItem."\">".$res1[$cont]['nombre']."</a></td>";
+                		 //2. fecha de inicio a fin
+                		 echo "<td>".$res1[$cont]['origen_fondos']."</td>";
+                		  // 3. lugar
+                		  echo "<td>".$res1[$cont]['monto_total']."</td>";
+                		  // 4. enlace para editar
+                		 echo "<td>".$res1[$cont]['fecha_finalizacion']."</td>";
 
 		           
                 	}                                
                 ?>
             </tbody>
               <tfoot>
-              </tfoot>                               
+              </tfoot>
+                
+
+               
               </table>
             </div>
             <!-- /.box-body -->

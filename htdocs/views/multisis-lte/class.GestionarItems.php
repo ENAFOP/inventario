@@ -62,6 +62,16 @@ require_once("SeedDMS/Preview.php");
     $res1 = $db->getResultArray($consultar);
     return $res1[0]['COUNT(*)'];
    }
+
+   function contarDineroFuentes($dms)
+   {
+    $res=true;
+    $db = $dms->getDB();
+    $consultar = "SELECT COUNT(*) FROM app_ubicacion;";
+    //echo "Consultar: ".$consultar;
+    $res1 = $db->getResultArray($consultar);
+    return $res1[0]['COUNT(*)'];
+   }
 class SeedDMS_View_GestionarItems extends SeedDMS_Bootstrap_Style 
 {
  /**
@@ -115,35 +125,82 @@ $this->contentContainerStart();
         </div> <!-- FIN DE COLUMNA 1 -->
 
         <div class="col-md-6">
-        		<div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Acciones sobre ítems</h3>
-            </div>
-            <div class="box-body">
-              <p>Haga clic en un botón para acceder:</p>
-              <a class="btn btn-app" href="out.AnadeItem.php">
-                <i class="fa  fa-plus"></i> Añadir ítem
-              </a>
-              <a class="btn btn-app" href="out.VerItems.php">
-              	<span class="badge bg-teal"><?php print contarItems($dms);?></span>
-                <i class="fa fa-list-ol"></i> Ver y buscar todos los ítems
-              </a> 
-              <a class="btn btn-app" href="out.AnadeUbicacion.php">
+        		
                 
-                <i class="fa fa-archive"></i> Añadir ubicación
-              </a>
-                <a class="btn btn-app" href="out.VerUbicaciones.php">
-                  <span class="badge bg-teal"><?php print contarUbicaciones($dms);?></span>
-                <i class="fa fa-list-alt"></i> Ver y buscar todas las ubicaciones
-              </a> 
 
-        
-            </div>
-            <!-- /.box-body -->
-  </div>
-          <!-- /.box -->
+                          <div class="box">
+                            <div class="box-header">
+                              <h3 class="box-title">Acciones sobre ítems</h3>
+                            </div> <!-- /.box header-->
+                              <div class="box-body">
+                                  <div class="row">
 
-        </div> <!-- FIN DE COLUMNA 2 -->
+                                    <div class="col-md-4">
+                                      <a class="btn btn-app" href="out.AnadeItem.php">
+                                        <i class="fa  fa-plus"></i> Añadir ítem
+                                      </a>
+                                    </div>
+
+
+                                      <div class="col-md-4">
+                                        <a class="btn btn-app" href="out.AnadeUbicacion.php">
+                                  
+                                          <i class="fa fa-archive"></i> Añadir ubicación
+                                        </a>
+                                      </div>
+
+
+                                      <div class="col-md-4">
+                                        <a class="btn btn-app" href="out.AnadeFuente.php">
+                                  
+                                       
+                                          <i class="fa fa-money "><i class="fa fa-plus-square "></i></i>
+                                          Añadir fuente de financiamiento
+                                          
+                                          
+
+                                          
+                                        </a>
+                                      </div>
+
+                                   </div> 
+
+                                   <div class="row">
+
+                                          <div class="col-md-4">
+                                            <a class="btn btn-app" href="out.VerItems.php">
+                                              <span class="badge bg-teal"><?php print contarItems($dms);?></span>
+                                              <i class="fa fa-list-ol"></i> Ver y buscar todos los ítems
+                                          </a> 
+
+                                          </div>
+
+                                          <div class="col-md-4">
+
+                                              <a class="btn btn-app" href="out.VerUbicaciones.php">
+                                                <span class="badge bg-teal"><?php print contarUbicaciones($dms);?></span>
+                                                <i class="fa fa-list-alt"></i> Ver y buscar todas las ubicaciones
+                                             </a>
+
+                                          </div>
+
+                                          <div class="col-md-4">
+                                              <a class="btn btn-app" href="out.VerFuentes.php">
+                                                <span class="badge bg-teal"><?php print contarDineroFuentes($dms);?></span>
+                                                <i class="fa fa-usd"></i> Ver y buscar todas las fuentes 
+                                             </a>
+
+                                          </div>
+                                   </div> 
+                                                        
+                              </div>
+                        <!-- /.box ody -->
+                      </div>
+                      <!-- /.box -->
+      
+
+            <!-- /.fila -->
+        </div> <!-- FIN DE COLUMNA INTERNA DE LA CAJA -->
 
 
         <div class="col-md-3">

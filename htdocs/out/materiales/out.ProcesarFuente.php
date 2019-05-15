@@ -24,23 +24,11 @@ include("../../inc/inc.Extension.php");
 include("../../inc/inc.DBInit.php");
 include("../../inc/inc.ClassUI.php");
 include("../../inc/inc.Authentication.php");
-/////////////////////////////        FUNCIONES AUXILIARES ///////////////////////////////////////////////////////
-//devuelve el id del item recien creado
- function crearItem($nombreItem,$descripcion,$empresa,$costo,$costoCompra,$origen,$cantidadInicial,$tipo,$dms)
+ function crearUbicacion($nombre,$descripcion,$dms)
 	 {
 	 	$res=true;
 		$db = $dms->getDB();
-		$insertar = "INSERT INTO app_item VALUES(NULL,'$nombreItem','$descripcion','$empresa',$costo,$costoCompra,'$origen','$cantidadInicial','$cantidadInicial','$tipo'); ";
-		//echo "INSERTAR: ".$insertar;
-		$res1 = $db->getResult($insertar);
-		$idCreado=$db->getInsertID();
-		return $idCreado;
-	 }
-	 function registrarGasto($idProyecto,$costoCompra,$dms)
-	 {
-	 	$res=true;
-		$db = $dms->getDB();
-		$insertar = "UPDATE gasto_proyecto SET cantidad_gastado = cantidad_gastado + $costoCompra WHERE id_proyecto = $idProyecto";
+		$insertar = "INSERT INTO app_ubicacion VALUES(NULL,'$nombre','$descripcion')";
 		//echo "INSERTAR: ".$insertar;
 		$res1 = $db->getResult($insertar);
 		if (!$res1)
@@ -50,20 +38,6 @@ include("../../inc/inc.Authentication.php");
 		return $res;
 	 }
 
-	 function insertarUbicacionItem($idItem,$idUbicacion,$dms)
-	 {
-	 	$res=true;
-		$db = $dms->getDB();
-		$insertar = "INSERT INTO app_ubicacion_item VALUES(NULL,$idItem,$idUbicacion)";
-		//echo "INSERTAR: ".$insertar;
-		$res1 = $db->getResult($insertar);
-		if (!$res1)
-		{
-			$res=false;
-		}
-		return $res;
-	 }
-////////////////////////////////////////////////////////////////////////////////////
 //tabla seeddms.tblattributedefinitions;
  //generan
 if ($user->isGuest()) {
@@ -86,65 +60,19 @@ $tmp = explode('.', basename($_SERVER['SCRIPT_FILENAME']));
 $view = UI::factory($theme, $tmp[1], array('dms'=>$dms, 'user'=>$user));
 
 //---------PESTAÑA 1: DATOS GENERALES:
-$nombreItem="";
-$tipo="";
+$nombreUbicacion="";
 $descripcion="";
-$empresa="";
-$costo="";
-$costoCompra="";
-$origen="";
-$cantidadInicial="";
-$arrayUbicaciones=array();
-
 /////////////////
-if (isset($_POST["tipo"])) 
+if (isset($_POST["nombreUbicacion"])) 
 {
-    $tipo=$_POST["tipo"]; 
-}
-if (isset($_POST["nombreItem"])) 
-{
-    $nombreItem=$_POST["nombreItem"]; 
+    $nombreUbicacion=$_POST["nombreUbicacion"]; 
 }
 if (isset($_POST["descripcion"])) 
 {
     $descripcion=$_POST["descripcion"]; 
 }
-if (isset($_POST["empresa"])) 
-{
-    $empresa=$_POST["empresa"]; 
-}
-//editado: se calcula costo unitario y no se pide 15 mayo 19
-// if (isset($_POST["costo"])) 
-// {
-//     $costo=$_POST["costo"]; 
-// }
-if (isset($_POST["costoCompra"])) 
-{
-    $costoCompra=$_POST["costoCompra"]; 
-}
-if (isset($_POST["origen"])) 
-{
-    $origen=$_POST["origen"]; 
-}
-if (isset($_POST["cantidadInicial"])) 
-{
-    $cantidadInicial=$_POST["cantidadInicial"]; 
-}
-
-$costo=intval($costoCompra/$cantidadInicial);
-
 ////////hago metida en BD
-$idCreado=crearItem($nombreItem,$descripcion,$empresa,$costo,$costoCompra,$origen,$cantidadInicial,$tipo,$dms);
-registrarGasto($origen,$costoCompra,$dms);
-if (isset($_POST["ubicacion"])) 
-{
-    $arrayUbicaciones=$_POST["ubicacion"];
-
-    foreach ($arrayUbicaciones as $idUbicacion) 
-    {
-      insertarUbicacionItem($idCreado,$idUbicacion,$dms);
-    }
-}
+crearUbicacion($nombreUbicacion,$descripcion,$dms);
 if($view) 
 {
 	$view->setParam('orderby', $orderby);
@@ -153,7 +81,7 @@ if($view)
 	$view->setParam('cachedir', $settings->_cacheDir);
 	$view->setParam('previewWidthList', $settings->_previewWidthList);
 	$view->setParam('timeout', $settings->_cmdTimeout);
-	$view->setParam('nombreItem', $nombreItem);
+	$view->setParam('nombreUbicacion', $nombreUbicacion);
 	$view->setParam('descripcion', $descripcion);
 	$view($_GET);
 	exit;

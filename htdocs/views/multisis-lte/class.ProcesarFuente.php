@@ -45,7 +45,7 @@ require_once("SeedDMS/Preview.php");
  -dias: documentos que van a caducar dentro de cúantos días
  */
 
-class SeedDMS_View_ProcesarProyecto extends SeedDMS_Bootstrap_Style 
+class SeedDMS_View_ProcesarUbicacion extends SeedDMS_Bootstrap_Style 
 {
  /**
  Método que muestra los documentos próximos a caducar sólo de 
@@ -63,31 +63,26 @@ class SeedDMS_View_ProcesarProyecto extends SeedDMS_Bootstrap_Style
 		$previewwidth = $this->params['previewWidthList'];
 		$timeout = $this->params['timeout'];
 		////////del form
-		$nombre = $this->params['nombre'];
-		$origen = $this->params['origen'];
-		$fecha_fin = $this->params['fecha_fin'];
+		$nombreUbicacion = $this->params['nombreUbicacion'];
+		$descripcion = $this->params['descripcion'];
 
 
 		$db = $dms->getDB();
 		$previewer = new SeedDMS_Preview_Previewer($cachedir, $previewwidth, $timeout);
 
-		$this->htmlStartPage("Fuente de financiamiento creada con éxito", "skin-blue sidebar-mini  sidebar-collapse");
+		$this->htmlStartPage(getMLText("Ubicación añadida"), "skin-blue sidebar-mini  sidebar-collapse");
 		$this->containerStart();
 		$this->mainHeader();
 		$this->mainSideBar();
 		//$this->contentContainerStart("hoa");
-		$this->contentStart();
-          
+		$this->contentStart();          
 		?>
     <div class="gap-10"></div>
     <div class="row">
     <div class="col-md-12">
-      
-
     <?php
-    //en este bloque php va "mi" código
-  
- $this->startBoxPrimary("Fuente de financiamiento creada con éxito");
+    //en este bloque php va "mi" código 
+ $this->startBoxPrimary("Ubicación añadida con éxito");
 $this->contentContainerStart();
 //////INICIO MI CODIGO
 ?>
@@ -95,25 +90,23 @@ $this->contentContainerStart();
             <div class="box-header with-border">
               <i class="fa fa-bullhorn"></i>
 
-              <h3 class="box-title">Fuente de financiamiento creada con éxito</h3>
+              <h3 class="box-title">Ubicación añadida con éxito</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
             
               <div class="callout callout-success">
-                <h4>ResumenFuente de financiamiento creada:</h4>
+                <h4>Resumen:</h4>
 
 				 <ul>
-				 	 <li><?php echo "Nombre de la fuente: ".$nombre?></li>
-				   <li><?php echo "Origen de los fondos: ".$origen?></li>
-				    <li><?php echo "Fecha de finalización: ".$fecha_fin?></li>
-				 
+				 	 <li><?php echo "Nombre de la ubicación: ".$nombreUbicacion?></li>
+				   <li><?php echo "Descripción: ".$descripcion?></li>				 
 				</ul>
 		     </div>
             </div>
             <!-- /.box-body -->
 
-            <a href="out.VerFuentes.php"><b>Retornar a la lista de proyectos</b></a>
+            <a href="out.ViewFolder.php"><b>Retornar al inicio</b></a>
           </div>
           <!-- /.box -->
 <?php

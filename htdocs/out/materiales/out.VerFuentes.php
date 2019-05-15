@@ -24,37 +24,11 @@ include("../../inc/inc.Extension.php");
 include("../../inc/inc.DBInit.php");
 include("../../inc/inc.ClassUI.php");
 include("../../inc/inc.Authentication.php");
-/////////////////////////////        FUNCIONES AUXILIARES ///////////////////////////////////////////////////////
-//devuelve el id del item recien creado
- function crearProyecto($nombre,$origen,$codigo,$fecha_fin,$monto,$dms)
-	 {
-	 	$res=true;
-		$db = $dms->getDB();
-		$insertar = "INSERT INTO app_proyecto VALUES(NULL,'$fecha_fin',$codigo,$monto,'$nombre',0,0,'$origen');";
-		$res1 = $db->getResult($insertar);
-		$idCreado=$db->getInsertID();
-		$insertarGasto="INSERT INTO gasto_proyecto VALUES(NULL,$idCreado,0)";
-		$res2 = $db->getResult($insertarGasto);
 
-	 }
-	 function insertarUbicacionItem($idItem,$idUbicacion,$dms)
-	 {
-	 	$res=true;
-		$db = $dms->getDB();
-		$insertar = "INSERT INTO app_ubicacion_item VALUES(NULL,$idItem,$idUbicacion)";
-		//echo "INSERTAR: ".$insertar;
-		$res1 = $db->getResult($insertar);
-		if (!$res1)
-		{
-			$res=false;
-		}
-		return $res;
-	 }
-////////////////////////////////////////////////////////////////////////////////////
 //tabla seeddms.tblattributedefinitions;
  //generan
 if ($user->isGuest()) {
-	UI::exitError(getMLText("no_permitido"),getMLText("access_denied"));
+	UI::exitError(getMLText("my_documents"),getMLText("access_denied"));
 }
 
 // Check to see if the user wants to see only those documents that are still
@@ -72,47 +46,17 @@ if (isset($_GET["orderby"]) && strlen($_GET["orderby"])==1 ) {
 $tmp = explode('.', basename($_SERVER['SCRIPT_FILENAME']));
 $view = UI::factory($theme, $tmp[1], array('dms'=>$dms, 'user'=>$user));
 
-//---------PESTAÑA 1: DATOS GENERALES:
-$nombre="";
-$origen="";
-$codigo="";
-$fecha_fin="";
-$monto="";
-/////////////////
-if (isset($_POST["nombre"])) 
-{
-    $nombre=$_POST["nombre"]; 
-}
-if (isset($_POST["origen"])) 
-{
-    $origen=$_POST["origen"]; 
-}
-if (isset($_POST["codigo"])) 
-{
-    $codigo=$_POST["codigo"]; 
-}
-if (isset($_POST["fecha_fin"])) 
-{
-    $fecha_fin=$_POST["fecha_fin"]; 
-}
-if (isset($_POST["monto"])) 
-{
-    $monto=$_POST["monto"]; 
-}
-////////hago metida en BD
-crearProyecto($nombre,$origen,$codigo,$fecha_fin,$monto,$dms);
-if($view) 
-{
+if($view) {
 	$view->setParam('orderby', $orderby);
 	$view->setParam('showinprocess', $showInProcess);
 	$view->setParam('workflowmode', $settings->_workflowMode);
 	$view->setParam('cachedir', $settings->_cacheDir);
 	$view->setParam('previewWidthList', $settings->_previewWidthList);
 	$view->setParam('timeout', $settings->_cmdTimeout);
-	$view->setParam('nombre', $nombre);
-	$view->setParam('origen', $origen);
-	$view->setParam('fecha_fin', $fecha_fin);
+
 	$view($_GET);
 	exit;
 }
+
+
 ?>
