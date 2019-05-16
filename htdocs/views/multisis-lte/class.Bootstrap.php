@@ -109,6 +109,13 @@ class SeedDMS_Bootstrap_Style extends SeedDMS_View_Common {
 		
 		echo '<script type="text/javascript" src="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/custom/js/validate-logo.js"></script>'."\n";
 
+		//Añadido por Mario: highcharts
+
+		echo '<script type="text/javascript" src="../../styles/'.$this->theme.'/highcharts/highcharts.js"></script>'."\n";
+		echo '<script type="text/javascript" src="../../styles/'.$this->theme.'/highcharts/modules/data.js"></script>'."\n";
+		echo '<script type="text/javascript" src="../../styles/'.$this->theme.'/highcharts/modules/drilldown.js"></script>'."\n";
+		echo '<script type="text/javascript" src="../../styles/'.$this->theme.'/highcharts/modules/wordcloud.js"></script>'."\n";
+
 		//echo '<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>'."\n";
 		//echo '<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>'."\n";
 		//echo '<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>';

@@ -174,7 +174,7 @@ $this->contentContainerStart();
 	$miQuery1="SELECT label_order_current FROM wp_formmaker WHERE id=$idevento;";
 	 $resultado1=$manejador->getResultArray($miQuery1);
 	 $labels=$resultado1[0]['label_order_current'];
-	  echo "Labels explotadas; <br>".$labels;
+	  //echo "Labels explotadas; <br>".$labels;
 	 $porciones = explode("#**", $labels);
 	
 	 $arrayIds=array();
@@ -191,7 +191,7 @@ $this->contentContainerStart();
 	 		//echo "nombre cambo cmpleto: ".$nombrecampo
 	 		$nombrecampo = substr($nombrecampo, 2); //borro los dos primeros caracteres "id"
 	 		array_push($arrayCampos, $nombrecampo);
-	 		echo "nombre cambpo: ".$nombrecampo."<br>";
+	 		//echo "nombre cambpo: ".$nombrecampo."<br>";
 
 	 	}
 	 	
