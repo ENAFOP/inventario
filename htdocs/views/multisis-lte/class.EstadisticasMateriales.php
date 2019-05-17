@@ -75,12 +75,17 @@ $manejador=new SeedDMS_Core_DatabaseAccess($driver,$host,$user,$pass,$base);
   echo "</select>";
   ////////////////////// EL SELECT
   
-
-  
 }// fin de imprimir departamentos
 
+function imprimirSelectorFechas($id,$fecha,$atributo)
+{
 
-
+  echo '<div class="form-group">';
+  echo "<label for=\"fechas\" class=\"control-label\">Seleccione la fecha de $fecha para el periodo en que se generarán las estadísticas: </label>";
+  echo "<input type=\"date\"  class=\"form-control\" id=\"$id\" min=\"1\" name=\"$id\" placeholder=\"Indique fecha\" required>";
+  echo '</div>';
+  
+}// fin de imprimir departamentos
 
 ///**********************************************************************************
 class SeedDMS_View_EstadisticasMateriales extends SeedDMS_Bootstrap_Style 
@@ -150,7 +155,7 @@ class SeedDMS_View_EstadisticasMateriales extends SeedDMS_Bootstrap_Style
 
              <div class="row">
 
-         			<div class="col-md-4">
+         			<div class="col-md-1">
          			</div>
          			<div class="col-sm-4">
          					<?php
@@ -161,6 +166,21 @@ class SeedDMS_View_EstadisticasMateriales extends SeedDMS_Bootstrap_Style
 							    
 
          			<div class="col-md-4">
+                <div class="form-group">
+                  <label for="cantidad" class="col-sm-2 control-label">Fecha de inicio</label>
+
+                  <div class="col-sm-10">
+                    <input type="date"  class="form-control" id="fecha_inicio" min="1" name="fecha_inicio" placeholder="Indique fecha" required>
+                  </div>
+                </div> 
+
+
+                <div class="form-group" >
+    
+                </div> 
+
+
+
          			</div>
          	</div>  
 
