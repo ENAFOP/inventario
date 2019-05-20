@@ -84,7 +84,7 @@ function contarItems($fechaInicio,$fechaFin) //le puedo pasar "postulado " o "ap
 	//echo "Contados: ".$contador;
     return intval($contador);
 }	 
-class SeedDMS_View_ViewFolder extends SeedDMS_Bootstrap_Style {
+class SeedDMS_View_Formacion extends SeedDMS_Bootstrap_Style {
 	function getAccessModeText($defMode) { /* {{{ */
 		switch($defMode) {
 			case M_NONE:
@@ -377,12 +377,19 @@ $(document).ready(function(){
               $itemsDiciembre=contarItems("$añoActual-12-01","$añoActual-12-31");
 		//echo $this->callHook('preContent');
 		$this->contentStart();		
-		echo $this->getFolderPathHTML($folder);
+		//echo $this->getFolderPathHTML($folder);
+		echo ' <ol class="breadcrumb">
+         <li><a href="../out.ViewFolder.php"><i class="fa fa-dashboard"></i> Portal</a></li>
+        <li><a href="../out.GestionInterna.php"><i class="fa fa-wrench"></i> Subsistema de Gestión Interna ENAFOP</a></li>
+        <li class="active">Aplicación de gestión de material e inventario</li>
+      </ol>';
 		echo "<div class=\"row\">";
-		echo "<h3>Bienvenid@ al sistema de gestión de inventario de ENAFOP!</h3>";
+		echo "<h3>¡Bienvenid@ a la Aplicación de gestión de material e inventario de ENAFOP!</h3>";
 
 		//// Add Folder ////
+		
 		echo "<div class=\"col-md-12 div-hidden\" id=\"div-add-folder\">";
+
 		echo "<div class=\"box box-success div-green-border\" id=\"box-form1\">";
     echo "<div class=\"box-header with-border\">";
     echo "<h3 class=\"box-title\">".getMLText("add_subfolder")."</h3>";
@@ -436,77 +443,29 @@ $(document).ready(function(){
 	////////////// AQUI VA MI CONTENIDO DE ENAFOP		
 		?>
 		  <div class="row">
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <h3>Gestión interna</h3>
-
-              <p>Herramientas para monitorizar  los recursos y coordinar las actividades de la Escuela.</p>
-              <p>&nbsp;</p>
-            </div>
-            <div class="icon">
-              <i class="fa  fa-space-shuttle"></i>
-            </div>
-            <a href="out.GestionInterna.php" class="small-box-footer">Acceder<i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3>Gestión de la <br>Formación</h3>
-
-              <p>Facilita el seguimiento a los procesos formativos y personas participantes. </p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-graduation-cap"></i>
-            </div>
-            <a href="out.GestionFormacion.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-                <h3>Gestión de la <br>Investigación y GC</h3>
-
-              <p>Concentrar la información relacionada a procesos de investigación y GC </p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-red">
-            <div class="inner">
-               <h3>Gestión del <br>Desarrollo de Carrera</h3>
-
-              <p>Información relativa a las acciones formativas realizadas en el OE.</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-pie-graph"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-      </div>
-      <!-- /.row -->
-
-		  <div class="row">
 
         <!-- ./col -->
          <div class="col-lg-3 col-xs-6">
 
         </div>
 
+        <div class="col-lg-6 col-xs-6">
+          <!-- small box -->
+
+
+
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>Ver y gestionar </h3>
+
+              <p>itemes del inventario</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-book"></i>
+            </div>
+            <a href="out.GestionarItems.php" class="small-box-footer">Acceder<i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
 
         <div class="col-lg-3 col-xs-6">
 
@@ -516,101 +475,120 @@ $(document).ready(function(){
      
       </div>
       <!-- /.row -->
-       <!-- /.********************************** INICIO DE LA  SEGUNDA FILA ************************************* -->
+
       <div class="row">
-      		<!-- /.******************* inicio primera columna ******************* -->
-      		<div class="col-lg-3 col-xs-6">
-      			          <div class="info-box bg-yellow">
-            <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
+      	 <div class="col-lg-3 col-xs-6">
 
-            <div class="info-box-content">
-              <span class="info-box-text">Inventory</span>
-              <span class="info-box-number">5,200</span>
+        </div>
 
-              <div class="progress">
-                <div class="progress-bar" style="width: 50%"></div>
-              </div>
-              <span class="progress-description">
-                    50% Increase in 30 Days
-                  </span>
+      	        <!-- ./col -->
+        <div class="col-lg-6 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>Registrar movimiento</h3>
+
+              <p> de inventario</p>
             </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-          <div class="info-box bg-green">
-            <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Mentions</span>
-              <span class="info-box-number">92,050</span>
-
-              <div class="progress">
-                <div class="progress-bar" style="width: 20%"></div>
-              </div>
-              <span class="progress-description">
-                    20% Increase in 30 Days
-                  </span>
+            <div class="icon">
+              <i class="fa fa-hand-rock-o"></i>
             </div>
-            <!-- /.info-box-content -->
+            <a href="out.RealizarTransaccion.php" class="small-box-footer">Acceder<i class="fa fa-arrow-circle-right"></i></a>
           </div>
-          <!-- /.info-box -->
-          <div class="info-box bg-red">
-            <span class="info-box-icon"><i class="ion ion-ios-cloud-download-outline"></i></span>
+        </div>
 
-            <div class="info-box-content">
-              <span class="info-box-text">Downloads</span>
-              <span class="info-box-number">114,381</span>
+         <div class="col-lg-3 col-xs-6">
 
-              <div class="progress">
-                <div class="progress-bar" style="width: 70%"></div>
-              </div>
-              <span class="progress-description">
-                    70% Increase in 30 Days
-                  </span>
+         		  <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Ver últimas transacciones</h3>
             </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-          <div class="info-box bg-aqua">
-            <span class="info-box-icon"><i class="ion-ios-chatbubble-outline"></i></span>
+            <div class="box-body">
+              <a  href="out.VerTransacciones.php"  class="btn btn-app">
+                <i class="fa fa-exchange"></i> Acceder
+              </a>
 
-            <div class="info-box-content">
-              <span class="info-box-text">Direct Messages</span>
-              <span class="info-box-number">163,921</span>
-
-              <div class="progress">
-                <div class="progress-bar" style="width: 40%"></div>
-              </div>
-              <span class="progress-description">
-                    40% Increase in 30 Days
-                  </span>
             </div>
-            <!-- /.info-box-content -->
+            <!-- /.box-body -->
           </div>
-          <!-- /.info-box -->
+          <!-- /.box -->
 
-      		</div>
-      		 <!-- /.******************* fin primera columna ******************* -->
+        </div>
 
-      		 <!-- /.******************* inicio segunda columna ******************* -->
-      		<div class="col-lg-4 col-xs-6">
-      			
-
-        	</div>
-        	<!-- /.******************* fin segunda columna ******************* -->
-        	<!-- /.******************* inicio tercera columna ******************* -->
-      		<div class="col-lg-3 col-xs-6">
-      			<iframe src="https://calendar.google.com/calendar/embed?src=2r8dv0traduskfdnt5ah887ih0%40group.calendar.google.com&ctz=America%2FEl_Salvador" style="border: 0" width="700" height="400" frameborder="0" scrolling="no"></iframe>
-      		</div>
-      		 <!-- /.******************* fin tercera columna ******************* -->
 
       </div>
-      <!-- /.********************************** Fin DE LA  SEGUNDA FILA ************************************* -->
+       <div class="row">
+      	 <div class="col-lg-3 col-xs-6">
+
+        </div>
+
+      	        <!-- ./col -->
+        <div class="col-lg-6 col-xs-6">
+          <!-- small box -->
+
+          <!-- /.info-box -->
+		<div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Cantidad de materiales entregados por ENAFOP año <?php  print $añoActual;
+              ?></h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+              <div class="chart">
+                <canvas id="lineChart" style="height:250px"></canvas>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
 
 
 
-      
+        </div>
 
+         <div class="col-lg-3 col-xs-6">
+
+         	<div class="info-box">
+            <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Dato de gastos</span>
+              <span class="info-box-text">Se ha gastado en artículos y materiales un total de </span>
+              <span class="info-box-number"><?php 
+          
+              //////
+              	$consultar = "SELECT SUM(costo_compra) FROM app_item";
+					//echo "Consultar: ".$consultar;
+              	$db = $dms->getDB();
+				  	$res1 = $db->getResultArray($consultar);
+				  	print '$USD ';
+				  	print $res1[0]['SUM(costo_compra)'];
+
+              ?></span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+
+            <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Ver estadísticas completas</h3>
+            </div>
+            <div class="box-body">
+              <a  href="out.SeleccionEstadisticasMateriales.php"  class="btn btn-app">
+                <i class="fa fa-bar-chart"></i> Acceder
+              </a>
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
 
 
 <?php
@@ -623,19 +601,19 @@ $(document).ready(function(){
 		$this->mainFooter();		
 		$this->containerEnd();
 
-		//echo "<script type='text/javascript' src='/formularioSubida.js'></script>";
+		echo "<script type='text/javascript' src='/formularioSubida.js'></script>";
 		echo '<script src="../styles/multisis-lte/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>';
 		echo '<script src="../styles/multisis-lte/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>';
         echo '<script src="../styles/multisis-lte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>';
 
-        //echo '<script src="../styles/multisis-lte/bower_components/Chart.js/Chart.js"></script>';
+        echo '<script src="../styles/multisis-lte/bower_components/Chart.js/Chart.js"></script>';
 
 
-        //echo '<script src="../styles/multisis-lte/plugins/sorting/moment.min.js"></script>';
-        //echo '<script src="../styles/multisis-lte/plugins/sorting/datetime-moment.js"></script>';
-        //echo '<script src="../styles/multisis-lte/bower_components/jquery-knob/js/jquery.knob.js"></script>';
-		//echo '<script src="../tablasDinamicas.js"></script>';
-		//echo '<script src="../graficaInicial.js"></script>';
+        echo '<script src="../styles/multisis-lte/plugins/sorting/moment.min.js"></script>';
+        echo '<script src="../styles/multisis-lte/plugins/sorting/datetime-moment.js"></script>';
+        echo '<script src="../styles/multisis-lte/bower_components/jquery-knob/js/jquery.knob.js"></script>';
+		echo '<script src="../tablasDinamicas.js"></script>';
+		echo '<script src="../graficaInicial.js"></script>';
 
 		$this->htmlEndPage();
 	} /* }}} */

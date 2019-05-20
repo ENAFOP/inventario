@@ -84,7 +84,7 @@ function contarItems($fechaInicio,$fechaFin) //le puedo pasar "postulado " o "ap
 	//echo "Contados: ".$contador;
     return intval($contador);
 }	 
-class SeedDMS_View_ViewFolder extends SeedDMS_Bootstrap_Style {
+class SeedDMS_View_GestionFormacion extends SeedDMS_Bootstrap_Style {
 	function getAccessModeText($defMode) { /* {{{ */
 		switch($defMode) {
 			case M_NONE:
@@ -368,147 +368,81 @@ $(document).ready(function(){
 		$previewer = new SeedDMS_Preview_Previewer($cachedir, $previewwidth, $timeout);
 		    /////aprovecho de calcular cuantos items fueron entregados en cada mes.
 		$añoActual=date("Y");
-              $itemsJunio=contarItems("$añoActual-06-01","$añoActual-06-30");
-              $itemsJulio=contarItems("$añoActual-07-01","$añoActual-07-31");
-              $itemsAgosto=contarItems("$añoActual-08-01","$añoActual-08-31");
-              $itemsSeptiembre=contarItems("$añoActual-09-01","$añoActual-09-30");
-              $itemsOctubre=contarItems("$añoActual-10-01","$añoActual-10-31"); 
-              $itemsNoviembre=contarItems("$añoActual-11-01","$añoActual-11-30");
-              $itemsDiciembre=contarItems("$añoActual-12-01","$añoActual-12-31");
-		//echo $this->callHook('preContent');
+		$meActual=date("M");
+		$diaActual=date("d");
+
 		$this->contentStart();		
-		echo $this->getFolderPathHTML($folder);
+		//echo $this->getFolderPathHTML($folder);
+		echo ' <ol class="breadcrumb">
+         <li><a href="out.ViewFolder.php"><i class="fa fa-dashboard"></i> Portal</a></li>
+      
+         <li class="active"><i class="fa fa-wrench"></i> Subsistema de Gestión de la Formación ENAFOP</li>
+      </ol>';
 		echo "<div class=\"row\">";
-		echo "<h3>Bienvenid@ al sistema de gestión de inventario de ENAFOP!</h3>";
+		echo "<h3>Bienvenid@ al subsistema de gestión de la formación ENAFOP!</h3>";
 
 		//// Add Folder ////
-		echo "<div class=\"col-md-12 div-hidden\" id=\"div-add-folder\">";
-		echo "<div class=\"box box-success div-green-border\" id=\"box-form1\">";
-    echo "<div class=\"box-header with-border\">";
-    echo "<h3 class=\"box-title\">".getMLText("add_subfolder")."</h3>";
-    echo "<div class=\"box-tools pull-right\">";
-    echo "<button type=\"button\" class=\"btn btn-box-tool\" data-widget=\"remove\"><i class=\"fa fa-times\"></i></button>";
-    echo "</div>";
-    echo "<!-- /.box-tools -->";
-    echo "</div>";
-    echo "<!-- /.box-header -->";
-    echo "<div class=\"box-body\">";
+		// echo "<div class=\"col-md-12 div-hidden\" id=\"div-add-folder\">";
+		// echo "<div class=\"box box-success div-green-border\" id=\"box-form1\">";
+  //   echo "<div class=\"box-header with-border\">";
+  //   echo "<h3 class=\"box-title\">".getMLText("add_subfolder")."</h3>";
+  //   echo "<div class=\"box-tools pull-right\">";
+  //   echo "<button type=\"button\" class=\"btn btn-box-tool\" data-widget=\"remove\"><i class=\"fa fa-times\"></i></button>";
+  //   echo "</div>";
+  //   echo "<!-- /.box-tools -->";
+  //   echo "</div>";
+  //   echo "<!-- /.box-header -->";
+  //   echo "<div class=\"box-body\">";
     ?>
-     <style>
-        .error {
-            color: red;
-        }
-    </style>
-<input type="hidden" id="itemsJunio" value="<?php echo $itemsJunio ?>" />
-<input type="hidden" id="itemsJulio" value="<?php echo $itemsJulio ?>" />
-<input type="hidden" id="itemsAgosto" value="<?php echo $itemsAgosto ?>" />
-<input type="hidden" id="itemsSeptiembre" value="<?php echo $itemsSeptiembre ?>" />
-<input type="hidden" id="itemsOctubre" value="<?php echo $itemsOctubre ?>" />
-<input type="hidden" id="itemsNoviembre" value="<?php echo $itemsNoviembre ?>" />
-<input type="hidden" id="itemsDiciembre" value="<?php echo $itemsDiciembre ?>" />
 
-    <?php
-    echo "</div>";
-    echo "<!-- /.box-body -->";
-    echo "</div>";
-		echo "</div>";
-		//// Add Document (Añadir resolución del TEG. Modificado por Mario López Leiva marioleiva2011@gmail.com)////
-		echo "<div class=\"col-md-12 div-hidden\" id=\"div-add-document\">";
-		echo "<div class=\"box box-warning div-bkg-color\" id=\"box-form2\">";
-    echo "<div class=\"box-header with-border\">";
-    echo "<h3 class=\"box-title\">".getMLText("anadir_resolucion")."</h3>";
-    echo "<div class=\"box-tools pull-right\">";
-    echo "<button id=\"btn-add-document-hide\" type=\"button\" class=\"btn btn-box-tool\"><i class=\"fa fa-times\"></i></button>";
-    echo "</div>";
-    echo "<!-- /.box-tools -->";
-    echo "</div>";
-    echo "<!-- /.box-header -->";
-    echo "<div class=\"box-body\">";
-    ?>
 
    	
     <?php
-    echo "</div>";
-    echo "<!-- /.box-body -->";
-    echo "</div>";
-		echo "</div>";
+  //   echo "</div>";
+  //   echo "<!-- /.box-body -->";
+  //   echo "</div>";
+		// echo "</div>";
 		//// Folder content ////
 	////////////// AQUI VA MI CONTENIDO DE ENAFOP		
 		?>
 		  <div class="row">
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <h3>Gestión interna</h3>
 
-              <p>Herramientas para monitorizar  los recursos y coordinar las actividades de la Escuela.</p>
-              <p>&nbsp;</p>
+        <!-- ./col -->
+         <div class="col-lg-3 col-xs-3">
+         		 <img src="../images/togaenafop.png" alt="Cohete ENAFOP"  class="img-fluid" alt="Responsive image">
+
+        </div>
+
+        <div class="col-lg-6 col-xs-3">
+          <!-- small box -->
+
+          <div class="small-box bg-maroon">
+            <div class="inner">
+              <h3>HERRAMIENTA</h3>
+              <p>de Gestión de Docentes ENAFOP</p>
             </div>
             <div class="icon">
-              <i class="fa  fa-space-shuttle"></i>
+              <i class="fa  fa-male"></i>
             </div>
-            <a href="out.GestionInterna.php" class="small-box-footer">Acceder<i class="fa fa-arrow-circle-right"></i></a>
+            <a href="confirmaciones/out.TiposConvocatorias.php" class="small-box-footer">Acceder<i class="fa fa-arrow-circle-right"></i></a>
           </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3>Gestión de la <br>Formación</h3>
 
-              <p>Facilita el seguimiento a los procesos formativos y personas participantes. </p>
+           <div class="small-box bg-blue">
+            <div class="inner">
+              <h3>HERRAMIENTA</h3>
+              <p>de Registro Académico ENAFOP</p>
             </div>
             <div class="icon">
-              <i class="fa fa-graduation-cap"></i>
+              <i class="fa  fa-university"></i>
             </div>
-            <a href="out.GestionFormacion.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="formacion/out.RegistroAcademico.php" class="small-box-footer">Acceder<i class="fa fa-arrow-circle-right"></i></a>
           </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-                <h3>Gestión de la <br>Investigación y GC</h3>
 
-              <p>Concentrar la información relacionada a procesos de investigación y GC </p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-red">
-            <div class="inner">
-               <h3>Gestión del <br>Desarrollo de Carrera</h3>
 
-              <p>Información relativa a las acciones formativas realizadas en el OE.</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-pie-graph"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-      </div>
-      <!-- /.row -->
-
-		  <div class="row">
-
-        <!-- ./col -->
-         <div class="col-lg-3 col-xs-6">
 
         </div>
 
-
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-lg-3 col-xs-3">
 
         </div>
 
@@ -516,100 +450,6 @@ $(document).ready(function(){
      
       </div>
       <!-- /.row -->
-       <!-- /.********************************** INICIO DE LA  SEGUNDA FILA ************************************* -->
-      <div class="row">
-      		<!-- /.******************* inicio primera columna ******************* -->
-      		<div class="col-lg-3 col-xs-6">
-      			          <div class="info-box bg-yellow">
-            <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Inventory</span>
-              <span class="info-box-number">5,200</span>
-
-              <div class="progress">
-                <div class="progress-bar" style="width: 50%"></div>
-              </div>
-              <span class="progress-description">
-                    50% Increase in 30 Days
-                  </span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-          <div class="info-box bg-green">
-            <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Mentions</span>
-              <span class="info-box-number">92,050</span>
-
-              <div class="progress">
-                <div class="progress-bar" style="width: 20%"></div>
-              </div>
-              <span class="progress-description">
-                    20% Increase in 30 Days
-                  </span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-          <div class="info-box bg-red">
-            <span class="info-box-icon"><i class="ion ion-ios-cloud-download-outline"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Downloads</span>
-              <span class="info-box-number">114,381</span>
-
-              <div class="progress">
-                <div class="progress-bar" style="width: 70%"></div>
-              </div>
-              <span class="progress-description">
-                    70% Increase in 30 Days
-                  </span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-          <div class="info-box bg-aqua">
-            <span class="info-box-icon"><i class="ion-ios-chatbubble-outline"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Direct Messages</span>
-              <span class="info-box-number">163,921</span>
-
-              <div class="progress">
-                <div class="progress-bar" style="width: 40%"></div>
-              </div>
-              <span class="progress-description">
-                    40% Increase in 30 Days
-                  </span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-
-      		</div>
-      		 <!-- /.******************* fin primera columna ******************* -->
-
-      		 <!-- /.******************* inicio segunda columna ******************* -->
-      		<div class="col-lg-4 col-xs-6">
-      			
-
-        	</div>
-        	<!-- /.******************* fin segunda columna ******************* -->
-        	<!-- /.******************* inicio tercera columna ******************* -->
-      		<div class="col-lg-3 col-xs-6">
-      			<iframe src="https://calendar.google.com/calendar/embed?src=2r8dv0traduskfdnt5ah887ih0%40group.calendar.google.com&ctz=America%2FEl_Salvador" style="border: 0" width="700" height="400" frameborder="0" scrolling="no"></iframe>
-      		</div>
-      		 <!-- /.******************* fin tercera columna ******************* -->
-
-      </div>
-      <!-- /.********************************** Fin DE LA  SEGUNDA FILA ************************************* -->
-
-
-
-      
 
 
 
