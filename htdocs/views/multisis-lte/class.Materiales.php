@@ -579,7 +579,7 @@ $(document).ready(function(){
               <h3 class="box-title">Ver estadísticas completas</h3>
             </div>
             <div class="box-body">
-              <a  href="out.EstadisticasMateriales.php"  class="btn btn-app">
+              <a  href="out.SeleccionEstadisticasMateriales.php"  class="btn btn-app">
                 <i class="fa fa-bar-chart"></i> Acceder
               </a>
 
