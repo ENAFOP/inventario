@@ -139,8 +139,9 @@ class SeedDMS_View_EstadisticasMateriales extends SeedDMS_Bootstrap_Style
       
 <div class="alert alert-success alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-check"></i> Significado de este gráfico</h4>
-               Estos gráficos los comportamientos (acciones e inacciones) más comunes en los jóvenes.
+                <h4><i class="icon fa fa-check"></i> Indicaciones</h4>
+               En esta pantalla usted puede conocer cuántos materiales divulgativos se han entregado como parte de la estrategia comunicacional de la ENAFOP.<br>
+               Primero, seleccione una fecha de inicio para el reporte generado; a continuación, la fecha de fin del periodo, y por último, del material del que quiere saber su destino.
               </div>
     <?php
     //en este bloque php va "mi" código
@@ -157,32 +158,49 @@ class SeedDMS_View_EstadisticasMateriales extends SeedDMS_Bootstrap_Style
 
          			<div class="col-md-1">
          			</div>
-         			<div class="col-sm-4">
-         					<?php
-							imprimirItems($dms)
-							?>
-         					    <br>       
-         		    </div>
+         			
 							    
 
-         			<div class="col-md-4">
+         			<div class="col-md-3">
                 <div class="form-group">
-                  <label for="cantidad" class="col-sm-2 control-label">Fecha de inicio</label>
-
+                  <label for="cantidad" class="col-sm-4 control-label">1) Selecione fecha de inicio para la estadística</label>
                   <div class="col-sm-10">
                     <input type="date"  class="form-control" id="fecha_inicio" min="1" name="fecha_inicio" placeholder="Indique fecha" required>
                   </div>
                 </div> 
 
+         			</div>
 
-                <div class="form-group" >
-    
+
+              <div class="col-md-3"  >
+                <div class="form-group" id="contenedor_fechafin" style="display: none;">
+                  <label for="fecha_fin" class="col-sm-4 control-label">2) Selecione fecha de fin para la estadística</label>
+                  <div  class="col-sm-10" >
+                    <p id="inputFecha"></p>
+                    
+                  </div>
                 </div> 
 
+              </div>
+
+              <div class="col-sm-4" style="display: none;" id="contenedorSelectorItem">
+                <div class="form-group">
+                  <label for="item" class="col-sm-4 control-label">3) Seleciona items para ver la estadística</label>
+                   <div  class="col-sm-10" >
+                  <?php
+              imprimirItems($dms)
+              ?>
+            </div>
+                      <br>
+                      </div>       
+                </div>
 
 
-         			</div>
+
+
+
          	</div>  
+          <br>
 
 
 
@@ -235,7 +253,7 @@ $this->endsBoxPrimary();
 		echo '<script src="../../styles/multisis-lte/bower_components/datatables.net/js/jquery-3.3.1.js"></script>';
 		echo '<script src="../../styles/multisis-lte/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>';
 		echo '<script src="../../styles/multisis-lte/bower_components/datatables.net/js/dataTables.buttons.min.js"></script>';
-        echo '<script src="../../styles/multisis-lte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>';
+    echo '<script src="../../styles/multisis-lte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>';
 		echo '<script src="../../styles/multisis-lte/bower_components/datatables.net/js/pdfmake.min.js"></script>';
 		echo '<script src="../../styles/multisis-lte/bower_components/datatables.net/js/vfs_fonts.js"></script>';
 		echo '<script src="../../styles/multisis-lte/bower_components/datatables.net/js/buttons.html5.min.js"></script>';
@@ -245,7 +263,7 @@ $this->endsBoxPrimary();
 		echo '<script src="../../tablasDinamicas.js"></script>';
      	// fin de lo necesario para botnones
 	 	echo '<script src="../../styles/multisis-lte/plugins/sorting/moment.min.js"></script>';
-        echo '<script src="../../styles/multisis-lte/plugins/sorting/datetime-moment.js"></script>';
+    echo '<script src="../../styles/multisis-lte/plugins/sorting/datetime-moment.js"></script>';
       	
 		echo "<script type='text/javascript'  src='scriptDibujaGraficas.js'></script>";
 		

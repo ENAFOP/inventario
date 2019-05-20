@@ -1,17 +1,47 @@
+//SECUENCIA: 
+//1 ELEGIR FECHA INICIAL DE ESTADÍSTICAS, SE MUESTRA EL SELECTOR DE FECHA FINAL. 2: SELECCIONO FECHA FINAL, SE MUESTRA SELECTOR DE ITEM,
+//3 SELECCIONO ITEM, MUESTRO GRÁFICAS
+$('#contenedor_fechafin').on('change','.form-control',function(){
+ //^^^^parent div         ^^^dynamically added element
+    //alert("Fecha FINAL cambiada con valor: "+this.value);
+  var x = document.getElementById("contenedorSelectorItem");
+      if (x.style.display === "none") 
+      {
+        $(x).show('slow');
+        
+      }
+});
+$('#fecha_inicio').on('change', function() {
+  //alert("Fecha cambiada con valor: "+this.value);
+  var fechaInicial=this.value;
+  var x = document.getElementById("contenedor_fechafin");
+
+      if (x.style.display === "none") 
+      {
+        $(x).show('fast');
+        
+      }
+      var texto="<input type=\"date\"  class=\"form-control\" id=\"fecha_fin\" min=\""+fechaInicial+"\" name=\"fecha_fin\" placeholder=\"Indique fecha final\" required>"; 
+      document.getElementById("inputFecha").innerHTML = texto
+     
+});
 
 $('#itemElegido').on('change', function() {
   actualizaGrafica( this.value );
 });
+
 function actualizaGrafica(selectedOption) {
   var item=selectedOption;
   //var grupo = document.getElementById("grupo").value; //console.log("ID grupo: "+x);
-
+    var fechaIni=$('#fecha_inicio').val();
+    var fechaFin=$('#fecha_fin').val(); 
+    console.log("fecha inicio: "+fechaIni); console.log("fecha final: "+fechaFin);
     var arrayCantidadesEntregadas=[];
    var arrayGrupos=[];
    var arrayTotal=[];
 
     $.ajax({
-                        url:"entregadosPorGrupo.php?idItem="+item,
+                        url:"entregadosPorGrupo.php?idItem="+item+"&fechaInicio="+fechaIni+"&fechaFin="+fechaFin,
                         success:function(result)
                         {
                                                       
@@ -69,7 +99,7 @@ function actualizaGrafica(selectedOption) {
             var textofinal=""
 
             var cabecita='<div class="box box-success box-solid"><div class="box-header with-border"><h3 class="box-title">Resumen de la entrega de este material</h3></div><div class="box-body">'             
-            var texto="<table id='tablita' class=\"table table-bordered table-striped\"><caption>"+nameItem+"</caption><thead><tr><th>Nombre del grupo al que se entrega</th><th>Cantidad de ítems entregados</th></tr></thead><tbody>" 
+            var texto="<table id='tablita' class=\"table table-bordered table-striped\"><caption>"+nameItem+" Entregados en el periodo comprendido entre "+fechaIni+" y "+fechaFin+"</caption><thead><tr><th>Nombre del grupo al que se entrega</th><th>Cantidad de ítems entregados</th></tr></thead><tbody>" 
             var contenido=""
              for (var index in arrayGrupos) 
                               {
@@ -88,7 +118,7 @@ function actualizaGrafica(selectedOption) {
             textofinal=cabecita+texto+contenido+finalTabla
             document.getElementById("tablaDatos").innerHTML = textofinal
             
-            document.getElementById("tituloCaja").innerHTML = nameItem
+            document.getElementById("tituloCaja").innerHTML = nameItem+ " entregados en el periodo comprendido entre "+fechaIni+" y "+fechaFin
 
             var currentdate = new Date(); 
               var datetime =  currentdate.getDate() + "/"
