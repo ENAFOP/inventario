@@ -84,7 +84,7 @@ function contarItems($fechaInicio,$fechaFin) //le puedo pasar "postulado " o "ap
 	//echo "Contados: ".$contador;
     return intval($contador);
 }	 
-class SeedDMS_View_Formacion extends SeedDMS_Bootstrap_Style {
+class SeedDMS_View_RegistroAcademico extends SeedDMS_Bootstrap_Style {
 	function getAccessModeText($defMode) { /* {{{ */
 		switch($defMode) {
 			case M_NONE:
@@ -128,214 +128,7 @@ class SeedDMS_View_Formacion extends SeedDMS_Bootstrap_Style {
 			echo $content;
 		}
 	} /* }}} */
-	function js() { /* {{{ */
-		$user = $this->params['user'];
-		$folder = $this->params['folder'];
-		$orderby = $this->params['orderby'];
-		$expandFolderTree = $this->params['expandFolderTree'];
-		$enableDropUpload = $this->params['enableDropUpload'];
-		header('Content-Type: application/javascript; charset=UTF-8');
-		parent::jsTranslations(array('cancel', 'splash_move_document', 'confirm_move_document', 'move_document', 'splash_move_folder', 'confirm_move_folder', 'move_folder'));
-		
-?>
 
-function folderSelected(id, name) {
-	window.location = '../out/out.ViewFolder.php?folderid=' + id;
-}
-
-function checkForm() {
-	msg = new Array();
-	/*if (document.form1.name.value == "") msg.push("<?php printMLText("js_no_name");?>");*/
-	if (document.form1.comment.value == "") msg.push("<?php printMLText("js_no_comment");?>");
-	if (msg != "") {
-  	noty({
-  		text: msg.join('<br />'),
-  		type: 'error',
-      dismissQueue: true,
-  		layout: 'topRight',
-  		theme: 'defaultTheme',
-			_timeout: 1500,
-  	});
-		return false;
-	}
-	else
-		return true;
-}
-
-function checkForm2() {
-	msg = new Array();
-	/*if (document.form2.name.value == "") msg.push("<?php printMLText("js_no_name");?>");*/
-	if (document.form2.comment.value == "") msg.push("<?php printMLText("js_no_comment");?>");
-	/*if (document.form2.expdate.value == "") msg.push("<?php printMLText("js_no_expdate");?>");*/
-	if (document.form2.theuserfile.value == "") msg.push("<?php printMLText("js_no_file");?>");
-	if (msg != "") {
-  	noty({
-  		text: msg.join('<br />'),
-  		type: 'error',
-      dismissQueue: true,
-  		layout: 'topRight',
-  		theme: 'defaultTheme',
-			_timeout: 1500,
-  	});
-		return false;
-	}
-	else
-		return true;
-}
-
-$(document).ajaxStart(function() { Pace.restart(); });
-//  $('.ajax').click(function(){
-//    $.ajax({url: '#', success: function(result){
-//    $('.ajax-content').html('<hr>Ajax Request Completed !');
-//  }});
-//});
-
-$(document).ready(function(){
-	
-	$('body').on('submit', '#form1', function(ev){
-		if(!checkForm()) {
-			ev.preventDefault();
-		} else {
-			$("#box-form1").append("<div class=\"overlay\"><i class=\"fa fa-refresh fa-spin\"></i></div>");
-		}
-	});
-
-	$('body').on('submit', '#form2', function(ev){
-		if(!checkForm2()){
-			ev.preventDefault();
-		} else {
-			$("#box-form2").append("<div class=\"overlay\"><i class=\"fa fa-refresh fa-spin\"></i></div>");
-		}
-	});
-
-	$("#form1").validate({
-		invalidHandler: function(e, validator) {
-			noty({
-				text:  (validator.numberOfInvalids() == 1) ? "<?php printMLText("js_form_error");?>".replace('#', validator.numberOfInvalids()) : "<?php printMLText("js_form_errors");?>".replace('#', validator.numberOfInvalids()),
-				type: 'error',
-				dismissQueue: true,
-				layout: 'topRight',
-				theme: 'defaultTheme',
-				timeout: 1500,
-			});
-		},
-		messages: {
-			name: "<?php printMLText("js_no_name");?>",
-			comment: "<?php printMLText("js_no_comment");?>"
-		},
-	});
-
-	$("#form2").validate({
-		invalidHandler: function(e, validator) {
-			noty({
-				text:  (validator.numberOfInvalids() == 1) ? "<?php printMLText("js_form_error");?>".replace('#', validator.numberOfInvalids()) : "<?php printMLText("js_form_errors");?>".replace('#', validator.numberOfInvalids()),
-				type: 'error',
-				dismissQueue: true,
-				layout: 'topRight',
-				theme: 'defaultTheme',
-				timeout: 1500,
-			});
-		},
-		messages: {
-			name: "<?php printMLText("js_no_name");?>",
-			comment: "<?php printMLText("js_no_comment");?>",
-			/*expdate: "<?php printMLText("js_no_expdate");?>",*/
-			theuserfile: "<?php printMLText("js_no_file");?>",
-		},
-	});
-
-	$("#add-folder").on("click", function(){
- 		  $("#div-add-folder").show('slow');
-  });
-
-  $("#cancel-add-folder").on("click", function(){
- 		  $("#div-add-folder").hide('slow');
-  });
-
-  $("#add-document").on("click", function(){
- 		  $("#div-add-document").show('slow');
-  });
-
-  $("#btn-add-document-hide").on("click", function(){
- 		  $("#div-add-document").hide('slow');
-  });
-
-  $(".cancel-add-document").on("click", function(){
- 		  $("#div-add-document").hide('slow');
-  });
-
-  $(".move-doc-btn").on("click", function(ev){
-  	id = $(ev.currentTarget).attr('rel');
- 		$("#table-move-document-"+id).show('slow');
-  });
-
-  $(".cancel-doc-mv").on("click", function(ev){
-  	id = $(ev.currentTarget).attr('rel');
- 		$("#table-move-document-"+id).hide('slow');
-  });
-
-  $(".move-folder-btn").on("click", function(ev){
-  	id = $(ev.currentTarget).attr('rel');
- 		$("#table-move-folder-"+id).show('slow');
-  });
-
-  $(".cancel-folder-mv").on("click", function(ev){
-  	id = $(ev.currentTarget).attr('rel');
- 		$("#table-move-folder-"+id).hide('slow');
-  });
-
- 
-
-  $("#btn-next-2").on("click", function(){
-  	$("#nav-tab-2").removeClass("active");
-  	$("#nav-tab-3").addClass("active");
-  	$('html, body').animate({scrollTop: 0}, 800);
-  });
-
-  /* ---- For document previews ---- */
-
-  $(".preview-doc-btn").on("click", function(){
-  	$("#div-add-folder").hide();
-		$("#div-add-document").hide();
-  	$("#folder-content").hide();
-
-  	var docID = $(this).attr("id");
-  	var version = $(this).attr("rel");
-  	$("#doc-title").text($(this).attr("title"));
-  	$("#document-previewer").show('slow');
-  	$("#iframe-charger").attr("src","../pdfviewer/web/viewer.html?file=..%2F..%2Fop%2Fop.Download.php%3Fdocumentid%3D"+docID+"%26version%3D"+version);
-  });
-
-  $(".close-doc-preview").on("click", function(){
-  	$("#document-previewer").hide();
-  	$("#iframe-charger").attr("src","");
-  	$("#folder-content").show('slow');
-  });
-  
-  $("#attributes_13").on("change", function() {
-	 console.log(this.value);
-	 if(this.value == 'Anormal') {
-		 $("#problemaJuridico").hide();
-	 } else {
-		 $("#problemaJuridico").show();
-	 }
-  });
-  
-});
-<?php
-		if ($enableDropUpload && $folder->getAccessMode($user) >= M_READWRITE) {
-			echo "SeedDMSUpload.setUrl('../op/op.Ajax.php');";
-			echo "SeedDMSUpload.setAbortBtnLabel('".getMLText("cancel")."');";
-			echo "SeedDMSUpload.setEditBtnLabel('".getMLText("edit_document_props")."');";
-			echo "SeedDMSUpload.setMaxFileSize(".SeedDMS_Core_File::parse_filesize(ini_get("upload_max_filesize")).");";
-			echo "SeedDMSUpload.setMaxFileSizeMsg('".getMLText("uploading_maxsize")."');";
-		}
-		$this->printDeleteFolderButtonJs();
-		$this->printDeleteDocumentButtonJs();
-		$this->printKeywordChooserJs("form2");
-		$this->printFolderChooserJs("form3");
-		$this->printFolderChooserJs("form4");
-	} /* }}} */
 
 	function show() { /* {{{ */
 		$dms = $this->params['dms'];
@@ -368,23 +161,16 @@ $(document).ready(function(){
 		$previewer = new SeedDMS_Preview_Previewer($cachedir, $previewwidth, $timeout);
 		    /////aprovecho de calcular cuantos items fueron entregados en cada mes.
 		$añoActual=date("Y");
-              $itemsJunio=contarItems("$añoActual-06-01","$añoActual-06-30");
-              $itemsJulio=contarItems("$añoActual-07-01","$añoActual-07-31");
-              $itemsAgosto=contarItems("$añoActual-08-01","$añoActual-08-31");
-              $itemsSeptiembre=contarItems("$añoActual-09-01","$añoActual-09-30");
-              $itemsOctubre=contarItems("$añoActual-10-01","$añoActual-10-31"); 
-              $itemsNoviembre=contarItems("$añoActual-11-01","$añoActual-11-30");
-              $itemsDiciembre=contarItems("$añoActual-12-01","$añoActual-12-31");
-		//echo $this->callHook('preContent');
+
 		$this->contentStart();		
 		//echo $this->getFolderPathHTML($folder);
 		echo ' <ol class="breadcrumb">
          <li><a href="../out.ViewFolder.php"><i class="fa fa-dashboard"></i> Portal</a></li>
-        <li><a href="../out.GestionInterna.php"><i class="fa fa-wrench"></i> Subsistema de Gestión Interna ENAFOP</a></li>
-        <li class="active">Aplicación de gestión de material e inventario</li>
+        <li><a href="../out.GestionFormacion.php"><i class="fa fa-wrench"></i> Subsistema de Gestión de la Formación ENAFOP</a></li>
+        <li class="active">Aplicación de Registro Académico</li>
       </ol>';
 		echo "<div class=\"row\">";
-		echo "<h3>¡Bienvenid@ a la Aplicación de gestión de material e inventario de ENAFOP!</h3>";
+		echo "<h3>¡Bienvenid@ a la Aplicación de Registro Académico de la ENAFOP</h3>";
 
 		//// Add Folder ////
 		
@@ -406,13 +192,7 @@ $(document).ready(function(){
             color: red;
         }
     </style>
-<input type="hidden" id="itemsJunio" value="<?php echo $itemsJunio ?>" />
-<input type="hidden" id="itemsJulio" value="<?php echo $itemsJulio ?>" />
-<input type="hidden" id="itemsAgosto" value="<?php echo $itemsAgosto ?>" />
-<input type="hidden" id="itemsSeptiembre" value="<?php echo $itemsSeptiembre ?>" />
-<input type="hidden" id="itemsOctubre" value="<?php echo $itemsOctubre ?>" />
-<input type="hidden" id="itemsNoviembre" value="<?php echo $itemsNoviembre ?>" />
-<input type="hidden" id="itemsDiciembre" value="<?php echo $itemsDiciembre ?>" />
+
 
     <?php
     echo "</div>";
@@ -445,29 +225,51 @@ $(document).ready(function(){
 		  <div class="row">
 
         <!-- ./col -->
-         <div class="col-lg-3 col-xs-6">
+         <div class="col-lg-4 col-xs-6">
 
-        </div>
-
-        <div class="col-lg-6 col-xs-6">
-          <!-- small box -->
-
-
-
-          <div class="small-box bg-green">
+         	  <div class="small-box bg-green">
             <div class="inner">
-              <h3>Ver y gestionar </h3>
+              <h3>Procesos Formativos</h3>
 
-              <p>itemes del inventario</p>
+              <p>Ver y editar</p>
             </div>
             <div class="icon">
               <i class="fa fa-book"></i>
+            </div>
+            <a href="out.GestionarFormaciones.php" class="small-box-footer">Acceder<i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+
+
+        </div>
+
+        <div class="col-lg-4 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-navy">
+            <div class="inner">
+              <h3>Personas participantes </h3>
+
+              <p>Ver listas</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-group"></i>
             </div>
             <a href="out.GestionarItems.php" class="small-box-footer">Acceder<i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
 
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-lg-4 col-xs-6">
+        	<div class="small-box bg-primary">
+            <div class="inner">
+              <h3>Estadísticas y reportes </h3>
+
+              <p>de la Formación</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-area-chart"></i>
+            </div>
+            <a href="out.GestionarItems.php" class="small-box-footer">Acceder<i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+
 
         </div>
 
@@ -477,18 +279,15 @@ $(document).ready(function(){
       <!-- /.row -->
 
       <div class="row">
-      	 <div class="col-lg-3 col-xs-6">
-
-        </div>
 
       	        <!-- ./col -->
-        <div class="col-lg-6 col-xs-6">
+        <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>Registrar movimiento</h3>
+              <h3>Ver  instituciones</h3>
 
-              <p> de inventario</p>
+              <p>en el universo ENAFOP</p>
             </div>
             <div class="icon">
               <i class="fa fa-hand-rock-o"></i>
@@ -499,38 +298,24 @@ $(document).ready(function(){
 
          <div class="col-lg-3 col-xs-6">
 
-         		  <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Ver últimas transacciones</h3>
-            </div>
-            <div class="box-body">
-              <a  href="out.VerTransacciones.php"  class="btn btn-app">
-                <i class="fa fa-exchange"></i> Acceder
-              </a>
+         		 <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>Ver docentes</h3>
 
+              <p>que han impartido formación para ENAFOP</p>
             </div>
-            <!-- /.box-body -->
+            <div class="icon">
+              <i class="fa fa-hand-rock-o"></i>
+            </div>
+            <a href="out.RealizarTransaccion.php" class="small-box-footer">Acceder<i class="fa fa-arrow-circle-right"></i></a>
           </div>
-          <!-- /.box -->
 
         </div>
 
-
-      </div>
-       <div class="row">
-      	 <div class="col-lg-3 col-xs-6">
-
-        </div>
-
-      	        <!-- ./col -->
-        <div class="col-lg-6 col-xs-6">
-          <!-- small box -->
-
-          <!-- /.info-box -->
-		<div class="box box-info">
+         <div class="col-sm-6 col-xs-6">
+         	 <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Cantidad de materiales entregados por ENAFOP año <?php  print $añoActual;
-              ?></h3>
+              <h3 class="box-title">Actividades formativas en curso</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -538,57 +323,96 @@ $(document).ready(function(){
                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
               </div>
             </div>
+            <!-- /.box-header -->
             <div class="box-body">
-              <div class="chart">
-                <canvas id="lineChart" style="height:250px"></canvas>
+              <div class="table-responsive">
+                <table class="table no-margin">
+                  <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Item</th>
+                    <th>Status</th>
+                    <th>Popularity</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td><a href="pages/examples/invoice.html">OR9842</a></td>
+                    <td>Call of Duty IV</td>
+                    <td><span class="label label-success">Shipped</span></td>
+                    <td>
+                      <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><a href="pages/examples/invoice.html">OR1848</a></td>
+                    <td>Samsung Smart TV</td>
+                    <td><span class="label label-warning">Pending</span></td>
+                    <td>
+                      <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><a href="pages/examples/invoice.html">OR7429</a></td>
+                    <td>iPhone 6 Plus</td>
+                    <td><span class="label label-danger">Delivered</span></td>
+                    <td>
+                      <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><a href="pages/examples/invoice.html">OR7429</a></td>
+                    <td>Samsung Smart TV</td>
+                    <td><span class="label label-info">Processing</span></td>
+                    <td>
+                      <div class="sparkbar" data-color="#00c0ef" data-height="20">90,80,-90,70,-61,83,63</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><a href="pages/examples/invoice.html">OR1848</a></td>
+                    <td>Samsung Smart TV</td>
+                    <td><span class="label label-warning">Pending</span></td>
+                    <td>
+                      <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><a href="pages/examples/invoice.html">OR7429</a></td>
+                    <td>iPhone 6 Plus</td>
+                    <td><span class="label label-danger">Delivered</span></td>
+                    <td>
+                      <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><a href="pages/examples/invoice.html">OR9842</a></td>
+                    <td>Call of Duty IV</td>
+                    <td><span class="label label-success">Shipped</span></td>
+                    <td>
+                      <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
               </div>
+              <!-- /.table-responsive -->
             </div>
             <!-- /.box-body -->
+            <div class="box-footer clearfix">
+              <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New Order</a>
+              <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
+            </div>
+            <!-- /.box-footer -->
           </div>
           <!-- /.box -->
 
-
-
         </div>
 
-         <div class="col-lg-3 col-xs-6">
 
-         	<div class="info-box">
-            <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Dato de gastos</span>
-              <span class="info-box-text">Se ha gastado en artículos y materiales un total de </span>
-              <span class="info-box-number"><?php 
-          
-              //////
-              	$consultar = "SELECT SUM(costo_compra) FROM app_item";
-					//echo "Consultar: ".$consultar;
-              	$db = $dms->getDB();
-				  	$res1 = $db->getResultArray($consultar);
-				  	print '$USD ';
-				  	print $res1[0]['SUM(costo_compra)'];
-
-              ?></span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-
-            <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Ver estadísticas completas</h3>
-            </div>
-            <div class="box-body">
-              <a  href="out.SeleccionEstadisticasMateriales.php"  class="btn btn-app">
-                <i class="fa fa-bar-chart"></i> Acceder
-              </a>
-
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
       </div>
+
+
+
 
 
 <?php
