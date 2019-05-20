@@ -93,7 +93,7 @@ class SeedDMS_View_GestionarFormaciones extends SeedDMS_Bootstrap_Style
 		$db = $dms->getDB();
 		$previewer = new SeedDMS_Preview_Previewer($cachedir, $previewwidth, $timeout);
 
-		$this->htmlStartPage("Gestionar items", "skin-blue sidebar-mini  sidebar-collapse");
+		$this->htmlStartPage("Gestionar formaciones ENAFOP", "skin-blue sidebar-mini  sidebar-collapse");
 		$this->containerStart();
 		$this->mainHeader();
 		$this->mainSideBar();
@@ -107,6 +107,16 @@ class SeedDMS_View_GestionarFormaciones extends SeedDMS_Bootstrap_Style
         <li><a href="out.RegistroAcademico.php">Registro Académico</a></li>
         <li class="active">Gestionar actividades formativas</li>
       </ol>
+
+
+      <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-check"></i> Indicaciones</h4>
+               En esta pantalla usted puede:<br>
+               1) Añadir una nueva instancia o repetición de un curso o diplomado perteneciente a la Oferta Académica ENAFOP.<br>
+               2) Ver el listado de cursos o diplomados realizados.<br>
+               3) Registrar un nuevo curso o diplomado que impartirá la ENAFOP.
+              </div>
     <div class="gap-10"></div>
     <div class="row">
     <div class="col-md-12">
@@ -115,7 +125,7 @@ class SeedDMS_View_GestionarFormaciones extends SeedDMS_Bootstrap_Style
     <?php
     //en este bloque php va "mi" código
   
- $this->startBoxPrimary("Gestión de items y existencias");
+ $this->startBoxPrimary("Gestión actividades formativas ENAFOP");
 $this->contentContainerStart();
 //////INICIO MI CODIGO
 ?>
@@ -138,16 +148,16 @@ $this->contentContainerStart();
                                    <div class="row">
 
                                           <div class="col-md-4">
-                                            <a class="btn btn-app" href="out.VerProcesosFormativos.php">
+                                            <a class="btn btn-app" href="out.AnadeInstanciaCurso.php">
                                               <span class="badge bg-teal"><?php print contarItems($dms);?></span>
-                                              <i class="fa fa-list-ol"></i> Añadir proceso formativo
+                                              <i class="fa fa-list-ol"></i> Añadir instancia de curso
                                           </a> 
 
                                           </div>
 
                                           <div class="col-md-4">
 
-                                              <a class="btn btn-app" href="out.VerUbicaciones.php">
+                                              <a class="btn btn-app" href="out.VerProcesosFormativos.php">
                                                 <span class="badge bg-teal"><?php print contarUbicaciones($dms);?></span>
                                                 <i class="fa fa-list-alt"></i> Ver procesos
                                              </a>
@@ -155,7 +165,7 @@ $this->contentContainerStart();
                                           </div>
 
                                           <div class="col-md-4">
-                                              <a class="btn btn-app" href="out.VerFuentes.php">
+                                              <a class="btn btn-app" href="out.AnadeCursoDiplomado.php">
                                                 <span class="badge bg-teal"><?php print contarDineroFuentes($dms);?></span>
                                                 <i class="fa fa-usd"></i> Registrar nueva acción formativa
                                              </a>
