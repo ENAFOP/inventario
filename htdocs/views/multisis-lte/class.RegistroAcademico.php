@@ -292,7 +292,7 @@ class SeedDMS_View_RegistroAcademico extends SeedDMS_Bootstrap_Style {
             <div class="icon">
               <i class="fa fa-hand-rock-o"></i>
             </div>
-            <a href="out.RealizarTransaccion.php" class="small-box-footer">Acceder<i class="fa fa-arrow-circle-right"></i></a>
+            <a href="out.VerInstituciones.php" class="small-box-footer">Acceder<i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
 
