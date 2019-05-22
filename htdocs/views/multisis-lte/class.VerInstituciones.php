@@ -44,7 +44,7 @@ require_once("SeedDMS/Preview.php");
  mostrarTodosDocumentos(lista_usuarios,dias)
  -dias: documentos que van a caducar dentro de cúantos días
  */
- function dameExistencias($id, $dms)
+ function cuentaCapacitadas($id, $dms)
 	 {
 	 	$res=true;
 		$db = $dms->getDB();
@@ -87,11 +87,9 @@ class SeedDMS_View_VerInstituciones extends SeedDMS_Bootstrap_Style
 		?>
      <ol class="breadcrumb">
         <li><a href="../out.ViewFolder.php"><i class="fa fa-dashboard"></i> Portal</a></li>
-        <li><a href="../out.GestionInterna.php"><i class="fa fa-wrench"></i> Subsistema de Gestión Interna ENAFOP</a></li>
-        <li><a href="out.Materiales.php">Aplicación de gestión de material e inventario</a></li>
-        <li><a href="out.GestionarItems.php">Operaciones de gestión de material</a></li>
-        <li><a href="out.VerUbicaciones.php">Listado de bodegas y lugares de almacenamiento de los artículos</a></li>
-        <li class="active">Ver ubicaciones de material</li>
+        <li><a href="../out.GestionFormación.php"><i class="fa fa-wrench"></i> Subsistema de Gestión de la Formación ENAFOP</a></li>
+        <li><a href="out.RegistroAcademico.php">Aplicación de Registro Académico</a></li>
+        <li class="active">Ver listado de instituciones a las cuales se capacita </li>
       </ol>
     <div class="gap-10"></div>
     <div class="row">
@@ -111,13 +109,8 @@ $this->contentContainerStart();
                Haga clic en una institución para saber a cuántas personas que laboran en la misma se han capacitado y el detalle de las mismas.
                 <br>
               </div>
-<?php
- //////FIN MI CODIGO                 
-$this->contentContainerEnd();
-
-?>
-<div class="row">
-	<div class="col-md-3">
+              <div class="row">
+  <div class="col-md-3">
 
 
         </div>
@@ -137,31 +130,33 @@ $this->contentContainerEnd();
             </ul>
             <div class="tab-content">
               <div class="tab-pane active" id="tab_1">
-              	            <div class="box-body no-padding">
+            <div class="box-body no-padding">
               <table id="tablaEventos" class="table table-hover table-striped table-condensed">
-              	<thead>
+                <thead>
                 <tr>
                   <th>Nombre</th>
-                  <th>descipción</th>
+                  <th>Cantidad de personas capacitadas</th>
              
                 </tr>
                </thead>
                <tbody>
-                	<?php
-            
-                	//////////////// DIBUJO TABLA
-                	$consultar = "SELECT * FROM app_ubicacion WHERE id=$idItem;";
-					//echo "Consultar: ".$consultar;
-				  	$res1 = $db->getResultArray($consultar);
-                	
-                		echo ' <tr>';
-                		//1. nombre
-                    $idItem=$res1[0]['id'];
-                		  echo "<td><a href=\"#\" id=\"nombre\" data-type=\"text\" data-pk=\"$idItem\" data-url=\"/modificarUbicacionEditable.php\" data-title=\"Enter username\">".$res1[0]['nombre']."</a></td>";
-                		 //2. fecha de inicio a fin
-                		 echo "<td><a href=\"#\" id=\"descripcion\" data-type=\"text\" data-pk=\"$idItem\" data-url=\"/modificarUbicacionEditable.php\" data-title=\"Enter username\">".$res1[0]['descripcion']."</a></td>";
-		           
-                	                               
+                  <?php           
+                  //////////////// DIBUJO TABLA
+                  $consultar = "SELECT * FROM instituciones_oe WHERE tipo='Ministerio';";
+                  //echo "Consultar: ".$consultar;
+                  $res1 = $db->getResultArray($consultar);
+                   foreach ($res1 as $fila) 
+                   {
+                      echo ' <tr>';
+                    //1. nombre
+                    $idInstitucion=$fila['ID'];
+                      echo "<td><a href=\"VerPersonasCapacitadas.php?institucion=$idInstitucion\">".$fila['nombre']."</a></td>";
+                     //2. fecha de inicio a fin
+                    $cantidadPersonasCapacitadas=cuentaCapacitadas($idInstitucion,$dms);
+                     echo "<td><a href=\"#\" id=\"descripcion\" data-type=\"text\" data-pk=\"$idItem\" data-url=\"/modificarUbicacionEditable.php\" data-title=\"Enter username\">".$res1[0]['tipo']."</a></td>";
+
+                     echo ' </tr>';
+                   }                                                
                 ?>
             </tbody>
               <tfoot>
@@ -176,10 +171,130 @@ $this->contentContainerEnd();
 
                <div class="tab-pane" id="tab_2">
 
-                <img <?php echo "src=\"../images/ubicaciones/ubicacion".$idItem.".jpg\""?> alt="Foto de la ubicación" height="400" width="280">
+                  <div class="box-body no-padding">
+              <table  class="table table-hover table-striped table-condensed">
+                <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Cantidad de personas capacitadas</th>
+             
+                </tr>
+               </thead>
+               <tbody>
+                  <?php           
+                  //////////////// DIBUJO TABLA
+                  $consultar = "SELECT * FROM instituciones_oe WHERE tipo='Secretaría';";
+                  //echo "Consultar: ".$consultar;
+                  $res1 = $db->getResultArray($consultar);
+                   foreach ($res1 as $fila) 
+                   {
+                      echo ' <tr>';
+                    //1. nombre
+                    $idInstitucion=$fila['ID'];
+                      echo "<td><a href=\"VerPersonasCapacitadas.php?institucion=$idInstitucion\">".$fila['nombre']."</a></td>";
+                     //2. fecha de inicio a fin
+                    $cantidadPersonasCapacitadas=cuentaCapacitadas($idInstitucion,$dms);
+                     echo "<td><a href=\"#\" id=\"descripcion\" data-type=\"text\" data-pk=\"$idItem\" data-url=\"/modificarUbicacionEditable.php\" data-title=\"Enter username\">".$res1[0]['tipo']."</a></td>";
+
+                     echo ' </tr>';
+                   }                                                
+                ?>
+            </tbody>
+              <tfoot>
+              </tfoot>
+                
+
+               
+              </table>
+            </div>
+            <!-- /.box-body -->
                </div>
 
               <!-- /.tab-pane -->
+
+
+              <div class="tab-pane" id="tab_3">
+
+                  <div class="box-body no-padding">
+              <table  class="table table-hover table-striped table-condensed">
+                <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Cantidad de personas capacitadas</th>
+             
+                </tr>
+               </thead>
+               <tbody>
+                  <?php           
+                  //////////////// DIBUJO TABLA
+                  $consultar = "SELECT * FROM instituciones_oe WHERE tipo='Desconcentrada';";
+                  //echo "Consultar: ".$consultar;
+                  $res1 = $db->getResultArray($consultar);
+                   foreach ($res1 as $fila) 
+                   {
+                      echo ' <tr>';
+                    //1. nombre
+                    $idInstitucion=$fila['ID'];
+                      echo "<td><a href=\"VerPersonasCapacitadas.php?institucion=$idInstitucion\">".$fila['nombre']."</a></td>";
+                     //2. fecha de inicio a fin
+                    $cantidadPersonasCapacitadas=cuentaCapacitadas($idInstitucion,$dms);
+                     echo "<td><a href=\"#\" id=\"descripcion\" data-type=\"text\" data-pk=\"$idItem\" data-url=\"/modificarUbicacionEditable.php\" data-title=\"Enter username\">".$res1[0]['tipo']."</a></td>";
+
+                     echo ' </tr>';
+                   }                                                
+                ?>
+            </tbody>
+              <tfoot>
+              </tfoot>
+                
+
+               
+              </table>
+            </div>
+            <!-- /.box-body -->
+               </div>
+
+
+               <div class="tab-pane" id="tab_2">
+
+                  <div class="box-body no-padding">
+              <table  class="table table-hover table-striped table-condensed">
+                <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Cantidad de personas capacitadas</th>
+             
+                </tr>
+               </thead>
+               <tbody>
+                  <?php           
+                  //////////////// DIBUJO TABLA
+                  $consultar = "SELECT * FROM instituciones_oe WHERE tipo='Secretaría';";
+                  //echo "Consultar: ".$consultar;
+                  $res1 = $db->getResultArray($consultar);
+                   foreach ($res1 as $fila) 
+                   {
+                      echo ' <tr>';
+                    //1. nombre
+                    $idInstitucion=$fila['ID'];
+                      echo "<td><a href=\"VerPersonasCapacitadas.php?institucion=$idInstitucion\">".$fila['nombre']."</a></td>";
+                     //2. fecha de inicio a fin
+                    $cantidadPersonasCapacitadas=cuentaCapacitadas($idInstitucion,$dms);
+                     echo "<td><a href=\"#\" id=\"descripcion\" data-type=\"text\" data-pk=\"$idItem\" data-url=\"/modificarUbicacionEditable.php\" data-title=\"Enter username\">".$res1[0]['tipo']."</a></td>";
+
+                     echo ' </tr>';
+                   }                                                
+                ?>
+            </tbody>
+              <tfoot>
+              </tfoot>
+                
+
+               
+              </table>
+            </div>
+            <!-- /.box-body -->
+               </div>
             </div>
             <!-- /.tab-content -->
           </div>
@@ -197,6 +312,12 @@ $this->contentContainerEnd();
         <!-- /.col -->
 
       </div>
+<?php
+ //////FIN MI CODIGO                 
+$this->contentContainerEnd();
+
+?>
+
 
 
 

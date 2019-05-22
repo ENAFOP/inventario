@@ -244,14 +244,23 @@ $this->contentContainerStart();
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-      <form class="form-horizontal" name="formularioGrupo" id="formularioGrupo" action="out.ProcesarItem.php" method="POST" enctype="multipart/form-data">
+      <form class="form-horizontal" name="formularioRegistroCurso" id="formularioRegistroCurso" action="out.ProcesarCurso.php" method="POST" enctype="multipart/form-data">
               <div class="box-body">
 
                 <div class="form-group">
-                  <label for="nombreItem" class="col-sm-2 control-label">Nombre</label>
+                  <label for="nombreCurso" class="col-sm-2 control-label">Nombre</label>
 
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="nombreItem" name="nombreItem" placeholder="por ejemplo lapicero  ..." required>
+                    <input type="text" class="form-control" id="nombreCurso" name="nombreCurso" placeholder="por ejemplo Diplomado en Gerencia Pública  ..." required>
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <label for="nombreCorto" class="col-sm-2 control-label">Nombre corto que identifique el curso</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" maxlength="10" class="form-control" id="nombreCorto" name="nombreCorto" placeholder="Máximo 10 caracteres, por ejemplo DGPUB  ..." required>
                   </div>
                 </div>
                           
@@ -274,7 +283,7 @@ $this->contentContainerStart();
                 </div> 
 
                 <div class="form-group">
-                  <label for="empresa" class="col-sm-2 control-label">Categoría de cargo a que va dirigido</label>
+                  <label for="empresa" class="col-sm-2 control-label">Categorías de cargos a los que va dirigido el curso/diplomado</label>
 
                   <div class="col-sm-10">
                    <?php imprimeCategorias(); ?>
@@ -283,44 +292,35 @@ $this->contentContainerStart();
                 </div> 
 
                  <div class="form-group">
-                  <label for="cantidadInicial" class="col-sm-2 control-label">Objetivo</label>
+                  <label for="objetivo" class="col-sm-2 control-label">Objetivo</label>
 
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="cantidadInicial" name="cantidadInicial" placeholder="por ejemplo 5,000" required>
+                    <input type="text" class="form-control" id="objetivo" name="objetivo" placeholder="Indique objetivo" required>
                   </div>
 
                 </div> 
 
                 <div class="form-group">
-                  <label for="costoCompra" class="col-sm-2 control-label">Metodología</label>
+                  <label for="metodologia" class="col-sm-2 control-label">Metodología</label>
 
                   <div class="col-sm-10">
-                    <input type="number" step=".01" class="form-control" id="costoCompra" name="costoCompra" placeholder="por ejemplo $1000  ..." required>
+                     <input type="text" class="form-control" id="metodologia" name="metodologia" placeholder="Explique brevemente la metodología" required>
                   </div>
 
                 </div> 
 
 
                 <div class="form-group">
-                  <label for="origenFondos" class="col-sm-2 control-label">Evaluación</label>
+                  <label for="evaluacion" class="col-sm-2 control-label">Evaluación</label>
 
                   <div class="col-sm-10">
-                   <?php imprimirOrigen(); ?>
+                   <input type="text" class="form-control" id="evaluacion" name="evaluacion" placeholder="Explique brevemente la forma de evaluación" required>
                   </div>
 
                 </div> 
 
 
-               
-
-                 <div class="form-group">
-                  <label for="cantidadInicial" class="col-sm-2 control-label">Donde va a estar ubicado</label>
-
-                  <div class="col-sm-10">
-                   <?php imprimirUbicaciones(); ?>
-                  </div>
-
-                </div> 
+              
 
                 </div> 
 
@@ -332,7 +332,7 @@ $this->contentContainerStart();
               <!-- /.box-body -->
               <div class="box-footer">
                 <button type="reset" class="btn btn-default">Borrar campos</button>
-                <button type="submit" class="btn btn-info pull-right">Agregar item</button>
+                <button type="submit" class="btn btn-info pull-right">Enviar formulario de registro de formación</button>
               </div>
               <!-- /.box-footer -->
             </form>
