@@ -36,12 +36,22 @@ include("../../inc/inc.Authentication.php");
 		modalidad ENUM('Presencial','Semipresencial','Virtual'),
 		duracion INT NOT NULL,
 		metodologia VARCHAR(512) NOT NULL,
-		evaluacion VARCHAR(512) NOT NULL
+		evaluacion VARCHAR(512) NOT NULL,
+		UNIQUE KEY nombre_corto (nombre_corto)
 		);";
 		$res0 = $db->getResult($crearCurso);
+		if(!$res0)
+		{
+			UI::exitError("No se pudo crear la tabla","No se pudo crear la tabla  (procesos_formativos)");
+		}
 		$insertarCurso = "INSERT INTO procesos_formativos VALUES(NULL,'$nombreCorto','$nombre','$modalidad',$duracion,'$metodologia','$evaluacion')";
 		
+		
 		$res1 = $db->getResult($insertarCurso);
+		if(!$res1)
+		{
+			UI::exitError("Curso con este código ya existe","Está intentando crear un curso o diplomado que ya existe ($nombreCorto)");
+		}
 		$idCreado=$db->getInsertID();
 		////////////// creo tabla que relaciona curso con perfiles a los que va dirigido
 		$crearCategoriasCursos="CREATE TABLE IF NOT EXISTS categorias_procesos_formativos (
@@ -51,10 +61,18 @@ include("../../inc/inc.Authentication.php");
 		FOREIGN KEY (id_proceso_formativo) REFERENCES procesos_formativos(id) ON DELETE CASCADE ON UPDATE CASCADE
 		);";
 		$res2 = $db->getResult($crearCategoriasCursos);
+		if(!$res2)
+		{
+			UI::exitError("No se pudo crear la tabla","No se pudo crear la tabla  (categorias_procesos_formativos)");
+		}
 		foreach ($categoriaCargo as $catego) 
 		{
 		$insertarCategoriaCurso = "INSERT INTO categorias_procesos_formativos VALUES(NULL,$idCreado,'$catego')";
 		$res3 = $db->getResult($insertarCategoriaCurso);
+		if(!$res3)
+		{
+			UI::exitError("No se pudo insertar categorías de cargo para cursos","No se pudo asignar categorías de cargos   (categorias_procesos_formativos)");
+		}
 
 		}
 		

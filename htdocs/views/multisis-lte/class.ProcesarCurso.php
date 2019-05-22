@@ -116,7 +116,7 @@ $this->contentContainerStart();
 					<li>Nombre: <?php echo $nombreCurso ?></li>
 					<li>Nombre corto:  <?php echo $nombreCorto ?></li>
 					<li>Modalidad:   <?php echo $modalidad ?></li>
-					<li></li>
+	
 
 
 

@@ -53,11 +53,11 @@ require_once("SeedDMS/Preview.php");
     $res1 = $db->getResultArray($consultar);
     return $res1[0]['COUNT(*)'];
    }
-   function contarUbicaciones($dms)
+   function contarCursos($dms)
    {
     $res=true;
     $db = $dms->getDB();
-    $consultar = "SELECT COUNT(*) FROM app_ubicacion;";
+    $consultar = "SELECT COUNT(*) FROM procesos_formativos;";
     //echo "Consultar: ".$consultar;
     $res1 = $db->getResultArray($consultar);
     return $res1[0]['COUNT(*)'];
@@ -149,7 +149,7 @@ $this->contentContainerStart();
 
                                           <div class="col-md-4">
                                             <a class="btn btn-app" href="out.AnadeInstanciaCurso.php">
-                                              <span class="badge bg-teal"><?php print contarItems($dms);?></span>
+                                             
                                               <i class="fa fa-list-ol"></i> Añadir instancia de curso
                                           </a> 
 
@@ -158,15 +158,15 @@ $this->contentContainerStart();
                                           <div class="col-md-4">
 
                                               <a class="btn btn-app" href="out.VerProcesosFormativos.php">
-                                                <span class="badge bg-teal"><?php print contarUbicaciones($dms);?></span>
-                                                <i class="fa fa-list-alt"></i> Ver procesos
+                                                <span class="badge bg-teal"><?php print contarCursos($dms);?></span>
+                                                <i class="fa fa-list-alt"></i> Ver cursos y diplomados realizados
                                              </a>
 
                                           </div>
 
                                           <div class="col-md-4">
                                               <a class="btn btn-app" href="out.AnadeCursoDiplomado.php">
-                                                <span class="badge bg-teal"><?php print contarDineroFuentes($dms);?></span>
+                                              
                                                 <i class="fa fa-usd"></i> Registrar nueva acción formativa
                                              </a>
 

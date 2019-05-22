@@ -101,6 +101,7 @@ class SeedDMS_View_VerProcesosFormativos extends SeedDMS_Bootstrap_Style
         <li><a href="../out.ViewFolder.php"><i class="fa fa-dashboard"></i> Portal</a></li>
         <li><a href="../out.GestionFormacion.php"><i class="fa fa-wrench"></i> Subsistema de Gestión de la Formación ENAFOP</a></li>
         <li><a href="out.RegistroAcademico.php">Registro académico ENAFOP</a></li>
+        <li><a href="out.GestionarFormaciones.php">Gestionar Formaciones</a></li>
         <li class="active">Ver listado de procesos formativos</li>
       </ol>
     <div class="gap-10"></div>
@@ -117,7 +118,7 @@ $this->contentContainerStart();
 ?>
  <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Haga clic en el nombre del artículo para editarlo</h3>
+              <h3 class="box-title">Haga clic en el nombre del curso para ver sus detalles</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
@@ -125,33 +126,33 @@ $this->contentContainerStart();
               	<thead>
                 <tr>
                   <th>Nombre</th>
-                  <th>descipción</th>
-                  <th>Origen fondos</th>
-                  <th>Cantidad actual</th>           
+                  <th>Nombre corto</th>
+                  <th>Modalidad</th>
+                  <th>Número de veces que se ha impartido</th>
+                        
                 </tr>
                </thead>
                <tbody>
                 	<?php
-                	$numEventos=contarItems($dms);
                 	//////////////// DIBUJO TABLA
-                	$consultar = "SELECT * FROM app_item;";
+                	$consultar = "SELECT * FROM procesos_formativos;";
 					//echo "Consultar: ".$consultar;
-				  	$res1 = $db->getResultArray($consultar);
-                	for($cont=0;$cont<$numEventos;$cont++)
+				  	     $res1 = $db->getResultArray($consultar);
+                	for($cont=0;$cont<sizeof($res1);$cont++)
                 	{
                 		echo ' <tr>';
                 		//1. nombre
                     $idItem=$res1[$cont]['id'];
-                		 echo "<td><a href=\"out.VerItem.php?id=".$idItem."\">".$res1[$cont]['nombre']."</a></td>";
+                		 echo "<td><a href=\"out.DetallesCurso.php?id=".$idItem."\">".$res1[$cont]['nombre']."</a></td>";
                 		 //2. fecha de inicio a fin
-                		 echo "<td>".$res1[$cont]['descripcion']."</td>";
+                		 echo "<td>".$res1[$cont]['nombre_corto']."</td>";
                 		  // 3. lugar
-                		  echo "<td>".$res1[$cont]['origen_fondos']."</td>";
+                		  echo "<td>".$res1[$cont]['modalidad']."</td>";
                 		  // 4. enlace para editar
-                		  $idEvento=$res1[$cont]['id'];
-                		 echo "<td>".$res1[$cont]['cantidad_actual']."</td>";
-
-		           
+                      $contarVecesImpartidas=0;
+                      echo "<td>". $contarVecesImpartidas."</td>";
+                      echo ' </tr>';
+        		           
                 	}                                
                 ?>
             </tbody>
