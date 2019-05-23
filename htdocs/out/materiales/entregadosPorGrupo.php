@@ -41,7 +41,6 @@ foreach ($resultado1 as $fila)
 	  array_push($arrayTmp, $resultado2[0]['SUM(cantidad_variada)']);
 	  array_push($arrayMacizo, $arrayTmp);
 }
-
 echo json_encode($arrayMacizo);
 
 ?>

@@ -1,3 +1,5 @@
+
+
 <?php
 /**
  * Implementation of MyDocuments view
@@ -19,13 +21,26 @@
  * Include parent class
  */
 require_once("class.Bootstrap.php");
+$rutaLibreria=__DIR__ ;
+$quitado=dirname($rutaLibreria, 2);
+$quitado=$quitado.'/styles/multisis-lte/live-search/core/';
+file_exists($quitado. 'Handler.php') ? require_once $quitado. 'Handler.php' : die('Handler.php not found');
+file_exists($quitado. 'Config.php') ? require_once $quitado. 'Config.php' : die('Config.php not found');
+use AjaxLiveSearch\core\Config;
+use AjaxLiveSearch\core\Handler;
 
+if (session_id() == '') {
+    session_start();
+}
+
+    $handler = new Handler();
+    $handler->getJavascriptAntiBot();
+    //echo "HANDLER: ".$handler;
 
 /**
  * Include class to preview documents
  */
 require_once("SeedDMS/Preview.php");
-
 
 
 /**
@@ -101,6 +116,7 @@ class SeedDMS_View_AnadeInstanciaCurso extends SeedDMS_Bootstrap_Style
  /**
  Método que muestra los documentos próximos a caducar sólo de 
  **/
+
 	function show() 
 	{ /* {{{ */
 		$dms = $this->params['dms'];
@@ -114,7 +130,8 @@ class SeedDMS_View_AnadeInstanciaCurso extends SeedDMS_Bootstrap_Style
 
 		$db = $dms->getDB();
 		$previewer = new SeedDMS_Preview_Previewer($cachedir, $previewwidth, $timeout);
-
+$this->htmlAddHeader('<link rel="stylesheet" type="text/css" src="../../styles/'.$this->theme.'/live-search/css/ajaxlivesearch.min.css"></script>');
+    //$this->htmlAddHeader('<link rel="stylesheet" type="text/css" href="css/ajaxlivesearch.min.css">');
 		$this->htmlStartPage("Añadir item ", "skin-blue sidebar-mini  sidebar-collapse");
 		$this->containerStart();
 		$this->mainHeader();
@@ -191,13 +208,37 @@ $this->contentContainerStart();
 
 
                 <div class="form-group">
-                  <label for="tipo" class="col-sm-2 control-label">Duración en horas académicas</label>
+                  <label for="tipo" class="col-sm-2 control-label">Cuerpo docente que impartirá este curso</label>
 
                   <div class="col-sm-10">
-                    <input type="number" step="1" min="1" max="500" class="form-control" id="duracion" name="duracion" placeholder="por ejemplo 20  ..." required>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
+                    Seleccionar docentes
+                  </button>
                   </div>
 
                 </div> 
+
+                 <div class="modal fade" id="modal-default">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title">Default Modal</h4>
+                        </div>
+                        <div class="modal-body">
+                           <input type="text" class='mySearch' id="ls_query" placeholder="Type to start searching ...">
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                      </div>
+                      <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                  </div>
+                  <!-- /.modal -->
 
 
 
@@ -264,6 +305,9 @@ $this->contentContainerStart();
  //////FIN MI CODIGO                 
 $this->contentContainerEnd();
 
+ echo '<script type="text/javascript" src="../../styles/'.$this->theme.'/live-search/js/ajaxlivesearch.min.js"></script>';
+ $time= time();
+ echo "<input id=\"time\" type=\"hidden\" value=\"$time\">";
 
 $this->endsBoxPrimary();
      ?>
@@ -271,12 +315,21 @@ $this->endsBoxPrimary();
 		</div>
 		</div>
 
+
 		<?php	
 		$this->contentEnd();
 		$this->mainFooter();		
 		$this->containerEnd();
 		//$this->contentContainerEnd();
     echo '<script src="checkInstanciaCurso.js"></script>;';
+    echo '<script src="busquedaLive.js"></script>;';
+    //echo '<script src="busquedaLive.js"></script>;';
+
+   
+
+   
+
+
 		$this->htmlEndPage();
 	} /* }}} */
 }
