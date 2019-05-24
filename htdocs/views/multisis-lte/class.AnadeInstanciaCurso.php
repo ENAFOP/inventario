@@ -133,7 +133,9 @@ class SeedDMS_View_AnadeInstanciaCurso extends SeedDMS_Bootstrap_Style
 
 		$db = $dms->getDB();
 		$previewer = new SeedDMS_Preview_Previewer($cachedir, $previewwidth, $timeout);
-$this->htmlAddHeader('<link rel="stylesheet" type="text/css" src="../../styles/'.$this->theme.'/live-search/css/ajaxlivesearch.min.css"></script>');
+    $this->htmlAddHeader('<link rel="stylesheet" type="text/css" src="../../styles/'.$this->theme.'/live-search/css/fontello.css"></script>');
+    $this->htmlAddHeader('<link rel="stylesheet" type="text/css" src="../../styles/'.$this->theme.'/live-search/css/animation.css"></script>');
+$this->htmlAddHeader('<link rel="stylesheet" type="text/css" src="../../styles/'.$this->theme.'/live-search/css/ajaxlivesearch.css"></script>');
     //$this->htmlAddHeader('<link rel="stylesheet" type="text/css" href="css/ajaxlivesearch.min.css">');
 		$this->htmlStartPage("Añadir item ", "skin-blue sidebar-mini  sidebar-collapse");
 		$this->containerStart();
@@ -230,8 +232,16 @@ $this->contentContainerStart();
                           <h4 class="modal-title">Default Modal</h4>
                         </div>
                         <div class="modal-body">
-                           <input type="text" class='mySearch' id="ls_query" placeholder="Type to start searching ...">
-                        </div>
+
+
+                          
+                           <div style="clear: both">
+                            <input type="text" class='mySearch' id="ls_query" placeholder="Type to start searching ...">
+                          </div>                       
+
+
+
+               </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
                           <button type="button" class="btn btn-primary">Save changes</button>

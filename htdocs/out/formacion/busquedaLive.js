@@ -9,7 +9,8 @@ jQuery(document).ready(function(){
         max_input: 20,
         onResultClick: function(e, data) {
             // get the index 0 (first column) value
-            var selectedOne = jQuery(data.selected).find('td').eq('0').text();
+           // get the index 1 (second column) value
+            var selectedOne = jQuery(data.selected).find('td').eq('1').html();
 
             // set the input value
             jQuery('#ls_query').val(selectedOne);

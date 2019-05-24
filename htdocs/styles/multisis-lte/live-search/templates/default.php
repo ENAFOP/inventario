@@ -44,7 +44,7 @@ if (!empty($rows)) {
     $query = htmlentities($query, ENT_NOQUOTES, 'UTF-8');
 
     // there is no result - return an appropriate message.
-    $html .= "<tr><td>There is no result for \"{$query}\"</td></tr>";
+    $html .= "<tr><td>No hay resultados para \"{$query}\"</td></tr>";
 }
 
 return $html;
