@@ -1,8 +1,11 @@
 jQuery(document).ready(function(){
-    var time=$("#time").val();
+   var tiempito=$("#tiempito").val();
+   var tokencito=$("#tokencito").val();
+   //alert("tokencito: "+tokencito);
     //var proceso=$("#proceso").val();
     jQuery(".mySearch").ajaxlivesearch({
-        loaded_at: time,
+        loaded_at: tiempito,
+        token: tokencito,
         max_input: 20,
         onResultClick: function(e, data) {
             // get the index 0 (first column) value
@@ -18,7 +21,7 @@ jQuery(document).ready(function(){
         {
             // do whatever you want
             alert("hola");
-            // jQuery("#ls_query").trigger('ajaxlivesearch:search', {query: 'test'});
+            jQuery("#ls_query").trigger('ajaxlivesearch:search', {query: 'test'});
         },
         onAjaxComplete: function(e, data) {
 

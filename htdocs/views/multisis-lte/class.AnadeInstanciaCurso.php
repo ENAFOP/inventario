@@ -1,5 +1,3 @@
-
-
 <?php
 /**
  * Implementation of MyDocuments view
@@ -21,6 +19,7 @@
  * Include parent class
  */
 require_once("class.Bootstrap.php");
+require_once("SeedDMS/Preview.php");
 $rutaLibreria=__DIR__ ;
 $quitado=dirname($rutaLibreria, 2);
 $quitado=$quitado.'/styles/multisis-lte/live-search/core/';
@@ -29,18 +28,11 @@ file_exists($quitado. 'Config.php') ? require_once $quitado. 'Config.php' : die(
 use AjaxLiveSearch\core\Config;
 use AjaxLiveSearch\core\Handler;
 
-if (session_id() == '') {
-    session_start();
-}
-
-    $handler = new Handler();
-    $handler->getJavascriptAntiBot();
-    //echo "HANDLER: ".$handler;
 
 /**
  * Include class to preview documents
  */
-require_once("SeedDMS/Preview.php");
+
 
 
 /**
@@ -113,12 +105,23 @@ function imprimeModalidades()
 
 class SeedDMS_View_AnadeInstanciaCurso extends SeedDMS_Bootstrap_Style 
 {
+
  /**
  Método que muestra los documentos próximos a caducar sólo de 
  **/
 
 	function show() 
 	{ /* {{{ */
+    if (session_id() == '') {
+    session_start();
+  }
+
+    $handler = new Handler();
+    $handler->getJavascriptAntiBot();
+    //echo "HANDLER: ".$handler;
+
+    $tokencito="'" . $handler->getToken() . "'";
+
 		$dms = $this->params['dms'];
 		$user = $this->params['user'];
 		$orderby = $this->params['orderby'];
@@ -138,7 +141,7 @@ $this->htmlAddHeader('<link rel="stylesheet" type="text/css" src="../../styles/'
 		$this->mainSideBar();
 		//$this->contentContainerStart("hoa");
 		$this->contentStart();
-          
+           echo "<input id=\"tokencito\" type=\"hidden\" value=\"$tokencito\">";
 		?>
          <ol class="breadcrumb">
         <li><a href="../out.ViewFolder.php"><i class="fa fa-dashboard"></i> Portal</a></li>
@@ -305,9 +308,10 @@ $this->contentContainerStart();
  //////FIN MI CODIGO                 
 $this->contentContainerEnd();
 
- echo '<script type="text/javascript" src="../../styles/'.$this->theme.'/live-search/js/ajaxlivesearch.min.js"></script>';
+ echo '<script type="text/javascript" src="../../styles/'.$this->theme.'/live-search/js/ajaxlivesearch.js"></script>';
  $time= time();
- echo "<input id=\"time\" type=\"hidden\" value=\"$time\">";
+ echo "time:".$time;
+ echo "<input id=\"tiempito\" type=\"hidden\" value=\"$time\">";
 
 $this->endsBoxPrimary();
      ?>

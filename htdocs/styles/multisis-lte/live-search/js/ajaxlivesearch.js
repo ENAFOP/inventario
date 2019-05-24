@@ -17,7 +17,8 @@
          */
 
         var ls = {
-            url: "core/AjaxProcessor.php",
+
+            url: "../../styles/multisis-lte/live-search/core/AjaxProcessor.php",
             // This should be the same as the same parameter's value in config file
             form_anti_bot: "ajaxlivesearch_guard",
             cache: false,
@@ -288,7 +289,7 @@
 
                                 },
                                 error: function () {
-                                    result.find('table tbody').html('Something went wrong. Please refresh the page.');
+                                    result.find('table tbody').html('Algo salió mal. Please refresh the page.');
 
                                     remove_footer(footer, result);
                                 },
