@@ -237,9 +237,45 @@ $this->contentContainerStart();
                         </div>
                         <div class="modal-body">
 
-                          <div style="clear: both">
-                    <input type="text" class='mySearch' id="ls_query" placeholder="Escriba el nombre de un/a docente ...">
-                    </div>  
+                          <div class="row">
+
+                            <div class="col-md-1">
+                            
+
+                            </div>
+
+                            <div class="col-sm-8">
+
+                              <div style="clear: both">
+                          <input type="text" class='mySearch' id="ls_query" placeholder="Escriba el nombre de un/a docente ...">
+                          </div>  
+
+                            </div>
+
+                            
+
+
+                           </div> 
+
+
+                           <div id="filaAnadirDocente" class="row" >
+
+                          
+
+                            <ul id="listaDocentes">
+                              <li>A</li>
+
+                            </ul>
+
+
+
+                           </div>
+
+                          
+
+                          <div >
+                         
+                          </div>  
 
                                               
 
@@ -248,7 +284,7 @@ $this->contentContainerStart();
                </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Save changes</button>
+                          <button type="button" class="btn btn-primary">Guardar</button>
                         </div>
                       </div>
                       <!-- /.modal-content -->

@@ -1,8 +1,23 @@
-jQuery(document).ready(function(){
+jQuery(document).ready(function()
+{
+    /////////////////////// AJAX PARA CREAR TABLA DE DOCENTES ///////////
+    $.ajax({
+                    url:"crearTablaDocentes.php",
+                    success:function(result)
+                    {
+                        //console.log("creada tabla de docentes");
+                    }
+                }); //fin del ajax
+
+    ///////////////////////////////////////////////////////////////////////////
+
    var tiempito=$("#tiempito").val();
    var tokencito=$("#tokencito").val();
    //alert("tokencito: "+tokencito);
     //var proceso=$("#proceso").val();
+
+
+
     jQuery(".mySearch").ajaxlivesearch({
         loaded_at: tiempito,
         token: tokencito,
@@ -17,7 +32,7 @@ jQuery(document).ready(function(){
             jQuery('#ls_query').val(selectedOne);
             var idSeleccionado= jQuery(data.selected).find('td').eq('0').html();
             //alert("Seleccionado id: "+idSeleccionado);
-
+              $( "#listaDocentes" ).append( "<li>"+selectedOne+"</li>");            
             // hide the result
             jQuery("#ls_query").trigger('ajaxlivesearch:hide_result');
 
