@@ -10,13 +10,18 @@ jQuery(document).ready(function(){
         onResultClick: function(e, data) {
             // get the index 0 (first column) value
            // get the index 1 (second column) value
+
             var selectedOne = jQuery(data.selected).find('td').eq('1').html();
 
             // set the input value
             jQuery('#ls_query').val(selectedOne);
+            var idSeleccionado= jQuery(data.selected).find('td').eq('0').html();
+            //alert("Seleccionado id: "+idSeleccionado);
 
             // hide the result
             jQuery("#ls_query").trigger('ajaxlivesearch:hide_result');
+
+
         },
         onResultEnter: function(e, data) 
         {

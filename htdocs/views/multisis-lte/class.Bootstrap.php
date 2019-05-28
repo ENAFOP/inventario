@@ -87,6 +87,11 @@ class SeedDMS_Bootstrap_Style extends SeedDMS_View_Common {
 	    echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/jquery-editable/css/jquery-editable.css" rel="stylesheet">'."\n";
 
 
+	    echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/live-search/css/ajaxlivesearch.min.css" rel="stylesheet">'."\n";
+	     echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/live-search/css/fontello.css" rel="stylesheet">'."\n";
+	     echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/live-search/css/animation.css" rel="stylesheet">'."\n";
+	     //////////// FIN DE para ajax LIVE SEARCH
+
 	    echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/jquery-editable/css/jquery-editable.css" rel="stylesheet">'."\n";
 		//echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/bower_components/select2/dist/css/select2.min.css" rel="stylesheet">'."\n";
 		// echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/bower_components/jvectormap/jquery-jvectormap.css" rel="stylesheet">'."\n";
@@ -99,7 +104,7 @@ class SeedDMS_Bootstrap_Style extends SeedDMS_View_Common {
 		echo '<link rel="shortcut icon" href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/favicon.ico" type="image/x-icon"/>'."\n";
 		echo '<script type="text/javascript" src="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/plugins/jQuery/jquery-2.2.3.min.js"></script>'."\n";
 		echo '<script type="text/javascript" src="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/plugins/bootbox/bootbox-4.4.0.min.js"></script>'."\n";
-		echo '<script type="text/javascript" src="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/passwordstrength/jquery.passwordstrength.js"></script>'."\n";
+		//echo '<script type="text/javascript" src="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/passwordstrength/jquery.passwordstrength.js"></script>'."\n";
 		echo '<script type="text/javascript" src="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/plugins/noty/jquery.noty.js"></script>'."\n";
 		echo '<script type="text/javascript" src="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/plugins/noty/layouts/topRight.js"></script>'."\n";
 		echo '<script type="text/javascript" src="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/plugins/noty/layouts/topCenter.js"></script>'."\n";

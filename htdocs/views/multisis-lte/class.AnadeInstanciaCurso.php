@@ -133,11 +133,12 @@ class SeedDMS_View_AnadeInstanciaCurso extends SeedDMS_Bootstrap_Style
 
 		$db = $dms->getDB();
 		$previewer = new SeedDMS_Preview_Previewer($cachedir, $previewwidth, $timeout);
-    $this->htmlAddHeader('<link rel="stylesheet" type="text/css" src="../../styles/'.$this->theme.'/live-search/css/fontello.css"></script>');
-    $this->htmlAddHeader('<link rel="stylesheet" type="text/css" src="../../styles/'.$this->theme.'/live-search/css/animation.css"></script>');
-$this->htmlAddHeader('<link rel="stylesheet" type="text/css" src="../../styles/'.$this->theme.'/live-search/css/ajaxlivesearch.css"></script>');
-    //$this->htmlAddHeader('<link rel="stylesheet" type="text/css" href="css/ajaxlivesearch.min.css">');
+    
 		$this->htmlStartPage("Añadir item ", "skin-blue sidebar-mini  sidebar-collapse");
+    //$this->htmlAddHeader('<link rel="stylesheet"  src="../../styles/'.$this->theme.'/live-search/css/fontello.css"></script>');
+    //$this->htmlAddHeader('<link rel="stylesheet"  src="../../styles/'.$this->theme.'/live-search/css/animation.css"></script>');
+   //$this->htmlAddHeader('<link rel="stylesheet" type="text/css" src="../../styles/'.$this->theme.'/live-search/css/ajaxlivesearch.min.css"></script>');
+    //$this->htmlAddHeader('<link rel="stylesheet" type="text/css" href="css/ajaxlivesearch.min.css">');
 		$this->containerStart();
 		$this->mainHeader();
 		$this->mainSideBar();
@@ -145,7 +146,7 @@ $this->htmlAddHeader('<link rel="stylesheet" type="text/css" src="../../styles/'
 		$this->contentStart();
            echo "<input id=\"tokencito\" type=\"hidden\" value=\"$tokencito\">";
 		?>
-         <ol class="breadcrumb">
+      <ol class="breadcrumb">
         <li><a href="../out.ViewFolder.php"><i class="fa fa-dashboard"></i> Portal</a></li>
         <li><a href="../out.GestionFormacion.php"><i class="fa fa-wrench"></i> Subsistema de Gestión de la Formación ENAFOP</a></li>
         <li><a href="out.RegistroAcademico.php">Registro Académico</a></li>
@@ -166,8 +167,11 @@ $this->contentContainerStart();
 //////INICIO MI CODIGO
 ?>
 <!-- ***************** UNA FILA TRES COLUMNAS *********************-->
+
 <div class="row">
         <div class="col-md-1">
+
+          
 
         </div> <!-- FIN DE COLUMNA 1 -->
 
@@ -229,15 +233,15 @@ $this->contentContainerStart();
                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span></button>
-                          <h4 class="modal-title">Default Modal</h4>
+                          <h4 class="modal-title">Seleccione lista de personas docentes y facilitadoras. Si aún no está en el sistema, añádala</h4>
                         </div>
                         <div class="modal-body">
 
+                          <div style="clear: both">
+                    <input type="text" class='mySearch' id="ls_query" placeholder="Escriba el nombre de un/a docente ...">
+                    </div>  
 
-                          
-                           <div style="clear: both">
-                            <input type="text" class='mySearch' id="ls_query" placeholder="Type to start searching ...">
-                          </div>                       
+                                              
 
 
 
@@ -317,8 +321,9 @@ $this->contentContainerStart();
 <?php
  //////FIN MI CODIGO                 
 $this->contentContainerEnd();
-
+ echo '<script  src="../../styles/'.$this->theme.'/live-search/js/jquery-1.11.1.min.js"></script>';
  echo '<script type="text/javascript" src="../../styles/'.$this->theme.'/live-search/js/ajaxlivesearch.js"></script>';
+
  $time= time();
  echo "time:".$time;
  echo "<input id=\"tiempito\" type=\"hidden\" value=\"$time\">";

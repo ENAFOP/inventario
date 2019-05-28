@@ -5,10 +5,17 @@ $html = '';
 /**
  * Header
  */
+$noQuieroVer=array("ID","tipo"); //columnas que no quiero que aparezcan.
 if (!empty($headers)) {
     $html .= '<tr>';
-    foreach ($headers as $aHeader) {
-        $style = (strtolower($aHeader) === 'id') ? 'display: none;' : '';
+    foreach ($headers as $aHeader) 
+    {
+            $style='';
+            if(in_array($aHeader,  $noQuieroVer))
+            {
+                $style ='display: none;';
+            }
+        //$style = (strtolower($aHeader) === 'id') ? 'display: none;' : '';
         $html .= "<th style='{$style}'>{$aHeader}</th>";
     }
     $html .= '</tr>';
@@ -21,7 +28,13 @@ if (!empty($rows)) {
     foreach ($rows as $row) {
         $html .= '<tr>';
         foreach ($row as $columnName => $column) {
-            $style = (strtolower($columnName) === 'id') ? 'display: none;' : '';
+            
+            $style='';
+            if(in_array($columnName,  $noQuieroVer))
+            {
+                $style ='display: none;';
+            }
+            
 
             if (is_array($column)) {
                 $content = '';
