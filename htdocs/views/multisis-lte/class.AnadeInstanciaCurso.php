@@ -260,10 +260,10 @@ $this->contentContainerStart();
 
                            <div id="filaAnadirDocente" class="row" >
 
-                          
+                          <h3></h3>
 
                             <ul id="listaDocentes">
-                              <li>A</li>
+                          
 
                             </ul>
 

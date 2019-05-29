@@ -34,6 +34,7 @@ jQuery(document).ready(function()
             //alert("Seleccionado id: "+idSeleccionado);
               $( "#listaDocentes" ).append( "<li>"+selectedOne+"</li>");            
             // hide the result
+            $('#ls_query').val('');   
             jQuery("#ls_query").trigger('ajaxlivesearch:hide_result');
 
 
