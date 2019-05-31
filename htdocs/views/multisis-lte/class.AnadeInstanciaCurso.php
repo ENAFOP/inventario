@@ -362,7 +362,7 @@ $this->contentContainerStart();
                   <label for="objetivo" class="col-sm-2 control-label">Objetivo</label>
 
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="objetivo" name="objetivo" placeholder="Indique objetivo" required>
+                    <input class="datepicker" data-date-format="mm/dd/yyyy">
                   </div>
 
                 </div> 
@@ -420,11 +420,11 @@ $this->contentContainerStart();
 <?php
  //////FIN MI CODIGO                 
 $this->contentContainerEnd();
- echo '<script  src="../../styles/'.$this->theme.'/live-search/js/jquery-1.11.1.min.js"></script>';
+// echo '<script  src="../../styles/'.$this->theme.'/live-search/js/jquery-1.11.1.min.js"></script>';
  echo '<script type="text/javascript" src="../../styles/'.$this->theme.'/live-search/js/ajaxlivesearch.js"></script>';
-
+ echo '<script type="text/javascript" src="../../styles/'.$this->theme.'/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>';
  $time= time();
- echo "time:".$time;
+ //echo "time:".$time;
  echo "<input id=\"tiempito\" type=\"hidden\" value=\"$time\">";
 
 $this->endsBoxPrimary();

@@ -134,14 +134,20 @@ $(document).on("click", "#botonCerrarDocentes" , function()
                 $(x).show('fast');
             } 
            var contenidoDocentes= $('#listaDocentes').text();
-           // var docentesSeparados = contenidoDocentes.split(' ');
+           // var docentesSeparados = contenidoDocentes.split("&nbsp;");
+           // // var docentesSeparados = contenidoDocentes.split(' ');
            // var listadoBonito="<p>";
            // for(var i=0;i<docentesSeparados.length;i++)
            // {
-           //       listadoBonito=listadoBonito+docentesSeparados[i]+","
+           //       listadoBonito=listadoBonito+docentesSeparados[i]+",<br>"
            // }
            //  listadoBonito=listadoBonito+"</p>";
            x.innerHTML=contenidoDocentes;
 
 
+});
+
+$('.datepicker').datepicker({
+    format: 'dd/mm/yyyy',
+    multidate: true
 });

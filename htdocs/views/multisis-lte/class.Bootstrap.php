@@ -98,11 +98,17 @@ class SeedDMS_Bootstrap_Style extends SeedDMS_View_Common {
 		echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/plugins/bootstrap-slider/slider.css" rel="stylesheet">'."\n";
 		echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/custom.css" rel="stylesheet">'."\n";
 
-
+		///////// para live search
 		     echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/live-search/css/fontello.css" rel="stylesheet">'."\n";
 	     echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/live-search/css/animation.css" rel="stylesheet">'."\n";
 	      echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/live-search/css/ajaxlivesearch.min.css" rel="stylesheet">'."\n";
 	     //////////// FIN DE para ajax LIVE SEARCH
+
+	      //ṕara date picker
+	       echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/bootstrap-datepicker/css/bootstrap-datepicker.standalone.css" rel="stylesheet">'."\n";
+	     //echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/bootstrap-datepicker/css/animation.css" rel="stylesheet">'."\n";
+	      //echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/bootstrap-datepicker/css/ajaxlivesearch.min.css" rel="stylesheet">'."\n";
+	      /// FIN DE PARA DATE PICKER
 
 		// Js Scripts
 		echo '<link rel="shortcut icon" href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/favicon.ico" type="image/x-icon"/>'."\n";
