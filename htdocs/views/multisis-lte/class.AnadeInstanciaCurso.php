@@ -220,12 +220,24 @@ $this->contentContainerStart();
                   <label for="tipo" class="col-sm-2 control-label">Cuerpo docente que impartirá este curso</label>
 
                   <div class="col-sm-10">
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
+                    <button  type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
                     Seleccionar docentes
                   </button>
                   </div>
 
+                  <div id="listaFinalDocentes" class="form-group" style="display: none;" >
+                     <label for="listaFinalDocentes" class="col-sm-2 control-label">Docentes seleccionados:</label>
+
+                  
+
+                 </div> 
+
+
                 </div> 
+
+
+
+
 
                  <div class="modal fade" id="modal-default">
                     <div class="modal-dialog">
@@ -260,14 +272,65 @@ $this->contentContainerStart();
 
                            <div id="filaAnadirDocente" class="row" >
 
-                          <h3></h3>
+                              <div class="col-sm-5">
+                                  <h5>Lista de personas docentes seleccionadas</h5>
 
-                            <ul id="listaDocentes">
-                          
+                                    <ol id="listaDocentes">
+                                  
 
-                            </ul>
+                                    </ol>
+
+                               </div> 
+
+                               <div class="col-sm-7">
+                                  <h5>¿No aparece la persona en la búsqueda anterior? Añádalo con los siguientes campos: </h5>
 
 
+                                   <label for="inputEmail3">Nombre</label>
+                                  <div class="form-group">
+                                 
+
+                                  <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="nombreDocente"  name="nombreDocente"placeholder="Nombre" required>
+                                  </div>
+                                </div>
+
+                                <label for="inputEmail3">Correo</label>
+                                <div class="form-group">
+                                  
+
+                                  <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="correoDocente"  nombre="correoDocente" placeholder="Correo">
+                                  </div>
+                                </div>
+
+                                <label for="inputEmail3" >Teléfono</label>
+                                <div class="form-group">
+                                  
+
+                                  <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="telefonoDocente"  nombre="telefonoDocente" placeholder="Teléfono">
+                                  </div>
+                                </div>
+
+
+                                <button id="anadirDocente" type="button" class="btn bg-orange margin"><div id='loader' style='display: none;'>
+                                 <img src="../../images/carga.gif" id="loadingGif">
+                              </div>Agregar docente a la base</button>
+
+                            
+
+
+                              <label id="mensajeAgregadoDocente" class="control-label" for="inputSuccess" style="display: none;">
+                  
+                              </label>
+                                
+
+
+                                
+
+
+                               </div> 
 
                            </div>
 
@@ -283,8 +346,8 @@ $this->contentContainerStart();
 
                </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Guardar</button>
+                          
+                          <button id="botonCerrarDocentes" type="button" class="btn btn-primary" data-dismiss="modal">Guardar lista de docentes</button>
                         </div>
                       </div>
                       <!-- /.modal-content -->

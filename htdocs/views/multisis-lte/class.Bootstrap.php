@@ -87,10 +87,8 @@ class SeedDMS_Bootstrap_Style extends SeedDMS_View_Common {
 	    echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/jquery-editable/css/jquery-editable.css" rel="stylesheet">'."\n";
 
 
-	    echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/live-search/css/ajaxlivesearch.min.css" rel="stylesheet">'."\n";
-	     echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/live-search/css/fontello.css" rel="stylesheet">'."\n";
-	     echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/live-search/css/animation.css" rel="stylesheet">'."\n";
-	     //////////// FIN DE para ajax LIVE SEARCH
+	   
+
 
 	    echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/jquery-editable/css/jquery-editable.css" rel="stylesheet">'."\n";
 		//echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/bower_components/select2/dist/css/select2.min.css" rel="stylesheet">'."\n";
@@ -99,6 +97,12 @@ class SeedDMS_Bootstrap_Style extends SeedDMS_View_Common {
 		//añadido Por Mario
 		echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/plugins/bootstrap-slider/slider.css" rel="stylesheet">'."\n";
 		echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/custom.css" rel="stylesheet">'."\n";
+
+
+		     echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/live-search/css/fontello.css" rel="stylesheet">'."\n";
+	     echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/live-search/css/animation.css" rel="stylesheet">'."\n";
+	      echo '<link href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/live-search/css/ajaxlivesearch.min.css" rel="stylesheet">'."\n";
+	     //////////// FIN DE para ajax LIVE SEARCH
 
 		// Js Scripts
 		echo '<link rel="shortcut icon" href="'.$this->params['settings']->_httpRoot.'styles/'.$this->theme.'/favicon.ico" type="image/x-icon"/>'."\n";
