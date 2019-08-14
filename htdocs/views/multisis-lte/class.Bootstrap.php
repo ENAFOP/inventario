@@ -1223,8 +1223,8 @@ function menuClipboard($clipboard) { /* {{{ */
 			$txtpath .= "<li><a href=\"".$this->params['settings']->_httpRoot."out/out.ViewDocument.php?documentid=".$document->getId()."\">".htmlspecialchars($document->getName())."</a></li>";
 
 		if($folder->getAccessMode($user) >= M_READWRITE) {
-			$txtpath .= "<li class=\"pull-right breadcrumb-btn\"><a id=\"add-document\" type=\"button\" class=\"btn btn-warning btn-sm\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"".getMLText("add_document")."\"><i class=\"fa fa-plus\"></i> <i class=\"fa fa-file\"></i></a> </li>";
-			$txtpath .= "<li class=\"pull-right breadcrumb-btn\"><a id=\"add-folder\" type=\"button\" class=\"btn btn-success btn-sm\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"".getMLText("add_subfolder")."\"><i class=\"fa fa-plus\"></i> <i class=\"fa fa-folder\"></i></a></li>";
+			//$txtpath .= "<li class=\"pull-right breadcrumb-btn\"><a id=\"add-document\" type=\"button\" class=\"btn btn-warning btn-sm\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"".getMLText("add_document")."\"><i class=\"fa fa-plus\"></i> <i class=\"fa fa-file\"></i></a> </li>";
+			//$txtpath .= "<li class=\"pull-right breadcrumb-btn\"><a id=\"add-folder\" type=\"button\" class=\"btn btn-success btn-sm\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"".getMLText("add_subfolder")."\"><i class=\"fa fa-plus\"></i> <i class=\"fa fa-folder\"></i></a></li>";
 
 		}
 
